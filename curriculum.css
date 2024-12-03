@@ -151,22 +151,7 @@ color: #000000;
                   color: #b0d12a;
               }
 
-       .timeline {
-           position: relative;
-           height: 100vh; /* Altezza piena della finestra */
-           margin-left: 70%;
-           width: 5px; /* Larghezza della linea del tempo */
-           background-color: #000; /* Colore della linea del tempo */
-           filter: blur(2px);
-       }
-       .timeline2 {
-           position: relative;
-           height: 100vh; /* Altezza piena della finestra */
-           margin-left: 80%;
-           width: 5px; /* Larghezza della linea del tempo */
-           background-color: #000; /* Colore della linea del tempo */
-           filter: blur(2px);
-       }
+     
 
 
        .break {
@@ -266,37 +251,6 @@ margin-left: -70px;
            font-weight: lighter;
            text-align: left;
        }
-
-
-       /* Sezione timeline */
-   .timeline {
-       position: relative;
-       width: 4px;
-       height: 3000px; /* Puoi regolare l'altezza della timeline come desiderato */
-       margin: 0 auto;
-       perspective: 1000px; /* Aggiunge la prospettiva per la visualizzazione 3D */
-   }
-
-   .line {
-       position: absolute;
-       bottom: 0;
-       width: 4px;
-       background-color: #BLACK; /* Colore della linea */
-       height: 100%;
-       transition: transform 1s ease;
-   }
-
-   /* Linea di sinistra */
-   .line.left {
-       left: 10%; /* Posizione della linea sinistra */
-       transform: rotateY(45deg) translateZ(150px); /* Aggiunge un effetto di profondità e rotazione */
-   }
-
-   /* Linea di destra */
-   .line.right {
-       right: 10%; /* Posizione della linea destra */
-       transform: rotateY(-45deg) translateZ(150px); /* Aggiunge un effetto di profondità e rotazione */
-   }
 
 
 
