@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulazione Desktop</title>
+    <title>MIND WASH PROGETTI</title>
     <link rel="stylesheet" href="progetti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -62,13 +62,13 @@
       // Array di 6 tipologie di cartelle con le rispettive pagine
       const folderTypes = [
           { name: 'Track point!', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
-          { name: 'Ceci n est pas une pipe', img: 'Progetti/cartella.png', link: 'pipe.html' },
-{ name: 'Ceci n est pas une pipe_final23', img: 'Progetti/cartella.png', link: 'pipe.html' },
-          { name: 'Tetris lab', img: 'Progetti/cartella.png', link: 'tetris.html' },
-                { name: 'Tetris lab_fina_final', img: 'Progetti/cartella.png', link: 'tetris.html' },
+        <!--   { name: 'Ceci n est pas une pipe', img: 'Progetti/cartella.png', link: 'pipe.html' },-->
+ <!--{ name: 'Ceci n est pas une pipe_final23', img: 'Progetti/cartella.png', link: 'pipe.html' },-->
+        <!--   { name: 'Tetris lab', img: 'Progetti/cartella.png', link: 'tetris.html' },-->
+         <!--        { name: 'Tetris lab_fina_final', img: 'Progetti/cartella.png', link: 'tetris.html' },-->
           { name: 'Tesi(?)', img: 'Progetti/cartella.png', link: 'tesi.html' },
-          { name: 'Grattacielo RAI', img: 'Progetti/cartella.png', link: 'grattacielo.html' },
-          { name: 'Grattacielo RAI_pls def', img: 'Progetti/cartella.png', link: 'grattacielo.html' },
+     <!--      { name: 'Grattacielo RAI', img: 'Progetti/cartella.png', link: 'grattacielo.html' },-->
+        <!--   { name: 'Grattacielo RAI_pls def', img: 'Progetti/cartella.png', link: 'grattacielo.html' },-->
           { name: 'Track point!_defdef', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
           { name: 'Track point!_defdefdef', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
             { name: 'Trash', img: 'Progetti/cestino.png', link: 'trash.html' }
@@ -78,7 +78,7 @@
       const desktop = document.querySelector('.desktop');
 
       // Genera 20 cartelle casuali
-      for (let i = 0.8; i <= 100; i++) {
+      for (let i = 0.8; i <= 40; i++) {
           const randomFolder = folderTypes[Math.floor(Math.random() * folderTypes.length)];
 
           const folder = document.createElement('div');
