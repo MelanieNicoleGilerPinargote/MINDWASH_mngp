@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleria di Immagini con Fish Eye</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        header {
+            background-color:#f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            z-index: 10; /* Porta l'header sopra */
+            position: relative; /* Assicurati che rispetti lo stacking context */
+        }
+
+        footer {
+          position: fixed;
+        display: flex;
+        justify-content: space-between; /* Mantiene ENG ed ESP a destra */
+        align-items: center;
+        bottom: 0;
+        right: 0;
+        left: 0; /* Estende il footer su tutta la larghezza */
+        margin: 0;
+        padding: 10px 20px;
+        background-color: none;
+        z-index: 10;
+    }
+
+        footer .language-button:hover {
+            background-color: #0078D7;
+            color: white;
+        }
+
+        .header-left h1 {
+            font-weight: bold;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .header-right a {
+            text-decoration: none;
+            color: #000000; /* NERO */
+            margin-left: 60px;
+            font-size: 12px;
+            filter: blur(2px);
+            transition: filter 2s; /* effetto di transizione */
+        }
+
+        .header-right a:hover {
+            filter: blur(0px); /* sfocato al passaggio del mouse */
+        }
+
+        .lingua-button {
+            cursor: none;
+            display: inline-block;
+            color: #000000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 10px;
+            transition: filter 2s; /* effetto di transizione */
+            filter: blur(2px); /* sfocato al passaggio del mouse */
+        }
+
+        .lingua-button:hover {
+            filter: blur(0px); /* sfocato al passaggio del mouse */
+        }
+
+        #footerText.typing-footer {
+       font-size: 16px;
+       color: #000;
+       margin: 0 auto;
+       text-align: center;
+       flex-grow: 1; /* Consente al testo di occupare il centro */
+   }
+
+        /* Canvas and Dots */
+        .dots-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .dot {
+            position: absolute;
+            border-radius: 30%;
+            background-color: #b0d12a;
+        }
+
+        .canvas {
+            position: absolute;
+            width: 3000px;
+            height: 3000px;
+            transform-origin: center;
+            transition: transform 0.1s ease-in-out;
+            top: 50px; /* Distanza dall'header */
+            bottom: 50px; /* Distanza dal footer */
+            left: 0;
+            right: 0;
+        }
+
+        .image-container {
+      position: absolute;
+      text-align: center;
+      overflow: visible; /* Garantisce che il contenuto non venga tagliato */
+  }
+
+  .image {
+    object-fit: contain; /* Mantiene proporzioni senza ritagliare */
+    width: auto; /* Adatta alla dimensione */
+    height: auto; /* Adatta alla dimensione */
+}
+
+
+        .image-text {
+            font-size: 14px;
+            color: #333;
+            margin-top: 5px;
+        }
+        .image, video {
+            aspect-ratio: attr(width) / attr(height);
+        }
+        video {
+      object-fit: contain; /* Adatta senza ritagliare */
+      max-width: 100%;
+      max-height: 100%;
+  }
+
+  #navigator {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 100px; /* Dimensione del navigatore */
+      height: 100px;
+      background-color: #b7b7b7; /* Sfondo traslucido */
+      opacity: 50%;
+      border: 0px solid #fff; /* Bordo bianco */
+      z-index: 15; /* Sopra il canvas */
+      overflow: hidden; /* Limita gli elementi interni */
+  }
+
+  #navigator-view {
+      position: absolute;
+      border: 1px solid #b0d12a; /* Rappresenta l'area visibile */
+      background-color: #b0d12a; /* Traslucido */
+  }
+
+  .navigator-point {
+      pointer-events: none; /* Assicurati che i puntini non interferiscano con i clic */
+  }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <h1>MELANIE NICOLE GILER PINARGOTE</h1>
+        </div>
+        <div class="typing-header" id="typingHeader"></div>
+        <div class="header-right">
+            <div class="desktop-menu">
+                <a href="progetti.html">PROGETTI</a>
+                <a href="curriculum.html">CURRICULUM</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="dots-overlay"></div>
+    <div class="canvas"></div>
+    <div id="navigator">
+        <div id="navigator-view"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div id="footerText" class="typing-footer"></div>
+   <div>
+            <a class="lingua-button" href="eng.html">ENG</a>
+            <a class="lingua-button">|</a>
+            <a class="lingua-button" href="esp.html">ESP</a>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.querySelector('.canvas');
+        const dotsOverlay = document.querySelector('.dots-overlay');
+        const imageCount = 500;
+        const placedImages = [];
+
+        let canvasScale = 1;
+        let targetX = -1000;
+        let targetY = -1000;
+        let currentX = targetX;
+        let currentY = targetY;
+        const edgeZone = 100;
+        const autoScrollSpeed = 5;
+
+        canvas.style.left = `${currentX}px`;
+        canvas.style.top = `${currentY}px`;
+
+        // Genera i puntini di sfondo
+        function createStaticDots() {
+            const step = 50;
+            for (let x = 0; x < window.innerWidth; x += step) {
+                for (let y = 0; y < window.innerHeight; y += step) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    dot.style.width = '3px';
+                    dot.style.height = '3px';
+                    dot.style.left = `${x}px`;
+                    dot.style.top = `${y}px`;
+                    dotsOverlay.appendChild(dot);
+                }
+            }
+        }
+
+        createStaticDots();
+        // Formati supportati
+              const supportedImageExtensions = ['png', 'jpg', 'jpeg', 'gif'];
+              const supportedVideoExtensions = ['mp4', 'avi'];
+
+              // Lista statica delle immagini
+  const files = [
+'matrimoniofronte.procreate.png',
+'matrimonioretro.procreate.png',
+'intro_estro.psd.png',
+'heatmap.gr.png',
+'strutturagrattacielo.rvt.png',
+'armeriarealedazzardo.ai.psd.jpg',
+'casaO.ai.jpg',
+'cecinestpasune.ind.jpg',
+'adachimuseumgarden.ai.jpg',
+'calatrava.jpg',
+'tavoleurb.ind.jpg',
+'tavolaurb.ind.jpg',
+'moriremotutti.keynote.jpg',
+'transettoprova.ai.mp4',
+'provavideo.html.css.mp4',
+'heatmap_funzioni.gr.mp4',
+'algoritmo_ottobre.gr.mp4',
+'tc_vista12.gr.3dm.jpg',
+'tc_vista07_08_09.gr.3dm.jpg',
+'hafencity_concept.ai.mp4',
+'tc_diagramma1.ai.jpg',
+'heatmapdesnsita_prova.gr.mp4',
+'moonlove12.blender.mp4',
+'diagrammadinamico.ai.mp4',
+'errore.animate.mp4',
+'tetrislab_galapagos.gr.mp4',
+'tc_facciate.gr.mp4',
+'fabio.jpg.jpg',
+'hafencity_diagramma.ai.jpg',
+'pipe_strutture.rvt.jpg',
+'pipe_strutture2.rvt.jpg',
+'pipe_mies_rvt.procreate.jpg',
+'armeriareale_provaanimazione.animatecharacter.mp4',
+'pipe_solaioterra.rvt.jpg',
+'moonlove2.blender.mp4',
+'pipe_sezione.rvt.mp4',
+'tesi_wallacei.gr.mp4',
+'tc_visualessay.mp4',
+'tc_provarender8.vray.jpg',
+'tc_provarender5.vray.jpg',
+'tc_provarender4.vray.jpg',
+'tc_provarender3.vray.jpg',
+'pipe_xray.rvt.jpg',
+'pipe2_rvt.jpg',
+'adesivi.psd.jpg',
+'tc_provarender6.vray.jpg',
+'collage_urbanistica.psd.jpg',
+'pumpkin.psd.jpg',
+'moodboard.jpg',
+'sticker2.psd.jpg',
+'sticker3.psd.jpg',
+'sticker4.psd.jpg',
+'pazienza.gr.mp4',
+'elephant.blender.mp4',
+'cubotto_provarender.vray.jpg',
+'tc_vista 1.3.vray.png',
+'sticker3.psd.jpg',
+'sticker3.psd.jpg',
+'sticker3.psd.jpg',
+      // aggiungi altre immagini
+  ];
+              // Genera contenuti (immagini e video)
+              async function generateContent() {
+
+console.log("Inizio la generazione dei contenuti...");
+                  for (const file of files) {
+                     console.log("Caricando file:", file);  // Debugging
+                      const container = document.createElement('div');
+                      container.classList.add('image-container');
+
+                      const fileExtension = file.split('.').pop().toLowerCase();
+                      let mediaElement;
+
+                      // Controlla se il file è un'immagine o un video
+                      if (supportedImageExtensions.includes(fileExtension)) {
+                          mediaElement = document.createElement('img');
+                          mediaElement.src = `images/${file}`;
+                          mediaElement.classList.add('image');
+
+                          mediaElement.onload = function() {
+               console.log('Immagine caricata:', file);
+           };
+           mediaElement.onerror = function() {
+               console.error('Errore nel caricare l\'immagine:', file);
+           };
+
+                      } else if (supportedVideoExtensions.includes(fileExtension)) {
+                          mediaElement = document.createElement('video');
+                          mediaElement.src = `images/${file}`;
+                          mediaElement.classList.add('image');
+                          mediaElement.controls = true; // Aggiungi controlli per i video
+      mediaElement.autoplay = true; // Parte automaticamente
+      mediaElement.loop = true; // Riproduce in loop
+      mediaElement.muted = true; // Muta il video per evitare blocchi automatici del browser
+                      } else {
+                          console.warn(`Tipo di file non supportato: ${file}`);
+                          continue;
+                      }
+
+                      // Aggiungi didascalia
+                      const text = document.createElement('div');
+                      text.classList.add('image-text');
+                      text.innerText = file;
+
+                      // Posizione e dimensioni casuali
+                      let x, y, width, height;
+                      do {
+                          width = Math.random() * 200 + 100;
+                          height = Math.random() * 200 + 100;
+                          x = Math.random() * (3000 - width);
+                          y = Math.random() * (3000 - height);
+                      } while (isOverlapping(x, y, width, height));
+
+                      placedImages.push({ x, y, width, height });
+
+                      container.style.left = `${x}px`;
+                      container.style.top = `${y}px`;
+                      container.style.width = `${width}px`;
+                      container.style.height = `${height + 20}px`;
+
+                      mediaElement.style.width = `${width}px`;
+                      mediaElement.style.height = `${height}px`;
+
+                      container.appendChild(mediaElement);
+                      container.appendChild(text);
+                      canvas.appendChild(container);
+                  }
+              }
+
+              // Funzione per verificare sovrapposizioni
+              function isOverlapping(x, y, width, height) {
+                  for (const rect of placedImages) {
+                      if (x < rect.x + rect.width && x + width > rect.x && y < rect.y + rect.height && y + height > rect.y) {
+                          return true;
+                      }
+                  }
+                  return false;
+              }
+
+              // Avvia generazione dei contenuti
+              generateContent();
+
+        // Effetto fish-eye
+        function applyFishEyeEffect() {
+            const images = document.querySelectorAll('.image');
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            images.forEach((img) => {
+                const rect = img.getBoundingClientRect();
+                const imgCenterX = rect.left + rect.width / 2;
+                const imgCenterY = rect.top + rect.height / 2;
+
+                const distanceX = imgCenterX - centerX;
+                const distanceY = imgCenterY - centerY;
+                const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+
+                const maxScale = 2;
+                const scale = Math.max(1, maxScale - distance / 500);
+                img.style.transform = `scale(${scale})`;
+            });
+        }
+
+        window.addEventListener('mousemove', applyFishEyeEffect);
+
+        // Controllo movimento automatico vicino ai bordi
+        window.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            if (x < edgeZone) targetX += autoScrollSpeed;
+            if (x > window.innerWidth - edgeZone) targetX -= autoScrollSpeed;
+            if (y < edgeZone) targetY += autoScrollSpeed;
+            if (y > window.innerHeight - edgeZone) targetY -= autoScrollSpeed;
+        });
+
+        // Zoom con rotellina del mouse
+window.addEventListener('wheel', (e) => {
+    e.preventDefault();
+
+    // Calcola la posizione del mouse rispetto al canvas trasformato
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = (e.clientX - rect.left) / canvasScale;
+    const mouseY = (e.clientY - rect.top) / canvasScale;
+
+    // Imposta il fattore di zoom
+    const zoomFactor = 0.1;
+    const zoomIn = e.deltaY < 0;
+    const newCanvasScale = Math.max(0.5, Math.min(canvasScale + (zoomIn ? zoomFactor : -zoomFactor), 3));
+
+    // Aggiorna il centro di zoom
+    const scaleChange = newCanvasScale / canvasScale;
+    targetX -= mouseX * (scaleChange - 1) * canvasScale;
+    targetY -= mouseY * (scaleChange - 1) * canvasScale;
+
+    // Aggiorna la scala del canvas
+    canvasScale = newCanvasScale;
+
+    // Aggiorna i puntini in base allo zoom
+    updateDots();
+});
+
+// Funzione per aggiornare la dimensione dei puntini
+function updateDots() {
+    const dots = document.querySelectorAll('.dot');
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    dots.forEach((dot) => {
+        const dotX = parseFloat(dot.style.left);
+        const dotY = parseFloat(dot.style.top);
+
+        // Calcola la distanza dal centro
+        const distanceX = dotX - centerX;
+        const distanceY = dotY - centerY;
+        const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+
+        // Dimensione del puntino basata sulla distanza e sullo zoom
+        const baseSize = 5; // Dimensione base del puntino
+        const size = baseSize * (canvasScale * Math.max(0.5, 1 - distance / 1000)); // Più lontano = più piccolo
+        dot.style.width = `${size}px`;
+        dot.style.height = `${size}px`;
+    });
+}
+
+// Genera i puntini iniziali
+function createStaticDots() {
+    const step = 50;
+    for (let x = 0; x < window.innerWidth; x += step) {
+        for (let y = 0; y < window.innerHeight; y += step) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.style.width = '5px'; // Dimensione iniziale
+            dot.style.height = '5px';
+            dot.style.left = `${x}px`;
+            dot.style.top = `${y}px`;
+            dotsOverlay.appendChild(dot);
+        }
+    }
+
+    // Aggiorna la dimensione iniziale dei puntini
+    updateDots();
+}
+
+createStaticDots();
+
+        // Typing effect for header
+        const headerMessages = ["C:/Users/Desktop/Trash", "“È così che siamo fatti nel profondo… un mucchio di fuffa.” Toy story 4", "un po' tutto un po' niente"];
+        let headerIndex = 0;
+        let headerCharIndex = 0;
+        let typingDirection = 1; // 1 = typing, -1 = deleting
+
+        function typeHeader() {
+            const currentMessage = headerMessages[headerIndex];
+            typingHeader.innerText = currentMessage.slice(0, headerCharIndex);
+            headerCharIndex += typingDirection;
+
+            if (headerCharIndex > currentMessage.length) {
+                typingDirection = -1;
+                setTimeout(typeHeader, 1000);
+            } else if (headerCharIndex === 0) {
+                typingDirection = 1;
+                headerIndex = (headerIndex + 1) % headerMessages.length;
+                setTimeout(typeHeader, 500);
+            } else {
+                setTimeout(typeHeader, 100);
+            }
+        }
+
+        typeHeader();
+
+        // Footer dynamic text with typing effect
+    const footerTypingText = ["ZOOM IN", "ZOOM OUT", "ESPLORA!"];
+    let footerCharIndex = 0;
+    let footerTypingIndex = 0;
+    let footerTypingDirection = 1; // 1 = typing, -1 = deleting
+
+    function typeFooter() {
+        const currentFooterMessage = footerTypingText[footerTypingIndex];
+        footerText.innerText = currentFooterMessage.slice(0, footerCharIndex);
+        footerCharIndex += footerTypingDirection;
+
+        if (footerCharIndex > currentFooterMessage.length) {
+            footerTypingDirection = -1; // Start deleting
+            setTimeout(typeFooter, 1000); // Wait before deleting
+        } else if (footerCharIndex === 0) {
+            footerTypingDirection = 1; // Start typing
+            footerTypingIndex = (footerTypingIndex + 1) % footerTypingText.length; // Move to next text
+            setTimeout(typeFooter, 500); // Pause before typing new text
+        } else {
+            setTimeout(typeFooter, 1500); // Typing/deleting speed
+        }
+    }
+
+    typeFooter();
+
+        // Animazione fluida con requestAnimationFrame
+        function animateCanvas() {
+            currentX += (targetX - currentX) * 0.1;
+            currentY += (targetY - currentY) * 0.1;
+            canvas.style.transform = `translate(${currentX}px, ${currentY}px) scale(${canvasScale})`;
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        animateCanvas();
+        applyFishEyeEffect();
+        function updateNavigator() {
+    const navigator = document.getElementById('navigator');
+    const navigatorView = document.getElementById('navigator-view');
+
+    const navigatorWidth = navigator.offsetWidth;
+    const navigatorHeight = navigator.offsetHeight;
+
+    const canvasWidth = 3000; // Dimensione reale del canvas
+    const canvasHeight = 3000;
+
+    // Scala per adattare il canvas al navigatore
+    const scaleX = navigatorWidth / canvasWidth;
+    const scaleY = navigatorHeight / canvasHeight;
+
+    // Dimensioni del rettangolo dell'area visibile
+    const viewWidth = window.innerWidth * scaleX / canvasScale;
+    const viewHeight = window.innerHeight * scaleY / canvasScale;
+
+    // Posizione del rettangolo dell'area visibile
+    const viewX = (-currentX / canvasWidth) * navigatorWidth;
+    const viewY = (-currentY / canvasHeight) * navigatorHeight;
+
+    navigatorView.style.width = `${viewWidth}px`;
+    navigatorView.style.height = `${viewHeight}px`;
+    navigatorView.style.left = `${viewX}px`;
+    navigatorView.style.top = `${viewY}px`;
+
+    // Rimuove eventuali puntini esistenti per evitare duplicati
+    const existingDots = navigator.querySelectorAll('.navigator-dot');
+    existingDots.forEach((dot) => dot.remove());
+
+    // Aggiungi puntini per ogni elemento nel canvas
+    const elements = document.querySelectorAll('.image-container');
+    elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+
+        // Calcola posizione proporzionale nel navigatore
+        const dotX = (rect.left - currentX) / canvasWidth * navigatorWidth;
+        const dotY = (rect.top - currentY) / canvasHeight * navigatorHeight;
+
+        // Crea il puntino
+        const dot = document.createElement('div');
+        dot.classList.add('navigator-dot');
+        dot.style.position = 'absolute';
+        dot.style.width = '3px';
+        dot.style.height = '3px';
+        dot.style.borderRadius = '50%';
+        dot.style.backgroundColor = 'black'; // Colore dei puntini
+        dot.style.left = `${dotX}px`;
+        dot.style.top = `${dotY}px`;
+
+        // Aggiungi il puntino al navigatore
+        navigator.appendChild(dot);
+    });
+}
+
+           // Modifica della funzione animateCanvas per aggiornare il navigatore
+           function animateCanvas() {
+               currentX += (targetX - currentX) * 0.1;
+               currentY += (targetY - currentY) * 0.1;
+               canvas.style.transform = `translate(${currentX}px, ${currentY}px) scale(${canvasScale})`;
+
+               updateNavigator(); // Aggiorna il navigatore
+               requestAnimationFrame(animateCanvas);
+           }
+
+           // Chiamata iniziale per creare il navigatore
+           updateNavigator();
+
+    </script>
+</body>
+</html>

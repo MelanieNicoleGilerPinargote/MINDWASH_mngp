@@ -1,0 +1,430 @@
+body {
+    font-family: "Futura", sans-serif;
+    background-color: #f1f1f1; /* Grigio molto chiaro */
+    margin: 0;
+    padding: 0;
+    cursor: none;
+}
+
+header {
+    background-color: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+footer {
+position: fixed;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+bottom: 0;
+right: 0;
+margin: 20px;
+padding: 10px;
+background-color: none;
+color: #000000;
+}
+
+
+.header-left h1 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 15px;
+}
+
+.header-right a {
+    text-decoration: none;
+    color: #000000; /* NERO */
+    margin-left: 60px;
+      font-size: 12px;
+        filter: blur(2px);
+        transition: filter 2s; /* effetto di transizione */
+}
+
+.header-right a:hover {
+  filter: blur(0px); /* sfocato al passaggio del mouse */
+
+}
+
+
+
+/* Versione mobile */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-left h1 {
+        margin-bottom: 10px;
+    }
+
+    .header-right a {
+        margin: 5px 0;
+        display: block;
+    }
+}
+
+.lingua-button
+{
+ cursor: none;
+    display: inline-block;
+    color: #000000;
+    text-decoration: none;
+    margin-bottom: 10px;
+      font-size: 10px;
+  transition: filter 2s; /* effetto di transizione */
+  filter: blur(2px); /* sfocato al passaggio del mouse */
+}
+
+.lingua-button:hover
+{
+  filter: blur(0px); /* sfocato al passaggio del mouse */
+
+}
+
+
+
+
+.wrapper {
+            text-align: center; /* Centra il contenuto */
+            max-width: 100%; /* Larghezza massima */
+            padding: 0 20px; /* Margine laterale */
+            box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
+        }
+
+
+
+       .container {
+           display: flex;
+           justify-content: space-between;
+           align-items: flex-start;
+           padding: 20px;
+           text-align: left; /* Allinea il testo a sinistra all'interno delle colonne */
+           max-width: 100%; /* Larghezza massima */
+           box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
+       }
+
+       .left {
+           flex: 1;
+           padding-right: 20px;
+       }
+       .left-text {
+         flex: 1;
+         padding-right: 20px;
+       margin-left: 100px;
+                   text-align: left; /* Allinea il testo al centro */
+                   font-size: 46px; /* Dimensione del testo */
+                   font-weight: bold; /* Grassetto */
+                   filter: blur(4.5px);
+               }
+       .right {
+         padding-right: 100px;
+          max-width: 55%; /* Larghezza massima */
+          box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
+
+          margin-right: 50px;
+
+      }
+
+      .right-text {
+        flex: 1;
+        padding-right: 46px;
+
+                  text-align: right; /* Allinea il testo al centro */
+                  font-size: 46px; /* Dimensione del testo */
+                  font-weight: bold; /* Grassetto */
+                  filter: blur(4.5px);
+              }
+
+      .centered-text {
+                  position: absolute; /* Posizione assoluta rispetto al body */
+                  top: 10%; /* Posizione sopra l'immagine */
+                  left:56%; /* Posizione al centro */
+                  transform: translateX(-50%); /* Centra orizzontalmente */
+                  text-align: left; /* Allinea il testo al centro */
+                  font-size: 96px; /* Dimensione del testo */
+                  font-weight: bold; /* Grassetto */
+                  filter: blur(4.5px);
+                  color: #b0d12a;
+              }
+
+       .timeline {
+           position: relative;
+           height: 100vh; /* Altezza piena della finestra */
+           margin-left: 70%;
+           width: 5px; /* Larghezza della linea del tempo */
+           background-color: #000; /* Colore della linea del tempo */
+           filter: blur(2px);
+       }
+       .timeline2 {
+           position: relative;
+           height: 100vh; /* Altezza piena della finestra */
+           margin-left: 80%;
+           width: 5px; /* Larghezza della linea del tempo */
+           background-color: #000; /* Colore della linea del tempo */
+           filter: blur(2px);
+       }
+
+
+       .break {
+           page-break-after: always; /* Interruzione di pagina */
+       }
+
+       /* Stili per il testo e l'immagine */
+         img {
+             max-width: 75%;
+             height: auto;
+             margin-left: 100px;
+             padding-top: 40px;
+             filter: blur(1px);
+         }
+
+         /* Stili per i titoli delle colonne */
+         .column-title {
+             font-weight: bold;
+             vertical-align: top;
+             font-size: 14px;
+             filter: blur(1.5px);
+         }
+
+         .descrizione {
+             font-weight: lighter;
+             vertical-align: top;
+             font-size: 16px;
+             text-align: justify;
+             margin-top: -100px;
+             margin-left: -70px;
+             padding-right: 380px;
+         }
+
+         .contatti {
+             font-weight: bold;
+             vertical-align: top;
+             font-size: 20px;
+             filter: blur(1.5px);
+             text-align: left;
+             margin-left: -70px;
+
+         }
+         .contatti2 {
+             font-weight: lighter;
+             vertical-align: top;
+             font-size: 14px;
+             text-align: left;
+             margin-top: 10px;
+margin-left: -70px;
+         }
+
+         .dove {
+             font-weight: bold;
+             vertical-align: top;
+             font-size: 26px;
+             filter: blur(2.5px);
+             text-align: left;
+             margin-left: 700px;
+         }
+
+         /* Stili per le colonne */
+         .column {
+             width: 100%; /* Larghezza delle colonne */
+             display: inline-block;
+             vertical-align: top;
+             padding: 0 10px;
+             padding-left: 100px;
+             padding-right: 30px;
+             font-size: 12px;
+             font-weight: lighter;
+              line-height: 1.5; /* Interlinea personalizzata */
+            display: inline-flex; /* Permette il centro dell'elemento */
+            text-align: left; /* Allinea il testo a sinistra all'interno delle colonne */
+
+         }
+
+         /* Stili per dividere le colonne verticalmente */
+         .column > div {
+             display: inline-block;
+             width: 80%; /* Larghezza del 50% della colonna */
+               text-align: left;
+               white-space: nowrap;
+         }
+
+         .half-black {
+            color: black; /* Colore del testo nero */
+        }
+
+        .half-gray {
+            color: #808080; /* Colore del testo grigio */
+        }
+
+        .text-below
+        {
+           color: #808080;
+           font-size: 8px;
+           font-weight: lighter;
+           text-align: left;
+       }
+
+
+       /* Sezione timeline */
+   .timeline {
+       position: relative;
+       width: 4px;
+       height: 3000px; /* Puoi regolare l'altezza della timeline come desiderato */
+       margin: 0 auto;
+       perspective: 1000px; /* Aggiunge la prospettiva per la visualizzazione 3D */
+   }
+
+   .line {
+       position: absolute;
+       bottom: 0;
+       width: 4px;
+       background-color: #BLACK; /* Colore della linea */
+       height: 100%;
+       transition: transform 1s ease;
+   }
+
+   /* Linea di sinistra */
+   .line.left {
+       left: 10%; /* Posizione della linea sinistra */
+       transform: rotateY(45deg) translateZ(150px); /* Aggiunge un effetto di profondità e rotazione */
+   }
+
+   /* Linea di destra */
+   .line.right {
+       right: 10%; /* Posizione della linea destra */
+       transform: rotateY(-45deg) translateZ(150px); /* Aggiunge un effetto di profondità e rotazione */
+   }
+
+
+
+
+       #main-error {
+                 display: none; /* Mostrato solo su schermi piccoli */
+                 position: fixed;
+                 top: 0;
+                 left: 0;
+                 width: 100%;
+                 height: 100%;
+                 background: rgba(0, 0, 0, 0.9);
+                 z-index: 1000;
+                 display: flex;
+                 flex-direction: column;
+                 justify-content: center;
+                 align-items: center;
+             }
+
+             #main-error h1 {
+                 font-size: 20px;
+                 font-weight: bold;
+                 color: #fff;
+                 margin-bottom: 20px;
+                 color: #b0d12a;
+             }
+
+             #error-windows-container {
+                 position: relative;
+                 width: 100%;
+                 height: 100%;
+                 z-index: 1001;
+             }
+
+             .error-window {
+                 position: absolute;
+                 background-color: #fff;
+                 border: 1px solid #aaa;
+                 display: flex;
+                 flex-direction: column;
+                 align-items: center;
+                 justify-content: center;
+                 text-align: center;
+                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+             }
+
+             /* Bordo superiore spesso */
+             .error-window .header {
+                 display: flex;
+                 justify-content: space-between;
+                 align-items: center;
+                 background-color: #000000;
+                 color: #fff;
+                 padding: 5px;
+                 font-size: 8px;
+                 width: 100%;
+                 box-sizing: border-box;
+             }
+
+             .error-window .header .controls {
+                 display: flex;
+                 gap: 3px;
+             }
+
+             .error-window .header .controls button {
+                 width: 6px;
+                 height: 6px;
+                 border: none;
+                 border-radius: 50%;
+                 cursor: pointer;
+             }
+
+             .error-window .header .controls .close {
+                 background-color: #000000;
+             }
+
+             .error-window .header .controls .minimize {
+                 background-color: #000000;
+             }
+
+             .error-window .header .controls .resize {
+                 background-color: #000000;
+             }
+
+             /* Contenuto della finestra */
+             .error-window .content {
+                 display: flex;
+                 flex-direction: column;
+                 align-items: center;
+                 justify-content: center;
+                 padding: 10px;
+                 flex-grow: 1;
+             }
+
+             .error-window .content h1 {
+                 color: #0f0;
+                 font-size: calc(1.5rem + 0.5vw);
+                 margin: 0;
+             }
+
+             .error-window .content p {
+                 color: #666;
+                 font-size: calc(0.8rem + 0.2vw);
+                 margin: 0;
+             }
+
+
+
+
+
+#custom-cursor {
+width: 8px;
+height: 8px;
+background: black;
+border-radius: 100%;
+position: absolute;
+z-index: 9999;
+pointer-events: none;
+}
+
+#cursor-shadow {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 100%;
+    position: absolute;
+    z-index: 9998;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    display: none;
+}

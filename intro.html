@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIND WASH _ MELANIE NICOLE GILER PINARGOTE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: "Futura", sans-serif;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            cursor: none; /* Disabilita il cursore predefinito */
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            background-color: none;
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 15px;
+            z-index: 10;
+        }
+
+        .header-left h1 {
+            font-weight: bold;
+            margin: 0;
+            font-size: 15px;
+            color: #000;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .gif {
+            width: 1200px;
+            height: auto;
+            animation: gifLoop 35s infinite;
+            opacity: 80%;
+        }
+
+        @keyframes gifLoop {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .button {
+            position: absolute;
+            top: 90%;
+            padding: 40px 20px;
+            background-color: none;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            filter: blur(2px);
+            transition: filter 0.3s ease;
+        }
+
+        .left-button {
+            left: 10%;
+        }
+
+        .right-button {
+            right: 10%;
+        }
+
+        .button:hover {
+            filter: blur(0);
+        }
+
+        /* Cursore personalizzato */
+        #custom-cursor {
+            width: 7px;
+            height: 7px;
+            background: black;
+            border-radius: 100%;
+            position: absolute;
+            z-index: 9999;
+            pointer-events: none;
+            transform: translate(-50%, -50%); /* Per centrare il cursore sul puntino */
+            display: none; /* Lo rendiamo visibile solo quando si muove il mouse */
+        }
+
+        #cursor-shadow {
+            width: 7px;
+            height: 7px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 100%;
+            position: absolute;
+            z-index: 9998;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+  <header>
+      <div class="header-left">
+          <h1>MELANIE NICOLE GILER PINARGOTE</h1>
+      </div>
+  </header>
+
+  <div class="container">
+        <!-- GIF centrale -->
+        <img src="images/mindwash_2.gif" alt="GIF" class="gif">
+
+        <!-- Pulsante sinistro -->
+        <a href="curriculum.html" class="button left-button">CURRICULUM</a>
+
+        <!-- Pulsante destro -->
+        <a href="progetti.html" class="button right-button">PROGETTI</a>
+    </div>
+
+    <div id="custom-cursor"></div>
+    <div id="cursor-shadow"></div>
+
+    <script>
+
+        // Funzione per il cursore personalizzato
+        document.addEventListener("mousemove", function (e) {
+            const customCursor = document.getElementById("custom-cursor");
+            const cursorShadow = document.getElementById("cursor-shadow");
+
+            customCursor.style.left = e.pageX + "px";
+            customCursor.style.top = e.pageY + "px";
+            cursorShadow.style.left = e.pageX + "px";
+            cursorShadow.style.top = e.pageY + "px";
+
+            // Mostra il cursore solo quando si muove il mouse
+            customCursor.style.display = "block";
+            cursorShadow.style.display = "block";
+        });
+
+        // Mostra il cursore personalizzato quando il mouse si muove
+        document.addEventListener("mouseenter", function () {
+            document.getElementById("custom-cursor").style.display = "block";
+            document.getElementById("cursor-shadow").style.display = "block";
+        });
+
+        document.addEventListener("mouseleave", function () {
+            document.getElementById("custom-cursor").style.display = "none";
+            document.getElementById("cursor-shadow").style.display = "none";
+        });
+
+    </script>
+
+</body>
+</html>

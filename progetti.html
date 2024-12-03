@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulazione Desktop</title>
+    <link rel="stylesheet" href="progetti.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+      <div class="header-left">
+          <h1>MELANIE NICOLE GILER PINARGOTE</h1>
+      </div>
+      <div class="header-right">
+          <!-- Versione web -->
+          <div class="desktop-menu">
+              <a href="diario.html">DIARIO</a>
+              <a href="progetti.html">PROGETTI</a>
+              <a href="software.html">SOFTWARE</a>
+              <a href="curriculum.html">CURRICULUM</a>
+          </div>
+          <!-- Versione mobile -->
+          <div class="mobile-menu">
+              <button onclick="toggleDropdown()" class="dropbtn"><i class="fas fa-bars"></i></button> <!-- Icona del menu -->
+              <div id="myDropdown" class="dropdown-content">
+                  <a href="diario.html">DIARIO</a>
+                  <a href="progetti.html">PROGETTI</a>
+                  <a href="software.html">SOFTWARE</a>
+                  <a href="curriculum.html">CURRICULUM</a>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Area Desktop -->
+  <main class="desktop">
+      <!-- Le cartelle saranno generate dinamicamente -->
+  </main>
+
+  <!-- Footer -->
+  <footer>
+      <div>
+          <a class="lingua-button" href="eng.html">ENG</a>
+          <a class="lingua-button">|</a>
+          <a class="lingua-button" href="esp.html">ESP</a>
+      </div>
+  </footer>
+
+  <!--// Finestra mobile già aperta -->
+<!-- <div id="movable-window" class="window">
+      <div class="window-header">
+          <span>BLOCCO NOTE</span>
+          <button onclick="closeMovableWindow()">×</button>
+      </div>
+      <div class="window-body">
+          <p>I 3 GRANDI DILEMMI <br>- Trump smetterà di farsi le lampade? <br>
+            Queste cartelle sono ripetute? <br> </p>
+      </div>
+  </div> *// !-->
+
+  <script>
+      // Array di 6 tipologie di cartelle con le rispettive pagine
+      const folderTypes = [
+          { name: 'Track point!', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
+          { name: 'Ceci n est pas une pipe', img: 'Progetti/cartella.png', link: 'pipe.html' },
+{ name: 'Ceci n est pas une pipe_final23', img: 'Progetti/cartella.png', link: 'pipe.html' },
+          { name: 'Tetris lab', img: 'Progetti/cartella.png', link: 'tetris.html' },
+                { name: 'Tetris lab_fina_final', img: 'Progetti/cartella.png', link: 'tetris.html' },
+          { name: 'Tesi(?)', img: 'Progetti/cartella.png', link: 'tesi.html' },
+          { name: 'Grattacielo RAI', img: 'Progetti/cartella.png', link: 'grattacielo.html' },
+          { name: 'Grattacielo RAI_pls def', img: 'Progetti/cartella.png', link: 'grattacielo.html' },
+          { name: 'Track point!_defdef', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
+          { name: 'Track point!_defdefdef', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
+            { name: 'Trash', img: 'Progetti/cestino.png', link: 'trash.html' }
+      ];
+
+      // Elemento desktop
+      const desktop = document.querySelector('.desktop');
+
+      // Genera 20 cartelle casuali
+      for (let i = 0.8; i <= 100; i++) {
+          const randomFolder = folderTypes[Math.floor(Math.random() * folderTypes.length)];
+
+          const folder = document.createElement('div');
+          folder.className = 'icon draggable';
+          folder.id = `folder${i}`;
+          folder.innerHTML = `
+              <img src="${randomFolder.img}" alt="Cartella">
+              <p>${randomFolder.name}</p>
+          `;
+
+          // Posizione iniziale casuale
+          folder.style.left = `${Math.random() * 93}vw`;
+          folder.style.top = `${Math.random() * 70}vh`;
+
+          // Evento doppio clic per aprire la pagina
+          folder.addEventListener('dblclick', () => {
+              window.open(randomFolder.link, '_blank');
+          });
+
+          desktop.appendChild(folder);
+      }
+
+      // Funzione per rendere trascinabili le icone
+      const draggables = document.querySelectorAll('.draggable');
+      draggables.forEach((draggable) => {
+          let isDraggingIcon = false;
+          let iconOffsetX, iconOffsetY;
+
+          draggable.addEventListener('mousedown', (e) => {
+              isDraggingIcon = true;
+              iconOffsetX = e.clientX - draggable.offsetLeft;
+              iconOffsetY = e.clientY - draggable.offsetTop;
+              draggable.style.zIndex = 1000; // Porta l'icona in primo piano
+          });
+
+          document.addEventListener('mousemove', (e) => {
+              if (isDraggingIcon) {
+                  draggable.style.position = 'absolute';
+                  draggable.style.left = `${e.clientX - iconOffsetX}px`;
+                  draggable.style.top = `${e.clientY - iconOffsetY}px`;
+              }
+          });
+
+          document.addEventListener('mouseup', () => {
+              isDraggingIcon = false;
+          });
+      });
+
+      // Gestione finestra mobile
+      const movableWindow = document.getElementById('movable-window');
+      const windowHeader = movableWindow.querySelector('.window-header');
+      let isDraggingWindow = false;
+      let windowOffsetX, windowOffsetY;
+
+      // Gestione trascinamento finestra
+      windowHeader.addEventListener('mousedown', (e) => {
+          isDraggingWindow = true;
+          windowOffsetX = e.clientX - movableWindow.offsetLeft;
+          windowOffsetY = e.clientY - movableWindow.offsetTop;
+      });
+
+      document.addEventListener('mousemove', (e) => {
+          if (isDraggingWindow) {
+              movableWindow.style.left = `${e.clientX - windowOffsetX}px`;
+              movableWindow.style.top = `${e.clientY - windowOffsetY}px`;
+          }
+      });
+
+      document.addEventListener('mouseup', () => {
+          isDraggingWindow = false;
+      });
+
+      // Funzione per chiudere la finestra
+      function closeMovableWindow() {
+          movableWindow.style.display = 'none';
+      }
+  </script>
+</body>
+</html>
