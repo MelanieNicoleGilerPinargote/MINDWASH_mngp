@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CECI N'EST PAS UNE PIPE</title>
+    <link rel="stylesheet" href="progetti.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+  <style>
+  body {
+            font-family: "Futura", sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+
+        }
+        header {
+            background-color: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+        footer {
+            position: fixed;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            bottom: 0;
+            right: 0;
+            margin: 20px;
+            padding: 10px;
+            background-color: none;
+            color: #000000;
+        }
+
+  .header-left h1 {
+      font-weight: bold;
+      margin: 0;
+      font-size: 15px;
+  }
+
+  .header-right a {
+      text-decoration: none;
+      color: #000000; /* NERO */
+      margin-left: 60px;
+        font-size: 12px;
+          filter: blur(2px);
+          transition: filter 2s; /* effetto di transizione */
+  }
+
+  .header-right a:hover {
+    filter: blur(0px); /* sfocato al passaggio del mouse */
+
+  }
+
+
+
+
+  .lingua-button
+  {
+   cursor: none;
+      display: inline-block;
+      color: #000000;
+      text-decoration: none;
+      margin-bottom: 10px;
+        font-size: 10px;
+    transition: filter 2s; /* effetto di transizione */
+    filter: blur(2px); /* sfocato al passaggio del mouse */
+  }
+
+  .lingua-button:hover
+  {
+    filter: blur(0px); /* sfocato al passaggio del mouse */
+
+  }
+
+
+  #custom-cursor {
+  width: 8px;
+  height: 8px;
+  background: black;
+  border-radius: 100%;
+  position: absolute;
+  z-index: 9999;
+  pointer-events: none;
+  }
+
+  #cursor-shadow {
+      width: 8px;
+      height: 8px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 100%;
+      position: absolute;
+      z-index: 9998;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      display: none;
+  }
+
+  .image-container {
+             position: relative;
+             width: 80%;
+             max-width: 800px;
+             text-align: center;
+             margin: auto;
+             margin-top: 15vh;
+         }
+         .image-container img {
+             width: 100%;
+             display: block;
+         }
+         .text-overlay {
+           position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 12px;
+  font-family: "Futura", sans-serif;
+  width: 50%;
+  text-align: justify;
+  padding: 8px;
+  border-radius: 0px;
+
+  background: linear-gradient(
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1)
+  );
+}
+.slider-container {
+   padding-top: 30vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: "Futura", sans-serif;
+   color: black;
+   font-size: 10px;
+   width: 80%;
+   max-width: 600px;
+   margin: auto;
+}
+.slider-label {
+   flex: 1;
+   text-align: center;
+}
+.slider-wrapper {
+   flex: 2;
+   display: flex;
+   align-items: center;
+}
+.slider {
+   width: 100%;
+   appearance: none;
+   background: #ddd;
+   height: 2px;
+   border-radius: 2px;
+   outline: none;
+}
+.slider::-webkit-slider-thumb {
+   appearance: none;
+   width: 10px;
+   height: 12px;
+   background: black;
+   border-radius: 50%;
+   cursor: pointer;
+}
+.image-gallery {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   width: 100%;
+   max-width: 1000px;
+   margin: auto;
+   position: relative;
+   padding-top: 20vh;
+}
+.image-gallery .slider-images {
+   display: flex;
+   transition: transform 2.5s ease-in-out;
+   width: 200%;
+}
+.image-gallery img {
+   width: 100%;
+   flex-shrink: 0;
+}
+             </style>
+<body>
+  <!-- Header -->
+  <header>
+      <div class="header-left">
+          <h1>MELANIE NICOLE GILER PINARGOTE</h1>
+      </div>
+      <div class="header-right">
+          <!-- Versione web -->
+          <div class="desktop-menu">
+
+              <a href="progetti.html">PROGETTI</a>
+              <a href="curriculum.html">CURRICULUM</a>
+          </div>
+
+      </div>
+  </header>
+  <div class="image-container">
+        <img src="pipe/magritte.png" alt="Background">
+        <div class="text-overlay" id="typing-text"></div>
+    </div>
+
+    <div class="slider-container">
+        <span class="slider-label"><b>Urbanistica</b></span>
+        <div class="slider-wrapper">
+            <input type="range" min="0" max="1" step="1" class="slider" id="image-slider">
+        </div>
+        <span class="slider-label"><b>Composizione</b></span>
+    </div>
+
+    <div class="image-gallery">
+        <img id="image1" src="pipe/urbanistica.png" alt="Composizione" style="display: block;">
+        <img id="image2" src="pipe/comp.png" alt="Urbanistica">
+    </div>
+  <!-- Footer -->
+  <footer>
+      <div>
+          <a class="lingua-button" href="eng.html">ENG</a>
+          <a class="lingua-button">|</a>
+          <a class="lingua-button" href="esp.html">ESP</a>
+      </div>
+  </footer>
+  <script>
+  const text = "Questa non è una pipa.\n\nMettere in discussione la percezione e la rappresentazione della realtà. Come spiega Magritte, un’immagine non è la cosa stessa, ma solo la sua rappresentazione. Il concetto invita, pertanto, a riflettere sulla natura soggettiva delle immagini, spronando l’osservatore a non confondere la rappresentazione con la realtà, facendosi carico di una nuova prospettiva o, banalmente, di sfruttare un modo alternativo di raggiungere le cose.";
+        const typingText = document.getElementById("typing-text");
+        const slider = document.getElementById("image-slider");
+        const image1 = document.getElementById("image1");
+        const image2 = document.getElementById("image2");
+
+        function typeEffect(text, element) {
+            element.textContent = "";
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text[i];
+                    i++;
+                    setTimeout(type, 80);
+                }
+            }
+            type();
+        }
+
+        slider.addEventListener("input", () => {
+            if (slider.value == 0) {
+                image1.style.display = "block";
+                image2.style.display = "none";
+            } else {
+                image1.style.display = "none";
+                image2.style.display = "block";
+            }
+        });
+
+
+
+        typeEffect(text, typingText);
+      </script>
+</body>
+</html>
