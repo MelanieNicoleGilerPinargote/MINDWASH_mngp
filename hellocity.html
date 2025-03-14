@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulazione Desktop</title>
+    <link rel="stylesheet" href="progetti.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: "Futura", sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        footer {
+            position: fixed;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            bottom: 0;
+            right: 0;
+            margin: 20px;
+            padding: 10px;
+            background-color: none;
+            color: #000000;
+        }
+
+        .header-left h1 {
+            font-weight: bold;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .header-right a {
+            text-decoration: none;
+            color: #000000;
+            margin-left: 60px;
+            font-size: 12px;
+            filter: blur(2px);
+            transition: filter 2s;
+        }
+
+        .header-right a:hover {
+            filter: blur(0px);
+        }
+
+        .lingua-button {
+            cursor: none;
+            display: inline-block;
+            color: #000000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 10px;
+            transition: filter 2s;
+            filter: blur(2px);
+        }
+
+        .lingua-button:hover {
+            filter: blur(0px);
+        }
+
+        /* Stile per il contenitore del video */
+        .video-container {
+            position: relative;
+            width: 80%;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        /* Stile per il video */
+        video {
+            width: 90%;
+            height: auto;
+            align-content: center;
+            padding-top: -10px;
+            padding-left: 100px;
+            display: block;
+            pointer-events: none; /* Impedisce all'utente di interagire con il video */
+            filter: blur(2px);
+        }
+
+        /* Stile per la scritta sopra il video */
+        .video-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+              color: #b0d12a;
+            font-size: 15px;
+            font-weight: bold;
+            background:black;
+            padding: 10px 20px;
+            border-radius: 0px;
+              align-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <h1>MELANIE NICOLE GILER PINARGOTE</h1>
+        </div>
+        <div class="header-right">
+            <!-- Versione web -->
+            <div class="desktop-menu">
+                <a href="progetti.html">PROGETTI</a>
+                <a href="curriculum.html">CURRICULUM</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Video con scritta sopra -->
+    <div class="video-container">
+        <video autoplay loop muted playsinline>
+            <source src="tesi/mondi.mp4" type="video/mp4">
+            Il tuo browser non supporta il tag video.
+        </video>
+        <div class="video-text">404 PAGE NOT FOUND</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            <a class="lingua-button" href="eng.html">ENG</a>
+            <a class="lingua-button">|</a>
+            <a class="lingua-button" href="esp.html">ESP</a>
+        </div>
+    </footer>
+
+</body>
+</html>
