@@ -3,22 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINDWASH_TRACKPOINT</title>
+  <title>TRACK POINT!</title>
   <style>
     body, html {
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
+    height: 500vh; /* Doppia altezza della viewport per permettere lo scroll */
       overflow: hidden;
+       overflow-y: auto; /* Permette lo scroll verticale */
       background: #232323;
     }
+
+
+
+
     canvas {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    z-index: 0; /* Canvas sotto agli altri elementi */
+}
+
 
     body {
         font-family: "Futura", sans-serif;
@@ -30,7 +37,7 @@
 
     header {
       top: 0;
-
+position: relative;
       z-index: 1000;
         background-color: none;
         display: flex;
@@ -41,6 +48,7 @@
 
     footer {
     position: fixed;
+      z-index: 1000;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -75,23 +83,6 @@
 
 
 
-    /* Versione mobile */
-    @media (max-width: 768px) {
-        header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .header-left h1 {
-            margin-bottom: 10px;
-        }
-
-        .header-right a {
-            margin: 5px 0;
-            display: block;
-        }
-    }
-
     .lingua-button
     {
      cursor: none;
@@ -111,71 +102,7 @@
     }
 
 
-    /* Aggiungi questo stile per nascondere la tendina di default */
-    .dropdown-content {
-        display: none;
-    }
 
-    /* Modifica lo stile del pulsante tendina */
-    .dropbtn {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        color: #000000;
-        font-size: 16px;
-        font-weight: bold;
-        transition: color 0.3s ease;
-          filter: blur(2px);
-    }
-
-    /* Stile della tendina */
-    .dropdown-content a {
-        display: block;
-        text-decoration: none;
-        color: #000000;
-        padding: 10px;
-        transition: color 0.3s ease;
-    }
-
-    /* Quando passi sopra un elemento della tendina */
-    .dropdown-content a:hover {
-        color: #000000; /* Nero */
-    }
-
-    /* Stile per il pulsante tendina aperto */
-    .show {
-        display: block;
-    }
-
-    /* Nascondi il menu mobile nella versione desktop */
-    .mobile-menu {
-        display: none;
-    }
-
-    /* Nascondi il menu desktop nella versione mobile */
-    .desktop-menu {
-        display: block;
-    }
-
-    /* Versione mobile */
-    @media (max-width: 768px) {
-        .desktop-menu {
-            display: none;
-        }
-
-        .mobile-menu {
-            display: flex;
-            align-items: center;
-        }
-
-        .dropbtn {
-            font-size: 24px; /* Dimensione dell'icona aumentata per la versione mobile */
-        }
-
-        .header-left h1 {
-            font-size: 1.5em; /* Rimpicciolire il testo nell'header per la versione mobile */
-        }
-    }
     .wrapper {
                 text-align: center; /* Centra il contenuto */
                 max-width: 100%; /* Larghezza massima */
@@ -296,25 +223,165 @@
             transform: translateX(0); /* Ritorna alla posizione originale */
           }
 
+          #typed-text {
+              max-width: calc(100vw - 650px); /* Larghezza massima con margini di 100px ai lati */
+              margin: 1000px auto 0; /* Centrare verticalmente */
+              padding: 0 100px;
+              text-align: justify;; /* Testo centrato */
+              font-size: 15px;
+              font-weight: normal;
+              white-space: normal;
+              line-height: 1.6;
+          }
 
 
-              .video-container {
-                           position: relative;
-                           z-index: 1;
-                           width: 100%;
-                           height: 50vh; /* Altezza relativa alla finestra */
-                           overflow: hidden;
-                           display: flex;
-                           justify-content: center;
-                           align-items: center;
-                           background: #000; /* Sfondo per il contenitore */
-                          margin-top: 50px;
-                         }
 
-              video {
-                width: 100%;
-                height: auto;
-              }
+
+
+          #singolarità-testo {
+              max-width: calc(100vw - 1250px); /* Larghezza massima con margini di 100px ai lati */
+              margin: 800px auto 0; /* Centrare verticalmente */
+              align-items: flex-start;
+              margin-left: 28vh;
+
+              padding: 0 100px;
+              text-align: justify;; /* Testo centrato */
+              font-size: 15px;
+              font-weight: normal;
+              white-space: normal;
+              line-height: 1.6;
+          }
+
+          #image-container {
+      position: absolute;
+      top: 160vh; /* Sposta l'immagine più in basso */
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 2;
+      scale: 132%;
+    }
+    #image-container img {
+      width: 80%;
+      max-width: 1000px;
+      height: auto;
+    }
+    #masterplan {
+  position: absolute;
+  top: 210vh; /* Sposta l'immagine più in basso */
+  width: 100%;
+      text-align: center;
+  transition: opacity 1s ease-in-out;
+  z-index: 2;
+  scale: 105%;
+
+  }
+  #masterplan img {
+
+  max-width: 1000px;
+  height: auto;
+  }
+  #vista1 {
+position: absolute;
+top: 390vh; /* Sposta l'immagine più in basso */
+width: 100%;
+    text-align: center;
+
+transition: opacity 1s ease-in-out;
+z-index: 2;
+scale: 105%;
+
+}
+
+#vista1 img {
+
+max-width: 1000px;
+height: auto;
+}
+
+  #singolarità {
+position: absolute;
+top: 550vh; /* Sposta l'immagine più in basso */
+width: 100%;
+    text-align: center;
+transition: opacity 1s ease-in-out;
+z-index: 2;
+scale: 105%;
+
+}
+#singolarità img {
+
+max-width: 1000px;
+height: auto;
+}
+
+    #kandi {
+position: absolute;
+top: 45vh; /* Sposta l'immagine più in basso */
+width: 100%;
+left: -50vh;
+transition: opacity 1s ease-in-out;
+z-index: 2;
+scale: 30%;
+}
+#kandi img {
+
+max-width: 1000px;
+height: auto;
+}
+#regole {
+position: absolute;
+top: 250vh; /* Sposta l'immagine più in basso */
+width: 100%;
+    text-align: center;
+
+z-index: 2;
+scale: 330%;
+}
+#regole img {
+
+max-width: 1000px;
+height: auto;
+}
+
+        .visual-essay {
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            align-content: center;
+
+
+            margin-left: 50vh;
+            margin-top: 900px;
+        }
+        .tavole {
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;ù
+
+            margin-left: 30vh;
+            margin-top: 800px;
+        }
+        .text-left {
+                   margin-top: 1200px;
+                   margin-left: 10vh;
+                   cursor: pointer;
+                   color: black;
+                   text-decoration: underline;
+               }
+
+               .text-right {
+
+
+                   top: 150%;
+margin-right: 10vh;
+                   cursor: pointer;
+                   color: black;
+                   text-decoration: underline;
+               }
+
 
 
 
@@ -331,33 +398,59 @@
       <div class="header-right">
           <!-- Versione web -->
           <div class="desktop-menu">
+
               <a href="progetti.html">PROGETTI</a>
+
               <a href="curriculum.html">CURRICULUM</a>
           </div>
-          <!-- Versione mobile -->
-          <div class="mobile-menu">
-              <button onclick="toggleDropdown()" class="dropbtn"><i class="fas fa-bars"></i></button> <!-- Icona del menu -->
-              <div id="myDropdown" class="dropdown-content">
-                  <a href="progetti.html">PROGETTI</a>
-                  <a href="curriculum.html">CURRICULUM</a>
-              </div>
-          </div>
+
       </div>
   </header>
-
+  <div class="scroll-container">
+  <div class="scroll-content">
+    <!-- Canvas e altri elementi -->
+    <canvas></canvas>
   <!-- Animazione TRACK POINT -->
     <div class="track-point">
         <div id="text-container">TRACK POINT</div> <!-- Contenitore per il testo animato -->
         <div class="rectangle"></div>
         <div class="point"></div>
     </div>
+  <h2 id="typed-text"><b>Quale città ti immagini?   </b>            <br>   </br>
+Immagina una città omogenea, concepita come un organismo unico e vibrante.               <br>   </br>
+Il progetto Track Point associa la metodologia di progettazione parametrica al contesto urbano di Torino, specificamente nell'area di Scalo Vanchiglia, caratterizzata da una ricca varietà e complessità urbana.
+Track Point, come suggerisce il nome, nasce da due elementi geometrici basilari, la <b> linea</b>  e il <b> punto</b> , che generano una griglia rigida deformata e distrutta dalle <b> singolarità</b> , creando una nuova concezione di spazio urbano.
+Il processo si basa sulla morfogenesi di una porzione di città attraverso la variazione e deformazione dei tipi urbani tramite metodi e strumenti di disegno avanzati, come la programmazione visuale (VPL) e il Building Information Modeling (BIM). Il risultato non è una verità assoluta, ma un modello formato da regole e linee guida derivanti dall’analisi del contesto.
+</h2>
+<h2 id="singolarità-testo"> Con il termine "singolarità" ci si riferisce a un'architettura distintiva all'interno dello spazio urbano, che funge da landmark e "incubatore sociale". Questi elementi generano una rottura a livello urbano, deformando la griglia e caratterizzando i lotti all'interno dell'area. Le singolarità spaziali variano per forma, posizione e ruolo urbano, influenzate dal contesto e dalle condizioni esterne.
+</h2>
+     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>
+          <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>   </br>     <br>
 
-    <!-- Canvas per l'effetto del mouse -->
-    <canvas></canvas>
 
- <div class="break"></div> <!-- Interruzione di pagina -->
+<div id="kandi">
+    <img src="Trackpoint/kandi.png"  alt="Immagine di sfondo">
+</div>
+<div id="masterplan">
+    <img src="Trackpoint/masterplan1.png"  alt="Immagine di sfondo">
+</div>
+<div id="vista1">
+    <img src="Trackpoint/vista1.png"  alt="Immagine di sfondo">
+</div>
+
+    <div id="image-container">
+
+      <img src="Trackpoint/diagramma.png" alt="Immagine di sfondo">
+    </div>
+    <div id="image-container">
+
+      <img src="Trackpoint/diagramma.png" alt="Immagine di sfondo">
+    </div>
 
 
+     <div class="grid">
+             <div class="track-point"></div>
+         </div>
 
 
 
@@ -548,8 +641,8 @@
 
     // Eventi del mouse
     c.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
+        mouse.x = e.pageX;
+        mouse.y = e.pageY;
         if (!isMouseActive) {
             isMouseActive = true;
             draw(); // Avvia animazione
@@ -578,66 +671,31 @@
 
 
 
+    document.addEventListener("mousemove", function (e) {
+         const cursor = document.getElementById("custom-cursor");
+         cursor.style.left = e.pageX + "px";
+         cursor.style.top = e.pageY + "px";
+       });
 
-    // Flag per controllare se lo scrolling è attivo
-    let animationFinished = false;
-
-    // Aggiungi un evento per la fine dell'animazione del rettangolo
-    document.querySelector('.rectangle').addEventListener('animationend', function () {
-        animationFinished = true; // L'animazione è terminata
-    });
-
-    // Effetto scroll inverso
-    let lastScrollY = window.scrollY;
-
-    window.addEventListener("scroll", () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        c.classList.add("move-left");
-        c.classList.remove("move-right");
-      } else {
-        c.classList.add("move-right");
-        c.classList.remove("move-left");
-      }
-      lastScrollY = currentScrollY;
-    });
+       window.addEventListener("scroll", function () {
+         let scrollY = window.scrollY;
+         let imageContainer = document.getElementById("image-container");
+         imageContainer.style.opacity = Math.min(scrollY / 600, 1);
+       });
 
     function resizeCanvas() {
-        c.width = window.innerWidth;
-        c.height = window.innerHeight;
-        zoneRadius = Math.min(c.width * 0.2, 250);
-        createDots(); // Ricalcola i punti dopo il resize
-    }
+    c.width = document.body.scrollWidth; // Usa scrollWidth per supportare lo scroll orizzontale
+    c.height = document.body.scrollHeight;
+    zoneRadius = Math.min(c.width * 0.2, 250);
+    createDots();
+}
 
-
-    window.addEventListener("resize", resizeCanvas);
-
-
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas(); // Richiama una volta per inizializzare
 
 
 
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const video = document.getElementById('scroll-video');
-      const videoContainer = document.querySelector('.video-container');
-
-      // Assicurati che il video si carichi correttamente
-      video.addEventListener('loadedmetadata', () => {
-        const videoDuration = video.duration;
-        const videoHeight = videoContainer.offsetHeight;
-        const pageHeight = document.body.scrollHeight - window.innerHeight;
-
-        window.addEventListener('scroll', () => {
-          // Calcola la percentuale di scroll sulla pagina
-          const scrollTop = window.scrollY;
-          const scrollFraction = scrollTop / pageHeight;
-
-          // Mappa lo scroll al progresso del video
-          const videoTime = videoDuration * scrollFraction;
-          video.currentTime = videoTime;
-        });
-      });
-    });
 
   </script>
 </body>
