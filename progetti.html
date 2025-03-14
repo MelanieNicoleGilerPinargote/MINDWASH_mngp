@@ -3,10 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIND WASH PROGETTI</title>
+    <title>Simulazione Desktop</title>
     <link rel="stylesheet" href="progetti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+  <style>
+  body {
+      font-family: "Futura", sans-serif;
+      background-color: #f1f1f1; /* Grigio molto chiaro */
+      margin: 0;
+      padding: 0;
+  }
+
+  header {
+      background-color: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+  }
+
+  footer {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  padding: 10px;
+  background-color: none;
+  color: #000000;
+  }
+
+
+  .header-left h1 {
+      font-weight: bold;
+      margin: 0;
+      font-size: 15px;
+  }
+
+  .header-right a {
+      text-decoration: none;
+      color: #000000; /* NERO */
+      margin-left: 60px;
+        font-size: 12px;
+          filter: blur(2px);
+          transition: filter 2s; /* effetto di transizione */
+  }
+
+  .header-right a:hover {
+    filter: blur(0px); /* sfocato al passaggio del mouse */
+
+  }
+
+
+
+
+  .lingua-button
+  {
+   cursor: none;
+      display: inline-block;
+      color: #000000;
+      text-decoration: none;
+      margin-bottom: 10px;
+        font-size: 10px;
+    transition: filter 2s; /* effetto di transizione */
+    filter: blur(2px); /* sfocato al passaggio del mouse */
+  }
+
+  .lingua-button:hover
+  {
+    filter: blur(0px); /* sfocato al passaggio del mouse */
+
+  }
+
+
+  #custom-cursor {
+  width: 8px;
+  height: 8px;
+  background: black;
+  border-radius: 100%;
+  position: absolute;
+  z-index: 9999;
+  pointer-events: none;
+  }
+
+  #cursor-shadow {
+      width: 8px;
+      height: 8px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 100%;
+      position: absolute;
+      z-index: 9998;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      display: none;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 100px;
+}
+
+         .list {
+             list-style: none;
+             padding: 0;
+             margin: 0;
+
+                      text-align: center;
+                      margin-left: 100px;
+         }
+
+         .list-left {
+             font-weight: bold;
+             font-family: "Futura", sans-serif;
+             text-align: left;
+
+                   font-size: 8px;
+
+
+         }
+         .list-left:hover {
+             filter: blur(2px);
+         }
+
+         .list-right {
+               font-weight: bold;
+               font-size: 8px;
+               text-align: right;
+               margin-left: 150px; /* Spostata più a destra */
+
+           }
+
+
+         .list li {
+
+             padding: 5px 0;
+             transition: transform 0.3s ease, filter 0.3s ease;
+             position: relative;
+         }
+
+         .scale-150, .scale-120 {
+             filter: blur(0px);
+         }
+
+         .scale-150 {
+             transform: scale(1.5);
+         }
+         .scale-120 {
+             transform: scale(1.2);
+         }
+
+         .overlay {
+             position: absolute;
+             top: 10px;
+             left: 0;
+             width: 100%;
+             height: 30%;
+             background-color: black;
+             transition: opacity 1.50s ease;
+             opacity: 1;
+         }
+
+         .list li:hover .overlay {
+             opacity: 0;
+         }
+         .list-left, .list-right {
+                   font-weight: bold;
+                   font-family: "Futura", sans-serif;
+
+                   font-size: 8px;
+                   transition: filter 0.3s ease;
+                   justify-content: flex-end;
+                   margin-right: 100px;
+               }
+
+               .list-left:hover, .list-right:hover {
+
+               }
+
+               .list li a {
+     text-decoration: none;
+     color: inherit;
+     display: inline-block;
+     position: relative;
+     z-index: 2;
+ }
+
+               #projects li:hover ~ .list-left li,
+               #projects li:hover ~ .list-right li {
+                   filter: blur(0px);
+               }
+
+             </style>
 <body>
   <!-- Header -->
   <header>
@@ -16,27 +209,71 @@
       <div class="header-right">
           <!-- Versione web -->
           <div class="desktop-menu">
+
               <a href="progetti.html">PROGETTI</a>
               <a href="curriculum.html">CURRICULUM</a>
           </div>
-          <!-- Versione mobile -->
-          <div class="mobile-menu">
-              <button onclick="toggleDropdown()" class="dropbtn"><i class="fas fa-bars"></i></button> <!-- Icona del menu -->
-              <div id="myDropdown" class="dropdown-content">
-                
-                  <a href="progetti.html">PROGETTI</a>
-                
-                  <a href="curriculum.html">CURRICULUM</a>
-              </div>
-          </div>
+
       </div>
   </header>
 
-  <!-- Area Desktop -->
-  <main class="desktop">
-      <!-- Le cartelle saranno generate dinamicamente -->
-  </main>
+  <div class="container">
 
+          <div class="container">
+          <ul class="list list-left" id="skills">
+              <li id="revit">REVIT</li>
+              <li id="vray">VRAY</li>
+              <li id="photoshop">PHOTOSHOP</li>
+              <li id="illustrator">ILLUSTRATOR</li>
+              <li id="indesign">INDESIGN</li>
+              <li id="rhino">RHINO</li>
+              <li id="grasshopper">GRASSHOPPER</li>
+              <li id="coding">CODING</li>
+              <li id="aftereffects">AFTER EFFECTS</li>
+              <li id="sketchup">SKETCHUP</li>
+              <li id="GIS">GIS</li>
+                <li id="vray">VRAY</li>
+          </ul>
+          <ul class="list" id="projects">
+        <li data-highlight="grasshopper pu ap  illustrator  indesign photoshop m to rhino aftereffects coding ">
+            <div class="overlay"></div>
+            <a href="hellocity.html">("Hello, city") | 2025</a>
+        </li>
+        <li data-highlight="grasshopper ap pu revit vray illustrator indesign rhino m to pa">
+            <div class="overlay"></div>
+            <a href="trackpoint.html">Track Point! | 2024</a>
+        </li>
+        <li data-highlight="revit piu pa sk illustrator photoshop indesign sketchup gis">
+            <div class="overlay"></div>
+            <a href="pipe.html">Ceci n'est pas une pipe | 2023</a>
+        </li>
+        <li data-highlight="revit pa ps photoshop indesign revit to">
+            <div class="overlay"></div>
+            <a href="grattacielo.html">Grattacielo RAI | 2023</a>
+        </li>
+        <li data-highlight="grasshopper revit pa ap ae illustrator indesign revit rhino">
+            <div class="overlay"></div>
+            <a href="tetrislab.html">Tetris LAB | 2021</a>
+        </li>
+    </ul>
+          <ul class="list list-right" id="skills-right">
+                         <li id="pa">PROGETTO ARCHITETTONICO</li>
+                         <li id="piu">PIANIFICAZIONE URBANA</li>
+                         <li id="pu">PROGETTO URBANO</li>
+                         <li id="ps">PROGETTO STRUTTURALE</li>
+                         <li id="m">MASTERPLAN</li>
+
+                         <li id="ap">ARCHITETTURA PARAMETRICA</li>
+                         <li id="ae">ARCHITETTURA DI EMERGENZA</li>
+<br>   </br>
+                         <li id="to">TORINO | ITALIA</li>
+                         <li id="sk">SKOPJE| MACEDONIA</li>
+
+                     </ul>
+
+
+
+      </div>
   <!-- Footer -->
   <footer>
       <div>
@@ -45,116 +282,46 @@
           <a class="lingua-button" href="esp.html">ESP</a>
       </div>
   </footer>
-
-  <!--// Finestra mobile già aperta -->
-<!-- <div id="movable-window" class="window">
-      <div class="window-header">
-          <span>BLOCCO NOTE</span>
-          <button onclick="closeMovableWindow()">×</button>
-      </div>
-      <div class="window-body">
-          <p>I 3 GRANDI DILEMMI <br>- Trump smetterà di farsi le lampade? <br>
-            Queste cartelle sono ripetute? <br> </p>
-      </div>
-  </div> *// !-->
-
   <script>
-      // Array di 6 tipologie di cartelle con le rispettive pagine
-      const folderTypes = [
-          { name: 'Track point!', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
-        <!--   { name: 'Ceci n est pas une pipe', img: 'Progetti/cartella.png', link: 'pipe.html' },-->
- <!--{ name: 'Ceci n est pas une pipe_final23', img: 'Progetti/cartella.png', link: 'pipe.html' },-->
-        <!--   { name: 'Tetris lab', img: 'Progetti/cartella.png', link: 'tetris.html' },-->
-         <!--        { name: 'Tetris lab_fina_final', img: 'Progetti/cartella.png', link: 'tetris.html' },-->
-          { name: 'Tesi(?)', img: 'Progetti/cartella.png', link: 'tesi.html' },
-     <!--      { name: 'Grattacielo RAI', img: 'Progetti/cartella.png', link: 'grattacielo.html' },-->
-        <!--   { name: 'Grattacielo RAI_pls def', img: 'Progetti/cartella.png', link: 'grattacielo.html' },-->
-          { name: 'Track point!_defdef', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
-          { name: 'Track point!_defdefdef', img: 'Progetti/cartella.png', link: 'trackpoint.html' },
-            { name: 'Trash', img: 'Progetti/cestino.png', link: 'trash.html' }
-      ];
 
-      // Elemento desktop
-      const desktop = document.querySelector('.desktop');
+  // Imposta il blur iniziale su tutte le voci delle liste laterali
+document.querySelectorAll('#skills li, #skills-right li').forEach(el => {
+    el.style.filter = 'blur(2px)';
+});
+  document.querySelectorAll('#projects li').forEach(item => {
+         item.addEventListener('mouseover', () => {
+             let relatedSkills = item.getAttribute('data-highlight').split(' ');
 
-      // Genera 20 cartelle casuali
-      for (let i = 0.8; i <= 40; i++) {
-          const randomFolder = folderTypes[Math.floor(Math.random() * folderTypes.length)];
+             relatedSkills.forEach((skill, index) => {
+                 if(skill) {
+                     let element = document.getElementById(skill);
+                     if (element) {
+                         let scaleFactor = 2 - (index * 0.12); // 250%, 230%, 210%, etc.
+                         element.style.transform = `scale(${scaleFactor})`;
+                         element.style.filter = 'blur(0px)'; // Assicura che il blur sia completamente rimosso
+                     }
+                 }
+             });
+         });
 
-          const folder = document.createElement('div');
-          folder.className = 'icon draggable';
-          folder.id = `folder${i}`;
-          folder.innerHTML = `
-              <img src="${randomFolder.img}" alt="Cartella">
-              <p>${randomFolder.name}</p>
-          `;
+         item.addEventListener('mouseout', () => {
+             document.querySelectorAll('#skills li, #skills-right li').forEach(el => {
+                 el.style.transform = 'scale(1)';
+                 el.style.filter = 'blur(2px)';
+             });
+         });
+     });
 
-          // Posizione iniziale casuale
-          folder.style.left = `${Math.random() * 93}vw`;
-          folder.style.top = `${Math.random() * 70}vh`;
 
-          // Evento doppio clic per aprire la pagina
-          folder.addEventListener('dblclick', () => {
-              window.open(randomFolder.link, '_blank');
-          });
-
-          desktop.appendChild(folder);
-      }
-
-      // Funzione per rendere trascinabili le icone
-      const draggables = document.querySelectorAll('.draggable');
-      draggables.forEach((draggable) => {
-          let isDraggingIcon = false;
-          let iconOffsetX, iconOffsetY;
-
-          draggable.addEventListener('mousedown', (e) => {
-              isDraggingIcon = true;
-              iconOffsetX = e.clientX - draggable.offsetLeft;
-              iconOffsetY = e.clientY - draggable.offsetTop;
-              draggable.style.zIndex = 1000; // Porta l'icona in primo piano
-          });
-
-          document.addEventListener('mousemove', (e) => {
-              if (isDraggingIcon) {
-                  draggable.style.position = 'absolute';
-                  draggable.style.left = `${e.clientX - iconOffsetX}px`;
-                  draggable.style.top = `${e.clientY - iconOffsetY}px`;
+          function checkScreenSize() {
+              if (window.innerWidth < 1224) { // Schermo troppo piccolo
+                  mainError.style.display = "flex";
+                  generateErrorWindows(100); // Genera 20 finestre
+              } else { // Schermo grande
+                  mainError.style.display = "none";
               }
-          });
-
-          document.addEventListener('mouseup', () => {
-              isDraggingIcon = false;
-          });
-      });
-
-      // Gestione finestra mobile
-      const movableWindow = document.getElementById('movable-window');
-      const windowHeader = movableWindow.querySelector('.window-header');
-      let isDraggingWindow = false;
-      let windowOffsetX, windowOffsetY;
-
-      // Gestione trascinamento finestra
-      windowHeader.addEventListener('mousedown', (e) => {
-          isDraggingWindow = true;
-          windowOffsetX = e.clientX - movableWindow.offsetLeft;
-          windowOffsetY = e.clientY - movableWindow.offsetTop;
-      });
-
-      document.addEventListener('mousemove', (e) => {
-          if (isDraggingWindow) {
-              movableWindow.style.left = `${e.clientX - windowOffsetX}px`;
-              movableWindow.style.top = `${e.clientY - windowOffsetY}px`;
           }
-      });
 
-      document.addEventListener('mouseup', () => {
-          isDraggingWindow = false;
-      });
-
-      // Funzione per chiudere la finestra
-      function closeMovableWindow() {
-          movableWindow.style.display = 'none';
-      }
-  </script>
+      </script>
 </body>
 </html>
