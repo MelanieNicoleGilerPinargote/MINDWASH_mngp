@@ -132,17 +132,17 @@
   );
 }
 .slider-container {
-   padding-top: 30vh;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-family: "Futura", sans-serif;
-   color: black;
-   font-size: 10px;
-   width: 80%;
-   max-width: 600px;
-   margin: auto;
-}
+            padding-top: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Futura", sans-serif;
+            color: black;
+            font-size: 12px;
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+        }
 .slider-label {
    flex: 1;
    text-align: center;
@@ -161,13 +161,22 @@
    outline: none;
 }
 .slider::-webkit-slider-thumb {
-   appearance: none;
-   width: 10px;
-   height: 12px;
-   background: black;
-   border-radius: 50%;
-   cursor: pointer;
-}
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            background: black;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+.slider-images {
+           display: flex;
+           width: 200%;
+           transition: transform 0.8s ease-in-out;
+       }
+       .slider-images img {
+                  width: 50%;
+                  flex-shrink: 0;
+              }
 .image-gallery {
    display: flex;
    justify-content: center;
@@ -177,7 +186,7 @@
    max-width: 1000px;
    margin: auto;
    position: relative;
-   padding-top: 20vh;
+   padding-top: 20vh
 }
 .image-gallery .slider-images {
    display: flex;
@@ -213,15 +222,17 @@
     <div class="slider-container">
         <span class="slider-label"><b>Urbanistica</b></span>
         <div class="slider-wrapper">
-            <input type="range" min="0" max="1" step="1" class="slider" id="image-slider">
+            <input type="range" min="0" max="1" step="1" class="slider" id="image-slider" value="0">
         </div>
         <span class="slider-label"><b>Composizione</b></span>
     </div>
 
     <div class="image-gallery">
-        <img id="image1" src="pipe/urbanistica.png" alt="Composizione" style="display: block;">
-        <img id="image2" src="pipe/comp.png" alt="Urbanistica">
-    </div>
+          <div class="slider-images" id="slider-images">
+              <img src="pipe/urbanistica.png" alt="Urbanistica">
+              <img src="pipe/comp.png" alt="Composizione">
+          </div>
+      </div>
   <!-- Footer -->
   <footer>
       <div>
@@ -231,11 +242,9 @@
       </div>
   </footer>
   <script>
-  const text = "Questa non è una pipa.\n\nMettere in discussione la percezione e la rappresentazione della realtà. Come spiega Magritte, un’immagine non è la cosa stessa, ma solo la sua rappresentazione. Il concetto invita, pertanto, a riflettere sulla natura soggettiva delle immagini, spronando l’osservatore a non confondere la rappresentazione con la realtà, facendosi carico di una nuova prospettiva o, banalmente, di sfruttare un modo alternativo di raggiungere le cose.";
+  const text = "Questa non è una pipa.\n\nMagritte ci porta a riflettere sul rapporto tra percezione e rappresentazione. Un’immagine non è l’oggetto reale, ma solo la sua trasposizione visiva. Questo concetto invita a interrogarsi sulla natura della rappresentazione e sul rischio di confondere la raffigurazione con la realtà costruita. In architettura, così come nell’arte, la rappresentazione di uno spazio non è mai lo spazio stesso, ma un’interpretazione di esso. Questo ci spinge a considerare nuove prospettive di lettura e a esplorare approcci alternativi per comprendere e progettare la realtà che ci circonda.";
         const typingText = document.getElementById("typing-text");
-        const slider = document.getElementById("image-slider");
-        const image1 = document.getElementById("image1");
-        const image2 = document.getElementById("image2");
+
 
         function typeEffect(text, element) {
             element.textContent = "";
@@ -250,16 +259,12 @@
             type();
         }
 
-        slider.addEventListener("input", () => {
-            if (slider.value == 0) {
-                image1.style.display = "block";
-                image2.style.display = "none";
-            } else {
-                image1.style.display = "none";
-                image2.style.display = "block";
-            }
-        });
+        const slider = document.getElementById("image-slider");
+          const sliderImages = document.getElementById("slider-images");
 
+          slider.addEventListener("input", () => {
+              sliderImages.style.transform = `translateX(-${slider.value * 100}%)`;
+          });
 
 
         typeEffect(text, typingText);
