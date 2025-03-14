@@ -383,7 +383,12 @@ margin-right: 10vh;
                }
 
 
-
+.container {
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    row-gap: 20px; /* Spazio tra le righe */
+    justify-items: center;
+}
 
   </style>
 </head>
@@ -416,6 +421,7 @@ margin-right: 10vh;
         <div class="rectangle"></div>
         <div class="point"></div>
     </div>
+    <div class="container">
   <h2 id="typed-text"><b>Quale città ti immagini?   </b>            <br>   </br>
 Immagina una città omogenea, concepita come un organismo unico e vibrante.               <br>   </br>
 Il progetto Track Point associa la metodologia di progettazione parametrica al contesto urbano di Torino, specificamente nell'area di Scalo Vanchiglia, caratterizzata da una ricca varietà e complessità urbana.
@@ -451,7 +457,7 @@ Il processo si basa sulla morfogenesi di una porzione di città attraverso la va
      <div class="grid">
              <div class="track-point"></div>
          </div>
-
+</div>
 
 
   <footer>
