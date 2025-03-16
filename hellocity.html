@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>("HELLO, CITY")</title>
-    <link rel="stylesheet" href="progetti.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Simulazione Desktop</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
     <style>
         body {
             font-family: "Futura", sans-serif;
             background-color: #f1f1f1;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
+        canvas { display: block; }
 
+        /* Header fisso */
         header {
-            background-color: none;
+                  position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
+                z-index: 10;
         }
-
         footer {
             position: fixed;
             display: flex;
@@ -31,16 +34,17 @@
             right: 0;
             margin: 20px;
             padding: 10px;
-            background-color: none;
             color: #000000;
+                z-index: 10;
         }
+
+
 
         .header-left h1 {
             font-weight: bold;
             margin: 0;
             font-size: 15px;
         }
-
         .header-right a {
             text-decoration: none;
             color: #000000;
@@ -49,11 +53,9 @@
             filter: blur(2px);
             transition: filter 2s;
         }
-
         .header-right a:hover {
             filter: blur(0px);
         }
-
         .lingua-button {
             cursor: none;
             display: inline-block;
@@ -64,53 +66,288 @@
             transition: filter 2s;
             filter: blur(2px);
         }
-
         .lingua-button:hover {
             filter: blur(0px);
         }
-
-        /* Stile per il contenitore del video */
-        .video-container {
-            position: relative;
-            width: 80%;
-            margin: 50px auto;
-            text-align: center;
+        .arrow-button {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            font-size: 30px;
+            cursor: pointer;
+            color: #000;
+            transition: opacity 0.3s ease;
+        }
+        .arrow-button:hover {
+            opacity: 0.7;
         }
 
-        /* Stile per il video */
-        video {
-            width: 90%;
-            height: auto;
-            align-content: center;
-            padding-top: -10px;
-            padding-left: 100px;
-            display: block;
-            pointer-events: none; /* Impedisce all'utente di interagire con il video */
-            filter: blur(2px);
-        }
+        /* Animazione testo */
+        .code-container {
+               position: absolute;
+               top: 40%;
+               left: 70%;
+               font-family: "Futura", sans-serif;
+               font-size: 12px;
+               color: black;
+               text-transform: uppercase;
+               white-space: pre-wrap;
+               display: none;
+               max-width: 60%;
+               line-height: 1.2;
+           }
 
-        /* Stile per la scritta sopra il video */
-        .video-text {
-          position: absolute;
+           .enter-button {
+               position: absolute;
+               top: 68%;
+               left: 85%;
+               padding: 8px 16px;
+               background-color: black;
+               color: white;
+               font-size: 14px;
+               border: none;
+               cursor: pointer;
+               transition: background-color 0.2s ease;
+
+           }
+
+           .enter-button:hover {
+               background-color: transparent;
+               color: black;
+           }
+
+           /* Pulsante enter invisibile inizialmente */
+           #enterButton {
+               position: absolute;
+               top: 68%;
+               left: 85%;
+               padding: 8px 16px;
+               background-color: black;
+               color: white;
+               font-size: 14px;
+               border: none;
+               cursor: pointer;
+               transition: opacity 2s ease-in-out;
+               opacity: 0; /* Nascondi il pulsante all'inizio */
+               pointer-events: none; /* Evita che sia cliccabile prima del tempo */
+                 z-index: 200; /* Assicurati che sia sopra gli altri elementi */
+           }
+
+           /* Mostra il pulsante solo quando il testo è terminato */
+           #enterButton.show {
+               opacity: 1;
+               pointer-events: auto;
+           }
+
+           .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+           /* Overlay che si espande */
+           /* Overlay che si espande dal centro */
+           /* Overlay (finestra) */
+           #overlay {
+          position: fixed;
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -50%);
-          color: #b0d12a;
-          font-size: 15px;
-          font-weight: bold;
-          background: black;
-          padding: 10px 20px;
-          border-radius: 0px;
-          text-decoration: none;
-          display: inline-block;
+          width: 90%;
+          height: 85%;
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0;
+          transition: transform 0.7s ease-out, opacity 0.5s ease-out;
+          z-index: 100;
+          display: flex;
+          justify-content: center;
+          align-items: center;
       }
 
+     /* Effetto di apertura */
+     #overlay.active {
+         transform: translate(-50%, -50%) scale(1) perspective(1000px) rotateX(0deg);
+         opacity: 0.95;
+     }
 
+     .text-container {
+                flex: 1;
+                margin-left: 50px; /* Sposta il testo più a destra */
+            }
+     video-container {
+     display: flex;
+     width: 80%; /* Usa il 100% invece di 200% */
+     height: 100%;
+     overflow-x: auto;
+     scroll-behavior: smooth;
+     align-items: center; /* Allinea i video verticalmente */
+     justify-content: center; /* Centra i video */
+       z-index: 200;
+ }
+
+
+        video {
+          width: 90%;
+          height: auto;
+          align-content: center;
+          padding-top: -10px;
+          padding-left: 100px;
+          display: block;
+          pointer-events: none; /* Impedisce all'utente di interagire con il video */
+            z-index: 200;
+      }
+
+.video-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 90%;
+            height: 85%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0;
+            transition: transform 0.7s ease-out, opacity 0.5s ease-out;
+            z-index: 100;
+            display: none; /* Nasconde inizialmente il video */
+        }
+
+        .video-overlay.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.95;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content {
+           position: relative;
+       }
+       .diagram {
+           max-width: 100%;
+           height: auto;
+       }
+        .video-container {
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             gap: 100px;
+             position: absolute;
+          top: 10px; /* Altezza sopra il diagramma */
+         }
+         .video-container video {
+              width: 20vh;
+              height: 20vh;
+              object-fit: cover;
+          }
+
+.text-box {
+           width: 20vh;
+           color: white;
+           font-size: 1.2em;
+           text-align: left;
+       }
+
+       /* Stile per il container orizzontale */
+       .horizontal-container {
+           display: flex;
+           width: 300%;
+           height: 100%;
+           overflow-x: auto;
+           scroll-behavior: smooth;
+       }
+
+       .section {
+           flex: 1;
+           min-width: 33.33%;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           padding: 20px;
+       }
+       /* Stili per fissare il PDF e le immagini */
+              .pdf-container {
+                  width: 100%;
+                  height: 70vh;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+
+              .pdf-embed {
+                  width: 90%;
+                  height: 90%;
+                  border: none;
+              }
+
+              .image-container {
+                  display: flex;
+                  justify-content: space-between;
+                  width: 100%;
+                  gap: 20px;
+              }
+
+              .image-container img {
+                  width: 30%;
+                  height: auto;
+                  border-radius: 10px;
+                  object-fit: cover;
+              }
+              .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            font-family: 'Futura', sans-serif;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .video1 { left: 10px; }
+      .video2 { left: 150px; }
+      .video3 { left: 250px; }
+      .video-container video {
+          width: 100px;
+          height: 100px;
+          border: 2px solid white;
+      }
+
+        .btn:hover {
+            background-color: #333;
+        }
+        /* Nascondi la barra di scorrimento verticale */
+               body {
+                   overflow-y: hidden;
+               }
+
+       .buttons {
+           position: fixed;
+           bottom: 20px;
+           right: 20px;
+       }
+       .buttons button {
+           padding: 10px;
+           margin: 5px;
+           background-color: white;
+           border: none;
+           cursor: pointer;
+       }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="header-left">
             <h1>MELANIE NICOLE GILER PINARGOTE</h1>
@@ -124,16 +361,43 @@
         </div>
     </header>
 
-    <!-- Video con scritta sopra -->
-    <div class="video-container">
-        <video autoplay loop muted playsinline>
-            <source src="tesi/mondi.mp4" type="video/mp4">
-            Il tuo browser non supporta il tag video.
-        </video>
-         <a href="https://drive.google.com/drive/folders/186vC3A68tDGaMvfFhcO4hCIfZDzdzVpq" class="video-text">GUARDAMI</a>
+    <div class="arrow-button" id="moveRight">
+        <i class="fas fa-arrow-right"></i>
     </div>
 
-    <!-- Footer -->
+
+
+    <div id="overlay">
+      <div class="video-container">
+          <video autoplay loop muted playsinline>
+            <source src="tesi/intro.mp4" type="video/mp4">
+            Il tuo browser non supporta il tag video.
+        </video>
+        <div class="text-box">
+
+                    </div>
+                    <br>   </br>
+                    <br>   </br>
+                    <div class="content">
+                          <div class="video-container video1">
+                              <video controls></video>
+                          </div>
+                          <div class="video-container video2">
+                              <video controls></video>
+                          </div>
+                          <div class="video-container video3">
+                              <video controls></video>
+                          </div>
+                          <img src="diagram.png" alt="Diagramma" class="diagram">
+                      </div>
+                  </div>
+                  <div class="scrollbar-horizontal"></div>
+                  <div class="buttons">
+                      <button>PDF</button>
+                      <button>FOTO</button>
+                  </div>
+</div>
+
     <footer>
         <div>
             <a class="lingua-button" href="eng.html">ENG</a>
@@ -142,9 +406,381 @@
         </div>
     </footer>
 
+    <div class="code-container" id="codeText"></div>
+    <button class="enter-button" id="enterButton">ENTER</button>
+
+
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const light = new THREE.AmbientLight(0xffffff, 0.8);
+        scene.add(light);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        // Creazione della sfera verde
+        const sphereGeometry = new THREE.SphereGeometry(0, 0, 0);
+        const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true, transparent: true, opacity: 0 });
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        scene.add(sphere);
+
+        const simplex = new SimplexNoise();
+        const lines = [];
+
+        // Sfera con texture
+       const textureLoader = new THREE.TextureLoader();
+       const texture = textureLoader.load('tesi/mondo2.jpg'); // Assicurati di avere questa immagine nella tua directory
+       const textureMaterial = new THREE.MeshBasicMaterial({ map: texture });
+       const textureSphere = new THREE.Mesh(sphereGeometry, textureMaterial);
+       scene.add(textureSphere);
+
+       camera.position.z = 5;
+
+        // Creazione delle linee verdi con sfumatura
+        function generateNoiseFlowLines() {
+            for (let i = 0; i < 400; i++) {
+                let phi = Math.random() * Math.PI * 5;
+                let theta = Math.random() * Math.PI;
+                let x = 2 * Math.sin(theta) * Math.cos(phi);
+                let y = 2 * Math.sin(theta) * Math.sin(phi);
+                let z = 2 * Math.cos(theta);
+
+                let points = [];
+                for (let j = 0; j < 1000; j++) {
+                    points.push(new THREE.Vector3(x, y, z));
+                    let noiseX = simplex.noise3D(x, y, z) * 0.004;
+                    let noiseY = simplex.noise3D(y, z, x) * 0.004;
+                    let noiseZ = simplex.noise3D(z, x, y) * 0.004;
+                    x += noiseX;
+                    y += noiseY;
+                    z += noiseZ;
+                    let len = Math.sqrt(x*x + y*y + z*z);
+                    x = (x / len) * 2;
+                    y = (y / len) * 2;
+                    z = (z / len) * 2;
+                }
+
+                const lineGeometry = new THREE.BufferGeometry();
+                lineGeometry.setFromPoints([points[0]]);
+
+                // Creazione materiale con sfumatura dal verde al trasparente
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0xaac81c,
+                    linewidth: 1.7,
+                    transparent: true,
+                    opacity: 1.0
+                });
+
+                const line = new THREE.Line(lineGeometry, lineMaterial);
+                sphere.add(line);
+                lines.push({ geometry: lineGeometry, points: points, currentIndex: 1, speed: 3.0, material: lineMaterial });
+            }
+        }
+        generateNoiseFlowLines();
+
+        // Funzione per aggiornare la trasparenza delle linee in base alla loro posizione relativa sullo schermo
+        function updateLineTransparency() {
+            const screenWidth = window.innerWidth;
+
+            lines.forEach(line => {
+                line.points.forEach((point, index) => {
+                    // Proietta il punto 3D nello spazio 2D
+                    let projected = point.clone();
+                    projected.project(camera);  // Proietta il punto nella scena 2D
+
+                    // Normalizza la posizione del punto tra -1 e 1
+                    let normalizedX = projected.x;
+
+                    // Calcola la trasparenza in base alla posizione proiettata
+                    // Quando `normalizedX` è negativo (a sinistra), la trasparenza aumenta
+                    const transparency = Math.max(0, Math.min(1, (1 - normalizedX) / 2));
+
+                    line.material.opacity = transparency;  // Applica la trasparenza
+                });
+            });
+        }
+
+        // Creazione delle particelle viola
+        const particles = [];
+        const particleGeometry = new THREE.SphereGeometry(0.05, 8, 8);
+
+        for (let i = 0; i < 2000; i++) {
+            let size = Math.random() * 0.1 + 0.02; // Particelle più piccole
+            let material = new THREE.MeshBasicMaterial({ color: 0x800080 });
+            let particle = new THREE.Mesh(particleGeometry.clone().scale(size, size, size), material);
+
+            let radius = Math.random() * 4
+
+            + 2; // Distanza dalla sfera
+            let angle = Math.random() * Math.PI * 2;
+            let height = (Math.random() - 0.5) * 4;
+
+            particle.position.set(
+                Math.cos(angle) * radius,
+                height,
+                Math.sin(angle) * radius
+            );
+
+            particle.userData = {
+                radius: radius,
+                angle: angle,
+                height: height,
+                speed: 0.001  // Velocità costante per le particelle
+            };
+
+            scene.add(particle);
+            particles.push(particle);
+        }
+
+        camera.position.z = 6;
+
+        let moveEarth = false;
+        const earthSpeed = 0.0008; // Velocità costante per la sfera
+        let earthPositionX = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (!moveEarth) {
+                sphere.rotation.y += 0.0025; // Rotazione uniforme
+            } else {
+                earthPositionX += earthSpeed;
+                sphere.position.x = earthPositionX;
+            }
+
+
+            // Animazione delle linee verdi
+            lines.forEach(line => {
+                if (line.currentIndex < line.points.length) {
+                    line.currentIndex += line.speed;
+                    let segmentCount = Math.min(line.currentIndex, line.points.length);
+                    let newPoints = line.points.slice(0, segmentCount);
+                    line.geometry.setFromPoints(newPoints);
+                }
+            });
+            // Aggiorna la trasparenza delle linee in base alla loro posizione proiettata
+            updateLineTransparency();
+
+            // Animazione delle particelle
+            particles.forEach(particle => {
+                particle.userData.angle += particle.userData.speed;
+                particle.position.x = Math.cos(particle.userData.angle) * particle.userData.radius;
+                particle.position.z = Math.sin(particle.userData.angle) * particle.userData.radius;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        document.getElementById("moveRight").addEventListener("click", () => {
+            moveEarth = true;
+        });
+
+        // Clipping plane per mostrare solo metà destra della sfera
+        const plane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0); // Cambia la normale per puntare a sinistra
+        camera.clippingPlanes = [plane]; // Imposta il piano di taglio
+        renderer.localClippingEnabled = true;
+
+        // Funzione per creare l'animazione del testo
+        function animateCodeText() {
+            const codeText = `
+import system
+import Rhino
+import Grasshopper
+
+import rhinoscriptsyntax as rs
+
+def greet_city():
+    city = city_entry.get()
+    if city:
+        messagebox.showinfo, print:
+
+("Hello, city")
+            `;
+
+            const colors = {
+                keyword: 'black', // Red for keywords like 'import', 'def', 'if'
+                string: 'black',   // Purple for strings
+                function:'black', // Green for functions like 'messagebox.showinfo'
+                variable: 'black', // Blue for variables like 'city'
+                comment: 'black'  // Gray for comments
+            };
+
+            let index = 0;
+            let currentLine = '';
+            let textElement = document.getElementById('codeText');
+            textElement.style.display = 'block';  // Make the container visible
+
+            function processNextChar() {
+                if (index < codeText.length) {
+                    currentLine += codeText.charAt(index);
+
+                    // Cambia il colore in base alla sintassi
+                    if (currentLine.match(/\b(import|def|if)\b/)) {
+                        textElement.style.color = colors.keyword;
+                    } else if (currentLine.match(/".*"/)) {
+                        textElement.style.color = colors.string;
+                    } else if (currentLine.match(/\b(messagebox|print)\b/)) {
+                        textElement.style.color = colors.function;
+                    } else if (currentLine.match(/\b(city|city_entry|get)\b/)) {
+                        textElement.style.color = colors.variable;
+                    }
+
+                    // Aggiungi le parole in grassetto e più grandi
+                    let formattedText = currentLine.replace('("Hello, city")', '<span style="font-size: 18px; font-weight: bold;">"Hello, city"</span>');
+
+                    textElement.innerHTML = formattedText;
+                    index++;
+                } else {
+                    clearInterval(writeInterval); // Stop the animation once the text is fully written
+                   document.getElementById('enterButton').classList.add('show');
+                }
+            }
+
+            const writeInterval = setInterval(processNextChar, 25); // Call processNextChar every 50ms
+        }
+
+        // Fai partire l'animazione dopo 1.5 secondi
+        setTimeout(animateCodeText, 500);
+
+        document.getElementById('enterButton').addEventListener('click', () => {
+        const overlay = document.getElementById('overlay');
+        overlay.classList.add('active'); // Espande la finestra
+
+        // Dopo l'animazione (1s) rimuove la scena e gli elementi animati, ma non header e footer
+        setTimeout(() => {
+
+            document.getElementById('codeText').remove(); // Rimuove il testo animato
+            document.getElementById('enterButton').remove(); // Rimuove il pulsante
+
+
+            // Disabilita il rendering della scena
+            moveEarth = false;
+        }, 1000);
+      });
+
+
+      document.getElementById('enterButton').addEventListener('click', () => {
+  const overlay = document.getElementById('overlay');
+  overlay.innerHTML = `
+    <div style="position: absolute; top: 3%; left: 50%; transform: translateX(-50%);
+                font-size: 14px; font-weight: bold; color: black; font-family: 'Futura', sans-serif;">
+        ("Hello, city")
+    </div>
+
+    <!-- Container orizzontale scorrevole -->
+    <div class="horizontal-container" style="display: flex; width: 800%; height: 80%; overflow-x: auto; scroll-behavior: smooth;">
+
+        <!-- 1. Testo "Progettare significa..." (invertito con il video intro) -->
+        <div class="section" style="flex: 1; min-width: 30%; display: flex; justify-content: center; align-items: center; padding: 50px;">
+            <div style="width: 85%; font-size: 12px; color: black; font-family: 'Futura', sans-serif; text-align: justify;">
+                <p>Progettare significa, in qualche modo, governare un processo, ma come si può intervenire su un fenomeno in costante mutamento, dove i cambiamenti avvengono con velocità sempre maggiore e su scale differenti? Parafrasando Batty, non si tratta di controllare la città, ma di inventarla.
+</p>
+                <p>Da qui la domanda centrale del nostro lavoro: <b>"Come si inventano le città?"</b></p>
+                <p>L'obiettivo della nostra ricerca è testare l'approccio parametrico nel contesto urbano, valutandone potenzialità e limiti. Per farlo, abbiamo sviluppato HELLO CITY, un sistema in grado di elaborare grandi quantità di informazioni e di far interagire diverse variabili progettuali, i parametri. Grazie all’uso di strumenti computazionali basati sulla programmazione visuale, come il VPL, abbiamo generato una vasta gamma di scenari evolutivi, capaci di gestire l’incertezza della città contemporanea e di esplorarne i possibili futuri.</p>
+            </div>
+        </div>
+
+        <!-- 2. Video Intro (invertito con il testo) -->
+        <div class="section" style="flex: 1; min-width: 60%; display: flex; justify-content: center; align-items: center; padding: 50px; padding-right:80px;">
+            <video id="introVideo" style="width: 100%; height: auto;" playsinline loop muted autoplay>
+                <source src="tesi/intro.mp4" type="video/mp4">
+                Il tuo browser non supporta il tag video.
+            </video>
+        </div>
+
+        <!-- 3. Testo nuovo -->
+        <div class="section" style="flex: 1; min-width: 20%; display: flex;align-items: flex-start; padding:20px;">
+            <div style="width: 80%; font-size: 12px; color:#89549d; font-family: 'Futura', sans-serif; text-align: justify;margin-top: 30px;padding-left: 70px">
+                <p>La protagonista di questa ricerca è la città, intesa non solo come porzione di suolo, ma come un organismo complesso in cui elementi fisici, sociali, storici, economici e tecnologici interagiscono continuamente. Ogni parte che la compone è connessa e interdipendente, dando vita a un sistema dinamico che, proprio come un organismo vivente, si evolve e si adatta nel tempo.
+Per questo motivo, più che come una struttura statica, la città va considerata come un fenomeno in transizione: un sistema in continua trasformazione, in cui non basta analizzare lo stato iniziale e quello finale, ma è fondamentale comprendere anche i passaggi intermedi. .</p>
+            </div>
+        </div>
+
+        <!-- 4. Video CV -->
+        <div class="section" style="flex: 1; min-width: 60%; display: flex; align-items: center; padding: 0px; padding-left: -100px;">
+            <video id="cvVideo" style="width: 100%; height: auto;" playsinline loop muted autoplay>
+                <source src="tesi/cv.mp4" type="video/mp4">
+                Il tuo browser non supporta il tag video.
+            </video>
+        </div>
+
+        <!-- 5. Testo nuovo2 -->
+        <div class="section" style="flex: 1; min-width: 20%; display: flex;  align-items: flex-end; padding: 50px;">
+            <div style="width: 80%; font-size: 12px; color: #aac81c; font-family: 'Futura', sans-serif; text-align: justify; margin-top: 60px;">
+                <p>la progettazione parametrica, un approccio che, grazie alla sua natura dinamica, permette di affrontare la complessità urbana. Il fulcro di questo metodo è il pensiero parametrico, un processo che scompone e analizza il progetto in modo strutturato, rendendolo comprensibile e manipolabile.
+In questo modo, la progettazione non è più un'operazione statica, ma un processo iterativo, in cui il progettista definisce parametri e regole, stabilendo i dati su cui il progetto si sviluppa.
+</p>
+            </div>
+        </div>
+        <!-- 6. Diagramma con video sopra -->
+          <div class="section" style="flex: 1; min-width: 100%; display: flex; align-items: flex-start;  padding: 1100px; position: relative; padding-top: 3%">
+          <!-- Immagine diagramma -->
+          <img src="tesi/diagramma.jpg" alt="diagramma" style="width: 230%; height: auto; position: relative; z-index: 1;left: 5%;">
+
+
+
+                </div>
+
+
+          <!-- 8. Poi le tre immagini -->
+  <div class="section" style="flex: 1; min-width: 150%; display: flex; justify-content: center; align-items: flex-end;; padding: 350px; padding-top: 33%;padding-left:-670%">
+      <div class="image-container">
+          <img src="tesi/m1.png" alt="m1">
+          <img src="tesi/m2.png" alt="m2">
+          <img src="tesi/m3.png" alt="m3">
+      </div>
+  </div>
+
+  <!-- 9. Due pulsanti finali -->
+        <div class="section" style="flex: 1; min-width: 12.5%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; position: fixed;
+         bottom: -20px;
+         right: 0px;">
+            <a href="https://webthesis.biblio.polito.it/view/creators/Giler_Pinargote=3AMelanie_Nicole=3A=3A.html" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: none; color: black; text-decoration: none; font-family: 'Futura', sans-serif; font-size: 12px; border-radius: 5px;filter: blur(1px); transition: all 0.3s ease;">
+                ("HC") - PDF
+            </a>
+        </div>
+        <div class="section" style="flex: 1; min-width: 12.5%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; position: fixed;
+         bottom: -20px;
+         right: 100px;">
+            <a href="https://webthesis.biblio.polito.it/view/creators/Giler_Pinargote=3AMelanie_Nicole=3A=3A.html" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: none; color: black; text-decoration: none; font-family: 'Futura', sans-serif; font-size: 12px; border-radius: 5px;filter: blur(1px);transition: all 0.3s ease;">
+                ("HC") - FOTO
+            </a>
+        </div>
+    </div>
+
+    <div style="position: absolute; bottom: 3%; left: 50%; transform: translateX(-50%);
+                font-size: 10px; color: black; font-family: 'Futura', sans-serif;">
+        Strumenti parametrici per il progetto urbano
+    </div>
+  `;
+
+  overlay.classList.add('active'); // Espande l'overlay con animazione
+
+  // Aggiungi il listener per lo scroll orizzontale
+  setTimeout(() => {
+    const container = document.querySelector('.horizontal-container');
+    if (container) {
+      // Aggiungi wheel event per permettere lo scroll orizzontale con la rotella del mouse
+      container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+      });
+    }
+  }, 1000);
+});
+    </script>
+
 </body>
 </html>
-
 
 </body>
 </html>
