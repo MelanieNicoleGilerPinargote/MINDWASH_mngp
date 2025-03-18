@@ -180,7 +180,7 @@ margin-left: -70px;
              font-weight: lighter;
               line-height: 1.5; /* Interlinea personalizzata */
             display: inline-flex; /* Permette il centro dell'elemento */
- margin-left: 50px;
+ margin-left: 20px;
 
          }
 
@@ -188,7 +188,7 @@ margin-left: -70px;
          .column > div {
              display: inline-block;
              width: 80%; /* Larghezza del 50% della colonna */
- margin-left: 50px;
+ margin-left: 20px;
                white-space: nowrap;
          }
 
