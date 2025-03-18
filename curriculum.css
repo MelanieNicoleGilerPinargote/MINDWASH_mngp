@@ -165,16 +165,6 @@ margin-left: -70px;
               padding-right: 10px;
          }
 
-         .column-container {
-             display: flex;
-             justify-content: space-between;
-             max-width: 100%;
-             padding: 0 0px;
-
-
-
-             text-align: center;
-         }
 
          /* Stili per le colonne */
          .column {
@@ -185,12 +175,12 @@ margin-left: -70px;
   padding: 10px;
 
   min-width: 200px;
-  text-align: center;
+  text-align: left;
              font-size: 12px;
              font-weight: lighter;
               line-height: 1.5; /* Interlinea personalizzata */
             display: inline-flex; /* Permette il centro dell'elemento */
-
+ margin-left: 50px;
 
          }
 
@@ -198,7 +188,7 @@ margin-left: -70px;
          .column > div {
              display: inline-block;
              width: 80%; /* Larghezza del 50% della colonna */
-          
+ margin-left: 50px;
                white-space: nowrap;
          }
 
