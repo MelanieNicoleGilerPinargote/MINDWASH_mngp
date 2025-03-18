@@ -1,6 +1,6 @@
 body {
     font-family: "Futura", sans-serif;
-    background-color: #f1f1f1; /* Grigio molto chiaro */
+    background-color: #f1f1f1;
     margin: 0;
     padding: 0;
     cursor: none;
@@ -48,25 +48,6 @@ color: #000000;
 
 }
 
-
-
-/* Versione mobile */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header-left h1 {
-        margin-bottom: 10px;
-    }
-
-    .header-right a {
-        margin: 5px 0;
-        display: block;
-    }
-}
-
 .lingua-button
 {
  cursor: none;
@@ -85,41 +66,23 @@ color: #000000;
 
 }
 
-
-
-
-.wrapper {
-            text-align: center; /* Centra il contenuto */
-            max-width: 100%; /* Larghezza massima */
-            padding: 0 20px; /* Margine laterale */
-            box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
-        }
-
-
-
-       .container {
-           display: flex;
-           justify-content: space-between;
-           align-items: flex-start;
-           padding: 20px;
-           text-align: left; /* Allinea il testo a sinistra all'interno delle colonne */
-           max-width: 100%; /* Larghezza massima */
-           box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
-       }
+.container {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-items: flex-start;
+padding: 20px;
+text-align: left;
+box-sizing: border-box;
+max-width: 100%;
+}
 
        .left {
            flex: 1;
            padding-right: 20px;
        }
-       .left-text {
-         flex: 1;
-         padding-right: 20px;
-       margin-left: 100px;
-                   text-align: left; /* Allinea il testo al centro */
-                   font-size: 46px; /* Dimensione del testo */
-                   font-weight: bold; /* Grassetto */
-                   filter: blur(4.5px);
-               }
+
+
        .right {
          padding-right: 100px;
           max-width: 55%; /* Larghezza massima */
@@ -129,15 +92,6 @@ color: #000000;
 
       }
 
-      .right-text {
-        flex: 1;
-        padding-right: 46px;
-
-                  text-align: right; /* Allinea il testo al centro */
-                  font-size: 46px; /* Dimensione del testo */
-                  font-weight: bold; /* Grassetto */
-                  filter: blur(4.5px);
-              }
 
       .centered-text {
                   position: absolute; /* Posizione assoluta rispetto al body */
@@ -149,10 +103,8 @@ color: #000000;
                   font-weight: bold; /* Grassetto */
                   filter: blur(4.5px);
                   color: #b0d12a;
+                  z-index: -2;
               }
-
-     
-
 
        .break {
            page-break-after: always; /* Interruzione di pagina */
@@ -180,9 +132,9 @@ color: #000000;
              vertical-align: top;
              font-size: 16px;
              text-align: justify;
-             margin-top: -100px;
-             margin-left: -70px;
-             padding-right: 380px;
+             margin-top: -220px;
+             margin-left: -60px;
+             padding-right: 130px;
          }
 
          .contatti {
@@ -210,6 +162,18 @@ margin-left: -70px;
              filter: blur(2.5px);
              text-align: left;
              margin-left: 700px;
+              padding-right: 10px;
+         }
+
+         .column-container {
+             display: flex;
+             justify-content: space-between;
+             max-width: 100%;
+             padding: 0 0px;
+
+
+
+             text-align: center;
          }
 
          /* Stili per le colonne */
@@ -217,14 +181,16 @@ margin-left: -70px;
              width: 100%; /* Larghezza delle colonne */
              display: inline-block;
              vertical-align: top;
-             padding: 0 10px;
-             padding-left: 100px;
-             padding-right: 30px;
+             flex: 1;
+  padding: 10px;
+
+  min-width: 200px;
+  text-align: center;
              font-size: 12px;
              font-weight: lighter;
               line-height: 1.5; /* Interlinea personalizzata */
             display: inline-flex; /* Permette il centro dell'elemento */
-            text-align: left; /* Allinea il testo a sinistra all'interno delle colonne */
+
 
          }
 
@@ -232,7 +198,7 @@ margin-left: -70px;
          .column > div {
              display: inline-block;
              width: 80%; /* Larghezza del 50% della colonna */
-               text-align: left;
+          
                white-space: nowrap;
          }
 
@@ -251,6 +217,8 @@ margin-left: -70px;
            font-weight: lighter;
            text-align: left;
        }
+
+
 
 
 
