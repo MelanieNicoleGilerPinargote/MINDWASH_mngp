@@ -18,7 +18,7 @@
         <div class="book" id="book"></div>
         <div class="buttons">
             <button id="prev"> < </button>
-            <a href="/portfolio/GILER PINARGOTE_Portfolio_Curriculum_ita.pdf" download="document.pdf" class="download-button">DOWNLOAD</a>
+            <a href="portfolio/GILER PINARGOTE_Portfolio_Curriculum_ita.pdf" download="document.pdf" class="download-button">DOWNLOAD</a>
             <button id="next"> > </button>
         </div>
     </div>
@@ -47,7 +47,7 @@
             pageDiv.className = 'page';
             pageDiv.style.zIndex = totalPages - pageNumber;
             const img = document.createElement('img');
-            img.src = `/portfolio/ITA/GILER PINARGOTE_Portfolio_Curriculum_ita-${pageNumber}.jpg`;
+            img.src = `portfolio/ITA/GILER PINARGOTE_Portfolio_Curriculum_ita-${pageNumber}.jpg`;
             img.alt = `Pagina ${pageNumber}`;
             pageDiv.appendChild(img);
             book.appendChild(pageDiv);
