@@ -1,0 +1,250 @@
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <h1>MELANIE NICOLE GILER PINARGOTE</h1>
+        </div>
+        <div class="header-right">
+            <div class="desktop-menu">
+                <a href="progetti.html">PROGETTI</a>
+                <a href="curriculum.html">CURRICULUM</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Flipbook -->
+   
+    <div class="flipbook-wrapper">
+        <div class="book" id="book"></div>
+        <div class="buttons">
+            <button id="prev"> < </button>
+            <a href="/portfolio/GILER_PORTFOLIO_PDF_ITA.pdf" download="document.pdf" class="download-button">DOWNLOAD</a>
+            <button id="next"> > </button>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            <a class="lingua-button" href="portfolio_ita.html">ITA</a>
+             <!--  <a class="lingua-button">|</a>
+            <a class="lingua-button" href="esp.html">ESP</a>-->
+        </div>
+    </footer>
+
+    <!-- pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+    <script>
+    const book = document.getElementById('book');
+        let pages = [];
+        let currentPage = 0;
+        const totalPages = 28;
+
+        function loadPage(pageNumber) {
+            const pageDiv = document.createElement('div');
+            pageDiv.className = 'page';
+            pageDiv.style.zIndex = totalPages - pageNumber;
+            const img = document.createElement('img');
+            img.src = `/portfolio/ENG/PORTFOLIO_PDF_eng-${pageNumber}.jpg`;
+            img.alt = `Pagina ${pageNumber}`;
+            pageDiv.appendChild(img);
+            book.appendChild(pageDiv);
+            pages.push(pageDiv);
+        }
+
+        for (let i = 1; i <= totalPages; i++) {
+            loadPage(i);
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            if (currentPage < pages.length - 1) {
+                pages[currentPage].style.transform = "rotateY(-180deg)";
+                pages[currentPage].style.transition = "transform 3.5s cubic-bezier(0.5, 0.8, 0.25, 1)";
+                currentPage++;
+            }
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                pages[currentPage].style.transform = "rotateY(0deg)";
+                pages[currentPage].style.transition = "transform 3.5s cubic-bezier(0.5, 0.8, 0.25, 1)";
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleGesture() {
+            if (touchEndX < touchStartX - 50) {
+                // Swipe sinistra
+                document.getElementById('next').click();
+            }
+            if (touchEndX > touchStartX + 50) {
+                // Swipe destra
+                document.getElementById('prev').click();
+            }
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                document.getElementById('next').click();
+            } else if (event.key === 'ArrowLeft') {
+                document.getElementById('prev').click();
+            }
+        });
+
+        document.addEventListener('touchstart', (event) => {
+            touchStartX = event.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (event) => {
+            touchEndX = event.changedTouches[0].screenX;
+            handleGesture();
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: "Futura", sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin: 20px;
+            background-color: none;
+        }
+
+        .header-left h1 {
+            font-size: 15px;
+            margin: 0;
+        }
+
+        .header-right a {
+            text-decoration: none;
+            color: #000;
+            margin-left: 60px;
+            font-size: 12px;
+            filter: blur(2px);
+            transition: filter 2s;
+        }
+
+        .header-right a:hover {
+            filter: blur(0);
+        }
+
+        .lingua-button {
+            font-size: 10px;
+            color: #000;
+            text-decoration: none;
+            margin: 0 5px;
+            filter: blur(2px);
+            transition: filter 2s;
+        }
+
+        .lingua-button:hover {
+            filter: blur(0);
+        }
+
+        .flipbook-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .book {
+            width: 860px;
+            height: 605px;
+            position: relative;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left;
+            transition: transform 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border-radius: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .page.flipped {
+            transform: rotateY(-180deg);
+        }
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            background-color: none;
+            color: black;
+            cursor: pointer;
+            transition: filter 2s;
+            filter: blur(2px);
+            transition: filter 2s;
+            font-weight: 700;
+        }
+
+        .buttons button:hover {
+            filter: blur(0);
+        }
+
+        .download-button {
+            font-family: "Futura", sans-serif;
+            font-size: 10px;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: none;
+            cursor: pointer;
+            transition: filter 2s;
+            filter: blur(2px);
+            font-weight: 700;
+        }
+
+        .download-button:hover {
+           
+            filter: blur(0);
+        }
+
+        .page img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</body>
