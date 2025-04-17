@@ -100,9 +100,8 @@
 
            .enter-button {
                position: absolute;
-              
                left: 85%;
-               
+               padding: 8px 16px;
                background-color: black;
                color: white;
                font-size: 14px;
@@ -120,7 +119,7 @@
            /* Pulsante enter invisibile inizialmente */
            #enterButton {
                position: absolute;
-               top: 68%; top: calc(40% + 35%); 
+               top: calc(40% + 45%);
                left: 85%;
                padding: 8px 16px;
                background-color: black;
@@ -545,19 +544,8 @@
         const earthSpeed = 0.0008; // Velocità costante per la sfera
         let earthPositionX = 0;
 
-        let lastFrameTime = 0; // Variabile per limitare il frame rate
-        const targetFPS = 60; // Frame rate desiderato
-
         function animate() {
             requestAnimationFrame(animate);
-
-            const now = performance.now();
-            const delta = now - lastFrameTime;
-
-            if (delta < 1000 / targetFPS) {
-                return; // Salta il frame se non è ancora il momento
-            }
-            lastFrameTime = now;
 
             if (!moveEarth) {
                 sphere.rotation.y += 0.0025; // Rotazione uniforme
@@ -565,6 +553,7 @@
                 earthPositionX += earthSpeed;
                 sphere.position.x = earthPositionX;
             }
+
 
             // Animazione delle linee verdi
             lines.forEach(line => {
@@ -734,28 +723,15 @@ In questo modo, la progettazione non è più un'operazione statica, ma un proces
         <!-- 6. Diagramma con video sopra -->
           <div class="section" style="flex: 1; min-width: 100%; display: flex; align-items: flex-start;  padding: 1100px; position: relative; padding-top: 3%">
           <!-- Immagine diagramma -->
-          <img src="tesi/diagramma.jpg" alt="diagramma" style="width: 230%; height: auto; position: relative; z-index: 1;left: 150%;">
+          <img src="tesi/diagramma.jpg" alt="diagramma" style="width: 230%; height: auto; position: relative; z-index: 1;left: 5%;">
 
-              <!-- Video 1 posizionato all'inizio del diagramma -->
-              <video class="video-above-diagram" style="width: 80%; padding-left: 10%; top: -170%; scale:30%;left: -300px;" playsinline loop muted autoplay>
-                  <source src="tesi/1.mp4" type="video/mp4">
-              </video>
 
-              <!-- Video 2 posizionato al centro del diagramma -->
-              <video class="video-above-diagram" style="width: 20%;  left: -40%; top: -170%;scale:30%;left: -300px;" playsinline loop muted autoplay>
-                  <source src="tesi/2.mp4" type="video/mp4">
-              </video>
-
-              <!-- Video 3 posizionato alla fine del diagramma -->
-              <video class="video-above-diagram" style="width: 20%; left: -30%; top: -170%;scale:30%;left: -300px;" playsinline loop muted autoplay>
-                  <source src="tesi/3.mp4" type="video/mp4">
-              </video>
 
                 </div>
 
 
           <!-- 8. Poi le tre immagini -->
-  <div class="section" style="flex: 1; min-width: 120%; display: flex; justify-content: center; align-items: flex-end;; padding: 550px; padding-top: 33%;padding-left:-170%">
+  <div class="section" style="flex: 1; min-width: 150%; display: flex; justify-content: center; align-items: flex-end;; padding: 350px; padding-top: 33%;padding-left:-670%">
       <div class="image-container">
           <img src="tesi/m1.png" alt="m1">
           <img src="tesi/m2.png" alt="m2">
@@ -805,5 +781,3 @@ In questo modo, la progettazione non è più un'operazione statica, ma un proces
 </body>
 </html>
 
-</body>
-</html>
