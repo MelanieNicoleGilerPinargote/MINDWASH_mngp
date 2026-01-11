@@ -1,602 +1,223 @@
-body {
-    font-family: "Satoshi", sans-serif;
-    background-color: #f1f1f1;
-    margin: 0;
-    padding: 0;
-    cursor: none;
-}
-
-header {
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    /* Aligned with quadrants */
-}
-
-footer {
-    position: fixed;
-    display: flex;
-    justify-content: flex-start;
-    /* Aligned left */
-    align-items: center;
-    bottom: 0;
-    left: 0;
-    /* Changed from right:0 to left:0 for left alignment */
-    margin: 20px;
-    padding-left: 50px;
-    /* Aligned with header/quadrants */
-    background-color: transparent;
-    color: #000000;
-}
-
-
-.header-left h1 {
-    font-weight: bold;
-    margin: 0;
-    font-size: 15px;
-}
-
-.header-right a {
-    text-decoration: none;
-    color: #000000;
-    /* NERO */
-    margin-left: 60px;
-    font-size: 12px;
-    filter: blur(2px);
-    transition: filter 2s;
-    /* effetto di transizione */
-    cursor: none;
-}
-
-.header-right a:hover {
-    filter: blur(0px);
-    /* sfocato al passaggio del mouse */
-
-}
-
-.lingua-button {
-    cursor: none;
-    display: inline-block;
-    color: #000000;
-    text-decoration: none;
-    margin-bottom: 0px;
-    font-size: clamp(8px, 0.9vw, 15px);
-    /* Responsive font column titles */
-    white-space: nowrap;
-    transition: filter 2s;
-    /* effetto di transizione */
-    filter: blur(2px);
-    /* sfocato al passaggio del mouse */
-}
-
-.lingua-button:hover {
-    filter: blur(0px);
-    /* sfocato al passaggio del mouse */
-
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    /* Allows columns to drop */
-    justify-content: space-between;
-    /* To separate Q1 and Q2 */
-    align-items: flex-start;
-    padding: 0 50px;
-    /* 50px margins to match header */
-    margin-top: 0;
-    text-align: left;
-    box-sizing: border-box;
-    width: 100%;
-    /* Ensure it fits in viewport */
-    max-width: 1700px;
-    /* Max width for large screens */
-    margin-left: auto;
-    /* Center container */
-    margin-right: auto;
-    /* Center container */
-    gap: 20px;
-}
-
-.left {
-    /* Quadrante 1: Immagine */
-    flex: 0 0 650px;
-    /* Larghezza fissa: 300px img + 40px spazio */
-    width: 340px;
-    display: flex;
-    justify-content: center;
-    /* Center horizontally */
-    align-items: center;
-    /* Center vertically */
-    padding-right: 0;
-    /* Width includes the space */
-    position: relative;
-    z-index: 0;
-    /* Lower z-index for Q1 */
-}
-
-
-.right {
-    /* Quadrante 2: Testi */
-    flex: 1;
-    /* Occupa lo spazio rimanente */
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    /* Center description vertically */
-    align-items: flex-start;
-    /* Changed to start for left alignment */
-    /* Center horizontally */
-    text-align: left;
-    /* Text centered */
-    position: relative;
-    padding-right: 100px;
-    /* Keep padding from previous RIGHT margin rules */
-    margin-right: 50px;
-}
-
-
-.decorative-elements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.brace-open {
-    position: fixed;
-    top: 5%;
-    /* Adjusted to match Q1 start */
-    left: 10px;
-    /* Outside alignment */
-    font-size: 300px;
-    font-family: inherit;
-    font-weight: 300;
-    color: #b0d12a;
-    line-height: 1;
-    filter: blur(4.5px);
-    /* Reverted blur */
-    opacity: 1;
-    /* Formatting back to original visibility */
-    z-index: 1;
-}
-
-.brace-close {
-    position: fixed;
-    bottom: 15px;
-    right: 10px;
-    /* Outside alignment */
-    font-size: 300px;
-    font-family: inherit;
-    font-weight: 300;
-    color: #b0d12a;
-    line-height: 1;
-    filter: blur(4.5px);
-    /* Reverted blur */
-    opacity: 1;
-    /* Formatting back to original visibility */
-    z-index: 1;
-}
-
-.bg-text-su {
-    position: absolute;
-    top: 5%;
-    left: 22%;
-    font-size: 150px;
-    font-weight: 800;
-    font-size: 130px;
-    /* Reverted size */
-    font-weight: 800;
-    color: #b0d12a;
-    filter: blur(6px);
-    /* Reverted blur */
-    opacity: 1;
-    /* Formatting back to original visibility */
-    filter: blur(6px);
-    /* Reverted blur */
-    opacity: 1;
-    /* Formatting back to original visibility */
-    z-index: 2;
-}
-
-.bg-text-di {
-    position: absolute;
-    top: 5%;
-    left: 40%;
-    transform: translateX(-50%);
-    font-size: 130px;
-    /* Reverted size */
-    font-weight: 800;
-    color: #b0d12a;
-    filter: blur(6px);
-    /* Reverted blur */
-    opacity: 1;
-    z-index: 1;
-}
-
-.bg-text-me {
-    position: fixed;
-    bottom: 30px;
-    right: 100px;
-    font-size: 130px;
-    /* Reverted size */
-    font-weight: 800;
-    color: #b0d12a;
-    filter: blur(6px);
-    /* Reverted blur */
-    opacity: 1;
-    /* Reverted blur */
-    opacity: 1;
-    z-index: 2;
-}
-
-/* Stili per il testo e l'immagine */
-img {
-    max-width: 300px;
-    /* Dimensione fissa o proporzionale */
-    height: auto;
-    margin-left: 0;
-    /* Reset margin */
-    padding-top: 20px;
-    filter: blur(1px);
-    z-index: 0;
-    background-color: transparent;
-}
-
-/* Stili per i titoli delle colonne */
-.column-title {
-    font-weight: bold;
-    vertical-align: top;
-    font-size: clamp(8px, 0.9vw, 15px);
-    /* Responsive font with min 8px */
-    filter: blur(1.5px);
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.descrizione {
-    font-weight: lighter;
-    vertical-align: top;
-    font-size: clamp(8px, 0.9vw, 15px);
-    /* Responsive font */
-    text-align: justify;
-    /* Justified text */
-    margin-top: 10%;
-    /* Removed large top margin for centering */
-    margin-left: 0;
-    /* Reset margins for flex centering */
-    padding-right: 0;
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    /* Ensure full width of the container */
-}
-
-.descrizione b {
-    font-weight: 700;
-}
-
-.contatti {
-    font-weight: bold;
-    vertical-align: top;
-    font-size: clamp(10px, 1.2vw, 20px);
-    /* Responsive font */
-    filter: blur(1.5px);
-    text-align: left;
-    /* Centered text */
-    margin-left: 0;
-    /* Reset alignment to match description */
-    margin-top: 40px;
-    position: relative;
-    z-index: 2;
-
-}
-
-.contatti2 {
-    font-weight: lighter;
-    vertical-align: top;
-    font-size: clamp(8px, 0.9vw, 15px);
-    /* Responsive font */
-    text-align: left;
-    /* Centered text */
-    margin-top: 10px;
-    margin-left: 0;
-    /* Reset indent alignment */
-    position: relative;
-    z-index: 2;
-}
-
-.dove {
-    position: absolute;
-    font-weight: bold;
-    vertical-align: top;
-    font-size: clamp(14px, 1.5vw, 26px);
-    /* Responsive font */
-    filter: blur(2.5px);
-    text-align: left;
-    right: -10px;
-    top: -150px;
-    padding-right: 10px;
-}
-
-
-/* Stili per le colonne */
-.column {
-    width: auto;
-    /* Larghezza delle colonne */
-    display: flex;
-    flex-direction: column;
-    vertical-align: top;
-    flex: 1;
-    padding: 5px;
-    min-width: fit-content;
-    /* Ensure column wraps if content doesn't fit */
-    text-align: left;
-    font-size: 12px;
-    font-weight: lighter;
-    line-height: 1.5;
-    /* Interlinea personalizzata */
-    margin-left: 10px;
-
-}
-
-/* Stili per le sotto-colonne */
-.sub-columns {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    width: 100%;
-    font-size: clamp(8px, 0.9vw, 15px);
-    /* Responsive font with min 8px */
-    white-space: nowrap;
-    /* Prevent text wrapping */
-}
-
-.sub-column-left {
-    flex: 0 0 auto;
-    min-width: 60px;
-    /* Colonna per date */
-}
-
-.sub-column-right {
-    flex: 1;
-    /* Colonna per luoghi/descrizioni - riempie lo spazio rimanente */
-}
-
-.sub-column-left>div,
-.sub-column-right>div {
-    margin-bottom: 3px;
-}
-
-/* Stili specifici per colonna SOFTWARE con 4 sotto-colonne */
-.column-software {
-    min-width: 300px;
-}
-
-.sub-columns-software {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    width: 100%;
-    white-space: nowrap;
-    /* Prevent wrapping */
-    font-size: clamp(8px, 0.9vw, 15px);
-}
-
-.sub-column-quarter {
-    flex: 1;
-    min-width: 65px;
-}
-
-.sub-column-quarter>div {
-    margin-bottom: 3px;
-}
-
-.sub-column-quarter b {
-    font-weight: 700;
-    /* Extra grassetto per i simboli + */
-}
-
-.sub-column-right b {
-    font-weight: 700;
-}
-
-/* Stili specifici per colonna PREMI E PUBBLICAZIONI */
-.column-premi {
-    flex: 1.8;
-    /* Larghezza maggiore per contenere testi lunghi */
-    max-width: 600px;
-    /* Spostamento a sinistra per allineare con bottone PORTFOLIO PDF */
-}
-
-/* Stili specifici per colonna LINGUE */
-.column-lingue {
-    flex: 0.85;
-    /* Larghezza ridotta - colonna più stretta */
-    z-index: 5;
-}
-
-.premi-content {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    font-size: clamp(8px, 0.9vw, 15px);
-    /* Responsive font */
-    line-height: 1.4;
-    white-space: nowrap;
-}
-
-.premi-content>div {
-    text-align: justify;
-    line-height: 1.4;
-}
-
-.premi-content b {
-    font-weight: 900;
-    /* Extra grassetto per etichette Pubblicazione, Premio, Articolo */
-}
-
-.premi-title {
-    color: #b0d12a;
-    /* Verde come "SU DI ME" */
-    font-weight: normal;
-}
-
-.half-black {
-    color: black;
-    /* Colore del testo nero */
-}
-
-.half-gray {
-    color: #808080;
-    /* Colore del testo grigio */
-}
-
-.text-below {
-    color: #808080;
-    font-size: 8px;
-    font-weight: lighter;
-    text-align: left;
-}
-
-
-
-
-
-
-#main-error {
-    display: none;
-    /* Mostrato solo su schermi piccoli */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#main-error h1 {
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 20px;
-    color: #b0d12a;
-}
-
-#error-windows-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1001;
-}
-
-.error-window {
-    position: absolute;
-    background-color: #fff;
-    border: 1px solid #aaa;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Bordo superiore spesso */
-.error-window .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #000000;
-    color: #fff;
-    padding: 5px;
-    font-size: 8px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.error-window .header .controls {
-    display: flex;
-    gap: 3px;
-}
-
-.error-window .header .controls button {
-    width: 6px;
-    height: 6px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.error-window .header .controls .close {
-    background-color: #000000;
-}
-
-.error-window .header .controls .minimize {
-    background-color: #000000;
-}
-
-.error-window .header .controls .resize {
-    background-color: #000000;
-}
-
-/* Contenuto della finestra */
-.error-window .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    flex-grow: 1;
-}
-
-.error-window .content h1 {
-    color: #0f0;
-    font-size: calc(1.5rem + 0.5vw);
-    margin: 0;
-}
-
-.error-window .content p {
-    color: #666;
-    font-size: calc(0.8rem + 0.2vw);
-    margin: 0;
-}
-
-
-
-
-
-#custom-cursor {
-    width: 8px;
-    height: 8px;
-    background: black;
-    border-radius: 100%;
-    position: absolute;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-#cursor-shadow {
-    width: 8px;
-    height: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 100%;
-    position: absolute;
-    z-index: 9998;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    display: none;
-}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNGP | CURRICULUM</title>
+    <!-- Import Satoshi font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="curriculum.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Import FontAwesome for menu icon -->
+</head>
+
+<body>
+    <div id="custom-cursor"></div>
+    <footer>
+        <div>
+            <a class="lingua-button" href="curriculum.html">ITA</a>
+            <a class="lingua-button">| </a>
+            <a class="lingua-button" href="curriculum_esp.html">ESP</a>
+        </div>
+    </footer>
+
+    <header>
+        <div class="header-left">
+            <h1>MELANIE NICOLE GILER PINARGOTE</h1>
+        </div>
+        <div class="header-right">
+
+            <div class="desktop-menu">
+
+                <a href="progetti_eng.html">PROJECTS</a>
+                <!--   <a href="software.html">SOFTWARE</a>  -->
+                <a href="portfolio_eng.html">PORTFOLIO|PDF</a>
+            </div>
+        </div>
+
+    </header>
+    <div class="container">
+        <div class="left">
+            <img src="Curriculum/f3.png" alt="Image">
+        </div>
+        <div class="right">
+
+            <div class="dove"><br><br><br><br><br><br>{TURIN <br>| ITALY}<br>
+                [17 | 07| <br>1998}</div>
+
+
+            <div class="descrizione">
+                I obtained my <b>Master's degree in Architecture Construction City</b> at <b>Politecnico di Torino</b>,
+                with a thesis on <b>parametric processes applied to urban design</b>, mentioned as a <b>Meritorious
+                    Thesis
+                    and awarded within the TeleArchitettura Awards</b>. The research involved the development of an
+                <b>evolutionary algorithm for the generation of meta-design scenarios</b>, applied to the case study of
+                the former Thyssen area
+                in Turin.<br> </br>
+
+                During my academic and post-graduate path, I gained advanced skills in <b>BIM and computational
+                    design</b>,
+                combining <b>research activity</b> with <b>tutoring experiences in parametric design studios</b>
+                at Politecnico di Torino, supporting students in the development of generative workflows, parametric
+                models, and
+                advanced project representation.<br> </br>
+
+                In the professional field, I participated in <b>public and private projects</b> and collaborated with
+                the
+                Research and Development department of an engineering company, dealing with the <b>optimization of
+                    design processes</b> and
+                the development of <b>computational tools for hospital design and simulation</b>, also in support
+                of public tenders.<br> </br>
+
+                Curious and innovation-oriented, I integrate design and programming as an integral part of the design
+                process,
+                an approach I also applied in developing my personal website as a dynamic platform for the presentation
+                of my portfolio and curriculum. <b>My goal is to combine architecture and technology to address the
+                    complexity of contemporary design</b> through adaptive, sustainable processes oriented towards
+                possible future scenarios.
+
+
+            </div>
+            <div class="contatti">{ &nbsp;&nbsp;&nbsp;&nbsp;CONTACTS
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+            </div>
+            <div class="contatti2"> cell. &nbsp;&nbsp;&nbsp;&nbsp; +39 3405308026 <br> e.mail &nbsp;&nbsp;&nbsp;&nbsp;
+                nicole.giler@outlook.com </div>
+        </div>
+        <div class="decorative-elements">
+            <span class="brace-open">{</span>
+            <span class="bg-text-su" style="font-size: 100px; left: 100px;">ABOUT</span>
+            <span class="bg-text-me">ME</span>
+            <span class="brace-close">}</span>
+        </div>
+    </div>
+    <div class="break"></div> <!-- Page break -->
+    <br><br>
+    <div class="container">
+        <div class="column">
+            <div class="column-title"><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDUCATION</span><span>}</span></div>
+            <br> </br>
+            <div class="sub-columns">
+                <div class="sub-column-left">
+                    <div>12 | 17</div>
+                    <div>18 | 22</div>
+                    <div>22 | 25</div>
+                </div>
+                <div class="sub-column-right">
+                    <div>IISS BOSELLI ALBERTI | SURVEYOR</div>
+                    <div>POLITECNICO DI TORINO | ARCHITECTURE </div>
+                    <div>POLITECNICO DI TORINO | ARCHITECTURE <br> CONSTRUCTION CITY</div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="column-title"><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORK</span><span>}</span></div>
+            <br> </br>
+            <div class="sub-columns">
+                <div class="sub-column-left">
+                    <div>15</div>
+                    <div>16 | 21</div>
+                    <div>22</div>
+                    <div>22 | 23</div>
+                    <div>25</div>
+                    <div>25</div>
+                </div>
+                <div class="sub-column-right">
+                    <div>MUNICIPALITY OF CELLE LIGURE</div>
+                    <div>ENG. STEFANO PERATA</div>
+                    <div>ARCH. PAOLO CASTELNOVI</div>
+                    <div>GIUBERGIA-GRIGLIO ARCHITETTI</div>
+                    <div>TECNICAER</div>
+                    <div>POLITECNICO DI TORINO</div>
+                </div>
+            </div>
+        </div>
+        <div class="column column-software">
+            <div class="column-title">
+                <span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOFTWARE</span><span>}</span>
+            </div>
+            <br> </br>
+            <div class="sub-columns-software">
+                <div class="sub-column-quarter">
+                    <div>.PS .AI .IND</div>
+                    <div>.DWG</div>
+                    <div>.RVT .GR</div>
+                    <div>.HTML .CSS</div>
+                    <div>.SKP</div>
+                </div>
+                <div class="sub-column-quarter">
+                    <div><b>+ + + +</b> <a class="half-gray">+</a></div>
+                    <div><b>+ + + + +</b></div>
+                    <div><b>+ + +</b> <a class="half-gray">+ +</a></div>
+                    <div><b>+</b> <a class="half-gray">+ + + +</a></div>
+                    <div><b>+ + + +</b> <a class="half-gray">+</a></div>
+                </div>
+                <div class="sub-column-quarter">
+                    <div>.VRAY</div>
+                    <div>.LUMION</div>
+                    <div>.QGIS</div>
+                    <div>.AN .AE</div>
+                </div>
+                <div class="sub-column-quarter">
+                    <div><b>+ + +</b> <a class="half-gray">+ +</a></div>
+                    <div><b>+ +</b> <a class="half-gray">+ + +</a></div>
+                    <div><b>+ +</b> <a class="half-gray">+ + +</a></div>
+                    <div><b>+ +</b> <a class="half-gray">+ + +</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="column column-premi">
+            <div class="column-title"><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AWARDS AND PUBLICATIONS</span><span>}</span>
+            </div>
+            <br> </br>
+            <div class="premi-content">
+                <div><b>Publication:</b> <span class="premi-title">Beyond Drawing Algorithms: Scenarios and the
+                        Ekphrasis of the Future City</span>, Conference: 46° Convegno Internazionale dei Docenti delle
+                    Discipline della Rappresentazione. Recognition: best paper.</div>
+                <div><b>Award:</b> <span class="premi-title">TeleArchitettura Awards</span> – Thesis Category,
+                    Politecnico di Torino.</div>
+                <div><b>Article:</b> <span class="premi-title">Architecture for Change: Parametric Urban Design,
+                        Vernacular Heritage Conservation and Resilient Housing Solutions</span>, ArchDaily.</div>
+            </div>
+        </div>
+        <div class="column column-lingue">
+            <div class="column-title"><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LANGUAGES</span><span>}</span>
+            </div>
+            <br> </br>
+            <div class="sub-columns">
+                <div class="sub-column-left">
+                    <div>ITA.</div>
+                    <div>ENG.*</div>
+                    <div>ESP.</div>
+                    <div class="text-below">
+                        <p>*IELTS Certification level 5.5 | 2023</p>
+                    </div>
+                </div>
+                <div class="sub-column-right">
+                    <div><b>+ + + + +</b><a class="half-gray"></a></div>
+                    <div><b>+ + </b><a class="half-gray">+ + +</a></div>
+                    <div><b>+ + + + </b><a class="half-gray">+</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+    <div id="main-error">
+        <div id="error-windows-container"></div>
+    </div>
+
+
+
+
+    <div id="cursor-shadow"></div>
+    <script src="base.js"></script>
+    <script src="curriculum.js"></script>
+</body>
+
+</html>
