@@ -1,5 +1,5 @@
 body {
-    font-family: "Futura", sans-serif;
+    font-family: "Satoshi", sans-serif;
     background-color: #f1f1f1;
     margin: 0;
     padding: 0;
@@ -15,16 +15,16 @@ header {
 }
 
 footer {
-position: fixed;
-display: flex;
-justify-content: flex-end;
-align-items: center;
-bottom: 0;
-right: 0;
-margin: 20px;
-padding: 10px;
-background-color: none;
-color: #000000;
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    padding: 10px;
+    background-color: none;
+    color: #000000;
 }
 
 
@@ -36,297 +36,418 @@ color: #000000;
 
 .header-right a {
     text-decoration: none;
-    color: #000000; /* NERO */
+    color: #000000;
+    /* NERO */
     margin-left: 60px;
-      font-size: 12px;
-        filter: blur(2px);
-        transition: filter 2s; /* effetto di transizione */
+    font-size: 12px;
+    filter: blur(2px);
+    transition: filter 2s;
+    /* effetto di transizione */
+    cursor: none;
 }
 
 .header-right a:hover {
-  filter: blur(0px); /* sfocato al passaggio del mouse */
+    filter: blur(0px);
+    /* sfocato al passaggio del mouse */
 
 }
 
-.lingua-button
-{
- cursor: none;
+.lingua-button {
+    cursor: none;
     display: inline-block;
     color: #000000;
     text-decoration: none;
     margin-bottom: 10px;
-      font-size: 10px;
-  transition: filter 2s; /* effetto di transizione */
-  filter: blur(2px); /* sfocato al passaggio del mouse */
+    font-size: 10px;
+    transition: filter 2s;
+    /* effetto di transizione */
+    filter: blur(2px);
+    /* sfocato al passaggio del mouse */
 }
 
-.lingua-button:hover
-{
-  filter: blur(0px); /* sfocato al passaggio del mouse */
+.lingua-button:hover {
+    filter: blur(0px);
+    /* sfocato al passaggio del mouse */
 
 }
 
 .container {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: flex-start;
-padding: 20px;
-text-align: left;
-box-sizing: border-box;
-max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    margin-top: -50px;
+    text-align: left;
+    box-sizing: border-box;
+    max-width: 100%;
+    gap: 20px;
 }
 
-       .left {
-           flex: 1;
-           padding-right: 20px;
-       }
+.left {
+    flex: 1;
+    padding-right: 20px;
+}
 
 
-       .right {
-         padding-right: 100px;
-          max-width: 55%; /* Larghezza massima */
-          box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
+.right {
+    padding-right: 100px;
+    max-width: 55%;
+    /* Larghezza massima */
+    box-sizing: border-box;
+    /* Include il padding nel calcolo della larghezza */
 
-          margin-right: 50px;
+    margin-right: 50px;
 
-      }
-
-
-      .centered-text {
-                  position: absolute; /* Posizione assoluta rispetto al body */
-                  top: 10%; /* Posizione sopra l'immagine */
-                  left:56%; /* Posizione al centro */
-                  transform: translateX(-50%); /* Centra orizzontalmente */
-                  text-align: left; /* Allinea il testo al centro */
-                  font-size: 96px; /* Dimensione del testo */
-                  font-weight: bold; /* Grassetto */
-                  filter: blur(4.5px);
-                  color: #b0d12a;
-                  z-index: -2;
-              }
-
-       .break {
-           page-break-after: always; /* Interruzione di pagina */
-       }
-
-       /* Stili per il testo e l'immagine */
-         img {
-             max-width: 75%;
-             height: auto;
-             margin-left: 100px;
-             padding-top: 40px;
-             filter: blur(1px);
-         }
-
-         /* Stili per i titoli delle colonne */
-         .column-title {
-             font-weight: bold;
-             vertical-align: top;
-             font-size: 14px;
-             filter: blur(1.5px);
-         }
-
-         .descrizione {
-             font-weight: lighter;
-             vertical-align: top;
-             font-size: 16px;
-             text-align: justify;
-             margin-top: -220px;
-             margin-left: -60px;
-             padding-right: 130px;
-         }
-
-         .contatti {
-             font-weight: bold;
-             vertical-align: top;
-             font-size: 20px;
-             filter: blur(1.5px);
-             text-align: left;
-             margin-left: -70px;
-
-         }
-         .contatti2 {
-             font-weight: lighter;
-             vertical-align: top;
-             font-size: 14px;
-             text-align: left;
-             margin-top: 10px;
-margin-left: -70px;
-         }
-
-         .dove {
-             font-weight: bold;
-             vertical-align: top;
-             font-size: 26px;
-             filter: blur(2.5px);
-             text-align: left;
-             margin-left: 700px;
-              padding-right: 10px;
-         }
+}
 
 
-         /* Stili per le colonne */
-         .column {
-             width: 100%; /* Larghezza delle colonne */
-             display: inline-block;
-             vertical-align: top;
-             flex: 1;
-  padding: 10px;
+.centered-text {
+    position: absolute;
+    /* Posizione assoluta rispetto al body */
+    top: 8%;
+    /* Posizione sopra l'immagine */
+    left: 60%;
+    /* Posizione al centro */
+    transform: translateX(-50%);
+    /* Centra orizzontalmente */
+    text-align: left;
+    /* Allinea il testo al centro */
+    font-size: 110px;
+    /* Dimensione del testo */
+    font-weight: 800;
+    /* Grassetto */
+    filter: blur(4.5px);
+    color: #b0d12a;
+    z-index: -2;
+}
 
-  min-width: 200px;
-  text-align: left;
-             font-size: 12px;
-             font-weight: lighter;
-              line-height: 1.5; /* Interlinea personalizzata */
-            display: inline-flex; /* Permette il centro dell'elemento */
- margin-left: 20px;
+.big-brace {
+    font-size: 2em;
+    font-weight: 500;
+    vertical-align: middle;
+    /* Allinea verticalmente al centro */
+    line-height: 0.8;
+}
 
-         }
+.break {
+    page-break-after: always;
+    /* Interruzione di pagina */
+}
 
-         /* Stili per dividere le colonne verticalmente */
-         .column > div {
-             display: inline-block;
-             width: 80%; /* Larghezza del 50% della colonna */
- margin-left: 20px;
-               white-space: nowrap;
-         }
+/* Stili per il testo e l'immagine */
+img {
+    max-width: 40%;
+    height: auto;
+    margin-left: 150px;
+    padding-top: 20px;
+    filter: blur(1px);
+}
 
-         .half-black {
-            color: black; /* Colore del testo nero */
-        }
+/* Stili per i titoli delle colonne */
+.column-title {
+    font-weight: bold;
+    vertical-align: top;
+    font-size: 15px;
+    filter: blur(1.5px);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 
-        .half-gray {
-            color: #808080; /* Colore del testo grigio */
-        }
+.descrizione {
+    font-weight: lighter;
+    vertical-align: top;
+    font-size: 15px;
+    text-align: justify;
+    margin-top: 100px;
+    margin-left: -170px;
+    padding-right: 100px;
+}
 
-        .text-below
-        {
-           color: #808080;
-           font-size: 8px;
-           font-weight: lighter;
-           text-align: left;
-       }
+.descrizione b {
+    font-weight: 700;
+}
+
+.contatti {
+    font-weight: bold;
+    vertical-align: top;
+    font-size: 20px;
+    filter: blur(1.5px);
+    text-align: left;
+    margin-left: -170px;
+    margin-top: 40px;
+
+}
+
+.contatti2 {
+    font-weight: lighter;
+    vertical-align: top;
+    font-size: 15px;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: -160px;
+}
+
+.dove {
+    position: absolute;
+    font-weight: bold;
+    vertical-align: top;
+    font-size: 26px;
+    filter: blur(2.5px);
+    text-align: left;
+    right: 100px;
+    top: -100px;
+    padding-right: 10px;
+}
+
+
+/* Stili per le colonne */
+.column {
+    width: auto;
+    /* Larghezza delle colonne */
+    display: flex;
+    flex-direction: column;
+    vertical-align: top;
+    flex: 1;
+    padding: 5px;
+    min-width: 160px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: lighter;
+    line-height: 1.5;
+    /* Interlinea personalizzata */
+    margin-left: 10px;
+
+}
+
+/* Stili per le sotto-colonne */
+.sub-columns {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+}
+
+.sub-column-left {
+    flex: 0 0 auto;
+    min-width: 60px;
+    /* Colonna per date */
+}
+
+.sub-column-right {
+    flex: 1;
+    /* Colonna per luoghi/descrizioni - riempie lo spazio rimanente */
+}
+
+.sub-column-left>div,
+.sub-column-right>div {
+    margin-bottom: 3px;
+}
+
+/* Stili specifici per colonna SOFTWARE con 4 sotto-colonne */
+.column-software {
+    min-width: 300px;
+}
+
+.sub-columns-software {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
+.sub-column-quarter {
+    flex: 1;
+    min-width: 65px;
+}
+
+.sub-column-quarter>div {
+    margin-bottom: 3px;
+}
+
+.sub-column-quarter b {
+    font-weight: 700;
+    /* Extra grassetto per i simboli + */
+}
+
+.sub-column-right b {
+    font-weight: 700;
+}
+
+/* Stili specifici per colonna PREMI E PUBBLICAZIONI */
+.column-premi {
+    flex: 1.8;
+    /* Larghezza maggiore per contenere testi lunghi */
+    max-width: 600px;
+    /* Spostamento a sinistra per allineare con bottone PORTFOLIO PDF */
+}
+
+/* Stili specifici per colonna LINGUE */
+.column-lingue {
+    flex: 0.85;
+    /* Larghezza ridotta - colonna più stretta */
+}
+
+.premi-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.premi-content>div {
+    text-align: justify;
+    line-height: 1.4;
+}
+
+.premi-content b {
+    font-weight: 900;
+    /* Extra grassetto per etichette Pubblicazione, Premio, Articolo */
+}
+
+.premi-title {
+    color: #b0d12a;
+    /* Verde come "SU DI ME" */
+    font-weight: normal;
+}
+
+.half-black {
+    color: black;
+    /* Colore del testo nero */
+}
+
+.half-gray {
+    color: #808080;
+    /* Colore del testo grigio */
+}
+
+.text-below {
+    color: #808080;
+    font-size: 8px;
+    font-weight: lighter;
+    text-align: left;
+}
 
 
 
 
 
 
-       #main-error {
-                 display: none; /* Mostrato solo su schermi piccoli */
-                 position: fixed;
-                 top: 0;
-                 left: 0;
-                 width: 100%;
-                 height: 100%;
-                 background: rgba(0, 0, 0, 0.9);
-                 z-index: 1000;
-                 display: flex;
-                 flex-direction: column;
-                 justify-content: center;
-                 align-items: center;
-             }
+#main-error {
+    display: none;
+    /* Mostrato solo su schermi piccoli */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-             #main-error h1 {
-                 font-size: 20px;
-                 font-weight: bold;
-                 color: #fff;
-                 margin-bottom: 20px;
-                 color: #b0d12a;
-             }
+#main-error h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+    color: #b0d12a;
+}
 
-             #error-windows-container {
-                 position: relative;
-                 width: 100%;
-                 height: 100%;
-                 z-index: 1001;
-             }
+#error-windows-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+}
 
-             .error-window {
-                 position: absolute;
-                 background-color: #fff;
-                 border: 1px solid #aaa;
-                 display: flex;
-                 flex-direction: column;
-                 align-items: center;
-                 justify-content: center;
-                 text-align: center;
-                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-             }
+.error-window {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
 
-             /* Bordo superiore spesso */
-             .error-window .header {
-                 display: flex;
-                 justify-content: space-between;
-                 align-items: center;
-                 background-color: #000000;
-                 color: #fff;
-                 padding: 5px;
-                 font-size: 8px;
-                 width: 100%;
-                 box-sizing: border-box;
-             }
+/* Bordo superiore spesso */
+.error-window .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    color: #fff;
+    padding: 5px;
+    font-size: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-             .error-window .header .controls {
-                 display: flex;
-                 gap: 3px;
-             }
+.error-window .header .controls {
+    display: flex;
+    gap: 3px;
+}
 
-             .error-window .header .controls button {
-                 width: 6px;
-                 height: 6px;
-                 border: none;
-                 border-radius: 50%;
-                 cursor: pointer;
-             }
+.error-window .header .controls button {
+    width: 6px;
+    height: 6px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
-             .error-window .header .controls .close {
-                 background-color: #000000;
-             }
+.error-window .header .controls .close {
+    background-color: #000000;
+}
 
-             .error-window .header .controls .minimize {
-                 background-color: #000000;
-             }
+.error-window .header .controls .minimize {
+    background-color: #000000;
+}
 
-             .error-window .header .controls .resize {
-                 background-color: #000000;
-             }
+.error-window .header .controls .resize {
+    background-color: #000000;
+}
 
-             /* Contenuto della finestra */
-             .error-window .content {
-                 display: flex;
-                 flex-direction: column;
-                 align-items: center;
-                 justify-content: center;
-                 padding: 10px;
-                 flex-grow: 1;
-             }
+/* Contenuto della finestra */
+.error-window .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    flex-grow: 1;
+}
 
-             .error-window .content h1 {
-                 color: #0f0;
-                 font-size: calc(1.5rem + 0.5vw);
-                 margin: 0;
-             }
+.error-window .content h1 {
+    color: #0f0;
+    font-size: calc(1.5rem + 0.5vw);
+    margin: 0;
+}
 
-             .error-window .content p {
-                 color: #666;
-                 font-size: calc(0.8rem + 0.2vw);
-                 margin: 0;
-             }
+.error-window .content p {
+    color: #666;
+    font-size: calc(0.8rem + 0.2vw);
+    margin: 0;
+}
 
 
 
 
 
 #custom-cursor {
-width: 8px;
-height: 8px;
-background: black;
-border-radius: 100%;
-position: absolute;
-z-index: 9999;
-pointer-events: none;
+    width: 8px;
+    height: 8px;
+    background: black;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
 }
 
 #cursor-shadow {
