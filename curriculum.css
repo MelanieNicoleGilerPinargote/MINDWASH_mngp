@@ -7,23 +7,27 @@ body {
 }
 
 header {
-    background-color: none;
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
+    /* Aligned with quadrants */
 }
 
 footer {
     position: fixed;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    /* Aligned left */
     align-items: center;
     bottom: 0;
-    right: 0;
+    left: 0;
+    /* Changed from right:0 to left:0 for left alignment */
     margin: 20px;
-    padding: 10px;
-    background-color: none;
+    padding-left: 50px;
+    /* Aligned with header/quadrants */
+    background-color: transparent;
     color: #000000;
 }
 
@@ -57,8 +61,10 @@ footer {
     display: inline-block;
     color: #000000;
     text-decoration: none;
-    margin-bottom: 10px;
-    font-size: 10px;
+    margin-bottom: 0px;
+    font-size: clamp(8px, 0.9vw, 15px);
+    /* Responsive font column titles */
+    white-space: nowrap;
     transition: filter 2s;
     /* effetto di transizione */
     filter: blur(2px);
@@ -74,81 +80,182 @@ footer {
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    /* Allows columns to drop */
+    justify-content: space-between;
+    /* To separate Q1 and Q2 */
     align-items: flex-start;
-    padding: 20px;
-    margin-top: -50px;
+    padding: 0 50px;
+    /* 50px margins to match header */
+    margin-top: 0;
     text-align: left;
     box-sizing: border-box;
-    max-width: 100%;
+    width: 100%;
+    /* Ensure it fits in viewport */
+    max-width: 1700px;
+    /* Max width for large screens */
+    margin-left: auto;
+    /* Center container */
+    margin-right: auto;
+    /* Center container */
     gap: 20px;
 }
 
 .left {
-    flex: 1;
-    padding-right: 20px;
+    /* Quadrante 1: Immagine */
+    flex: 0 0 650px;
+    /* Larghezza fissa: 300px img + 40px spazio */
+    width: 340px;
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    padding-right: 0;
+    /* Width includes the space */
+    position: relative;
+    z-index: 0;
+    /* Lower z-index for Q1 */
 }
 
 
 .right {
-    padding-right: 100px;
-    max-width: 55%;
-    /* Larghezza massima */
-    box-sizing: border-box;
-    /* Include il padding nel calcolo della larghezza */
-
-    margin-right: 50px;
-
-}
-
-
-.centered-text {
-    position: absolute;
-    /* Posizione assoluta rispetto al body */
-    top: 8%;
-    /* Posizione sopra l'immagine */
-    left: 60%;
-    /* Posizione al centro */
-    transform: translateX(-50%);
-    /* Centra orizzontalmente */
+    /* Quadrante 2: Testi */
+    flex: 1;
+    /* Occupa lo spazio rimanente */
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Center description vertically */
+    align-items: flex-start;
+    /* Changed to start for left alignment */
+    /* Center horizontally */
     text-align: left;
-    /* Allinea il testo al centro */
-    font-size: 110px;
-    /* Dimensione del testo */
-    font-weight: 800;
-    /* Grassetto */
-    filter: blur(4.5px);
+    /* Text centered */
+    position: relative;
+    padding-right: 100px;
+    /* Keep padding from previous RIGHT margin rules */
+    margin-right: 50px;
+}
+
+
+.decorative-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.brace-open {
+    position: fixed;
+    top: 5%;
+    /* Adjusted to match Q1 start */
+    left: 10px;
+    /* Outside alignment */
+    font-size: 300px;
+    font-family: inherit;
+    font-weight: 300;
     color: #b0d12a;
-    z-index: -2;
+    line-height: 1;
+    filter: blur(4.5px);
+    /* Reverted blur */
+    opacity: 1;
+    /* Formatting back to original visibility */
+    z-index: 1;
 }
 
-.big-brace {
-    font-size: 2em;
-    font-weight: 500;
-    vertical-align: middle;
-    /* Allinea verticalmente al centro */
-    line-height: 0.8;
+.brace-close {
+    position: fixed;
+    bottom: 15px;
+    right: 10px;
+    /* Outside alignment */
+    font-size: 300px;
+    font-family: inherit;
+    font-weight: 300;
+    color: #b0d12a;
+    line-height: 1;
+    filter: blur(4.5px);
+    /* Reverted blur */
+    opacity: 1;
+    /* Formatting back to original visibility */
+    z-index: 1;
 }
 
-.break {
-    page-break-after: always;
-    /* Interruzione di pagina */
+.bg-text-su {
+    position: absolute;
+    top: 5%;
+    left: 22%;
+    font-size: 150px;
+    font-weight: 800;
+    font-size: 130px;
+    /* Reverted size */
+    font-weight: 800;
+    color: #b0d12a;
+    filter: blur(6px);
+    /* Reverted blur */
+    opacity: 1;
+    /* Formatting back to original visibility */
+    filter: blur(6px);
+    /* Reverted blur */
+    opacity: 1;
+    /* Formatting back to original visibility */
+    z-index: 2;
+}
+
+.bg-text-di {
+    position: absolute;
+    top: 5%;
+    left: 40%;
+    transform: translateX(-50%);
+    font-size: 130px;
+    /* Reverted size */
+    font-weight: 800;
+    color: #b0d12a;
+    filter: blur(6px);
+    /* Reverted blur */
+    opacity: 1;
+    z-index: 1;
+}
+
+.bg-text-me {
+    position: fixed;
+    bottom: 30px;
+    right: 100px;
+    font-size: 130px;
+    /* Reverted size */
+    font-weight: 800;
+    color: #b0d12a;
+    filter: blur(6px);
+    /* Reverted blur */
+    opacity: 1;
+    /* Reverted blur */
+    opacity: 1;
+    z-index: 2;
 }
 
 /* Stili per il testo e l'immagine */
 img {
-    max-width: 40%;
+    max-width: 300px;
+    /* Dimensione fissa o proporzionale */
     height: auto;
-    margin-left: 150px;
+    margin-left: 0;
+    /* Reset margin */
     padding-top: 20px;
     filter: blur(1px);
+    z-index: 0;
+    background-color: transparent;
 }
 
 /* Stili per i titoli delle colonne */
 .column-title {
     font-weight: bold;
     vertical-align: top;
-    font-size: 15px;
+    font-size: clamp(8px, 0.9vw, 15px);
+    /* Responsive font with min 8px */
     filter: blur(1.5px);
     display: flex;
     justify-content: space-between;
@@ -158,11 +265,19 @@ img {
 .descrizione {
     font-weight: lighter;
     vertical-align: top;
-    font-size: 15px;
+    font-size: clamp(8px, 0.9vw, 15px);
+    /* Responsive font */
     text-align: justify;
-    margin-top: 100px;
-    margin-left: -170px;
-    padding-right: 100px;
+    /* Justified text */
+    margin-top: 10%;
+    /* Removed large top margin for centering */
+    margin-left: 0;
+    /* Reset margins for flex centering */
+    padding-right: 0;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    /* Ensure full width of the container */
 }
 
 .descrizione b {
@@ -172,32 +287,43 @@ img {
 .contatti {
     font-weight: bold;
     vertical-align: top;
-    font-size: 20px;
+    font-size: clamp(10px, 1.2vw, 20px);
+    /* Responsive font */
     filter: blur(1.5px);
     text-align: left;
-    margin-left: -170px;
+    /* Centered text */
+    margin-left: 0;
+    /* Reset alignment to match description */
     margin-top: 40px;
+    position: relative;
+    z-index: 2;
 
 }
 
 .contatti2 {
     font-weight: lighter;
     vertical-align: top;
-    font-size: 15px;
+    font-size: clamp(8px, 0.9vw, 15px);
+    /* Responsive font */
     text-align: left;
+    /* Centered text */
     margin-top: 10px;
-    margin-left: -160px;
+    margin-left: 0;
+    /* Reset indent alignment */
+    position: relative;
+    z-index: 2;
 }
 
 .dove {
     position: absolute;
     font-weight: bold;
     vertical-align: top;
-    font-size: 26px;
+    font-size: clamp(14px, 1.5vw, 26px);
+    /* Responsive font */
     filter: blur(2.5px);
     text-align: left;
-    right: 100px;
-    top: -100px;
+    right: -10px;
+    top: -150px;
     padding-right: 10px;
 }
 
@@ -211,7 +337,8 @@ img {
     vertical-align: top;
     flex: 1;
     padding: 5px;
-    min-width: 160px;
+    min-width: fit-content;
+    /* Ensure column wraps if content doesn't fit */
     text-align: left;
     font-size: 12px;
     font-weight: lighter;
@@ -227,6 +354,10 @@ img {
     flex-direction: row;
     gap: 15px;
     width: 100%;
+    font-size: clamp(8px, 0.9vw, 15px);
+    /* Responsive font with min 8px */
+    white-space: nowrap;
+    /* Prevent text wrapping */
 }
 
 .sub-column-left {
@@ -255,6 +386,9 @@ img {
     flex-direction: row;
     gap: 10px;
     width: 100%;
+    white-space: nowrap;
+    /* Prevent wrapping */
+    font-size: clamp(8px, 0.9vw, 15px);
 }
 
 .sub-column-quarter {
@@ -287,12 +421,17 @@ img {
 .column-lingue {
     flex: 0.85;
     /* Larghezza ridotta - colonna più stretta */
+    z-index: 5;
 }
 
 .premi-content {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    font-size: clamp(8px, 0.9vw, 15px);
+    /* Responsive font */
+    line-height: 1.4;
+    white-space: nowrap;
 }
 
 .premi-content>div {
