@@ -1,220 +1,232 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MGNP | CECIN'ESTPASUNEPIPE</title>
     <link rel="stylesheet" href="progetti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
 </head>
-  <style>
-  body {
-            font-family: "Futura", sans-serif;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
+<style>
+    body {
+        font-family: "Satoshi", sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
 
-        }
-        header {
-            background-color: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-        }
-        footer {
-            position: fixed;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            bottom: 0;
-            right: 0;
-            margin: 20px;
-            padding: 10px;
-            background-color: none;
-            color: #000000;
-        }
+    }
 
-  .header-left h1 {
-      font-weight: bold;
-      margin: 0;
-      font-size: 15px;
-  }
+    header {
+        background-color: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+    }
 
-  .header-right a {
-      text-decoration: none;
-      color: #000000; /* NERO */
-      margin-left: 60px;
+    footer {
+        position: fixed;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        bottom: 0;
+        right: 0;
+        margin: 20px;
+        padding: 10px;
+        background-color: none;
+        color: #000000;
+    }
+
+    .header-left h1 {
+        font-weight: bold;
+        margin: 0;
+        font-size: 15px;
+    }
+
+    .header-right a {
+        text-decoration: none;
+        color: #000000;
+        /* NERO */
+        margin-left: 60px;
         font-size: 12px;
-          filter: blur(2px);
-          transition: filter 2s; /* effetto di transizione */
-  }
+        filter: blur(2px);
+        transition: filter 2s;
+        /* effetto di transizione */
+    }
 
-  .header-right a:hover {
-    filter: blur(0px); /* sfocato al passaggio del mouse */
+    .header-right a:hover {
+        filter: blur(0px);
+        /* sfocato al passaggio del mouse */
 
-  }
+    }
 
 
 
 
-  .lingua-button
-  {
-   cursor: none;
-      display: inline-block;
-      color: #000000;
-      text-decoration: none;
-      margin-bottom: 10px;
+    .lingua-button {
+        cursor: none;
+        display: inline-block;
+        color: #000000;
+        text-decoration: none;
+        margin-bottom: 10px;
         font-size: 10px;
-    transition: filter 2s; /* effetto di transizione */
-    filter: blur(2px); /* sfocato al passaggio del mouse */
-  }
+        transition: filter 2s;
+        /* effetto di transizione */
+        filter: blur(2px);
+        /* sfocato al passaggio del mouse */
+    }
 
-  .lingua-button:hover
-  {
-    filter: blur(0px); /* sfocato al passaggio del mouse */
+    .lingua-button:hover {
+        filter: blur(0px);
+        /* sfocato al passaggio del mouse */
 
-  }
+    }
 
 
-  #custom-cursor {
-  width: 8px;
-  height: 8px;
-  background: black;
-  border-radius: 100%;
-  position: absolute;
-  z-index: 9999;
-  pointer-events: none;
-  }
+    /* Cursor style handled in progetti.css */
 
-  #cursor-shadow {
-      width: 8px;
-      height: 8px;
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: 100%;
-      position: absolute;
-      z-index: 9998;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      display: none;
-  }
+    #cursor-shadow {
+        width: 8px;
+        height: 8px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 100%;
+        position: absolute;
+        z-index: 9998;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
 
-  .image-container {
-             position: relative;
-             width: 80%;
-             max-width: 800px;
-             text-align: center;
-             margin: auto;
-             margin-top: 15vh;
-         }
-         .image-container img {
-             width: 100%;
-             display: block;
-         }
-         .text-overlay {
-           position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: black;
-  font-size: 12px;
-  font-family: "Futura", sans-serif;
-  width: 50%;
-  text-align: justify;
-  padding: 8px;
-  border-radius: 0px;
+    .image-container {
+        position: relative;
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
+        margin: auto;
+        margin-top: 15vh;
+    }
 
-  background: linear-gradient(
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1)
-  );
-}
-.slider-container {
-            padding-top: 20vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: "Futura", sans-serif;
-            color: black;
-            font-size: 12px;
-            width: 80%;
-            max-width: 600px;
-            margin: auto;
-        }
-.slider-label {
-   flex: 1;
-   text-align: center;
-}
-.slider-wrapper {
-   flex: 2;
-   display: flex;
-   align-items: center;
-}
-.slider {
-   width: 100%;
-   appearance: none;
-   background: #ddd;
-   height: 2px;
-   border-radius: 2px;
-   outline: none;
-}
-.slider::-webkit-slider-thumb {
-            appearance: none;
-            width: 14px;
-            height: 14px;
-            background: black;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-.slider-images {
-           display: flex;
-           width: 200%;
-           transition: transform 0.8s ease-in-out;
-       }
-       .slider-images img {
-                  width: 50%;
-                  flex-shrink: 0;
-              }
-.image-gallery {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   overflow: hidden;
-   width: 100%;
-   max-width: 1000px;
-   margin: auto;
-   position: relative;
-   padding-top: 20vh
-}
-.image-gallery .slider-images {
-   display: flex;
-   transition: transform 2.5s ease-in-out;
-   width: 200%;
-}
-.image-gallery img {
-   width: 100%;
-   flex-shrink: 0;
-}
-             </style>
+    .image-container img {
+        width: 100%;
+        display: block;
+    }
+
+    .text-overlay {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+        font-size: 12px;
+        font-family: "Satoshi", sans-serif;
+        width: 50%;
+        text-align: justify;
+        padding: 8px;
+        border-radius: 0px;
+
+        background: linear-gradient(rgba(255, 255, 255, 1),
+                rgba(255, 255, 255, 1),
+                rgba(255, 255, 255, 1),
+                rgba(255, 255, 255, 1));
+    }
+
+    .slider-container {
+        padding-top: 20vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Satoshi", sans-serif;
+        color: black;
+        font-size: 12px;
+        width: 80%;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .slider-label {
+        flex: 1;
+        text-align: center;
+    }
+
+    .slider-wrapper {
+        flex: 2;
+        display: flex;
+        align-items: center;
+    }
+
+    .slider {
+        width: 100%;
+        appearance: none;
+        background: #ddd;
+        height: 2px;
+        border-radius: 2px;
+        outline: none;
+    }
+
+    .slider::-webkit-slider-thumb {
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        background: black;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .slider-images {
+        display: flex;
+        width: 200%;
+        transition: transform 0.8s ease-in-out;
+    }
+
+    .slider-images img {
+        width: 50%;
+        flex-shrink: 0;
+    }
+
+    .image-gallery {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
+        position: relative;
+        padding-top: 20vh
+    }
+
+    .image-gallery .slider-images {
+        display: flex;
+        transition: transform 2.5s ease-in-out;
+        width: 200%;
+    }
+
+    .image-gallery img {
+        width: 100%;
+        flex-shrink: 0;
+    }
+</style>
+
 <body>
-  <!-- Header -->
-  <header>
-      <div class="header-left">
-          <h1>MELANIE NICOLE GILER PINARGOTE</h1>
-      </div>
-      <div class="header-right">
-          <!-- Versione web -->
-          <div class="desktop-menu">
+    <!-- Header -->
+    <div id="custom-cursor"></div>
+    <header>
+        <div class="header-left">
+            <h1>MELANIE NICOLE GILER PINARGOTE</h1>
+        </div>
+        <div class="header-right">
+            <!-- Versione web -->
+            <div class="desktop-menu">
 
-              <a href="progetti.html">PROGETTI</a>
-              <a href="curriculum.html">CURRICULUM</a>
-          </div>
+                <a href="progetti.html">PROGETTI</a>
+                <a href="curriculum.html">CURRICULUM</a>
+            </div>
 
-      </div>
-  </header>
-  <div class="image-container">
+        </div>
+    </header>
+    <div class="image-container">
         <img src="pipe/magritte.png" alt="Background">
         <div class="text-overlay" id="typing-text"></div>
     </div>
@@ -228,21 +240,21 @@
     </div>
 
     <div class="image-gallery">
-          <div class="slider-images" id="slider-images">
-              <img src="pipe/urbanistica.png" alt="Urbanistica">
-              <img src="pipe/comp.png" alt="Composizione">
-          </div>
-      </div>
-  <!-- Footer -->
-  <footer>
-      <div>
-          <a class="lingua-button" href="eng.html">ENG</a>
-          <a class="lingua-button">|</a>
-          <a class="lingua-button" href="esp.html">ESP</a>
-      </div>
-  </footer>
-  <script>
-  const text = "Questa non è una pipa.\n\nMagritte ci porta a riflettere sul rapporto tra percezione e rappresentazione. Un’immagine non è l’oggetto reale, ma solo la sua trasposizione visiva. Questo concetto invita a interrogarsi sulla natura della rappresentazione e sul rischio di confondere la raffigurazione con la realtà costruita. In architettura, così come nell’arte, la rappresentazione di uno spazio non è mai lo spazio stesso, ma un’interpretazione di esso. Questo ci spinge a considerare nuove prospettive di lettura e a esplorare approcci alternativi per comprendere e progettare la realtà che ci circonda.";
+        <div class="slider-images" id="slider-images">
+            <img src="pipe/urbanistica.png" alt="Urbanistica">
+            <img src="pipe/comp.png" alt="Composizione">
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div>
+            <a class="lingua-button" href="eng.html">ENG</a>
+            <a class="lingua-button">|</a>
+            <a class="lingua-button" href="esp.html">ESP</a>
+        </div>
+    </footer>
+    <script>
+        const text = "Questa non è una pipa.\n\nMagritte ci porta a riflettere sul rapporto tra percezione e rappresentazione. Un’immagine non è l’oggetto reale, ma solo la sua trasposizione visiva. Questo concetto invita a interrogarsi sulla natura della rappresentazione e sul rischio di confondere la raffigurazione con la realtà costruita. In architettura, così come nell’arte, la rappresentazione di uno spazio non è mai lo spazio stesso, ma un’interpretazione di esso. Questo ci spinge a considerare nuove prospettive di lettura e a esplorare approcci alternativi per comprendere e progettare la realtà che ci circonda.";
         const typingText = document.getElementById("typing-text");
 
 
@@ -260,14 +272,24 @@
         }
 
         const slider = document.getElementById("image-slider");
-          const sliderImages = document.getElementById("slider-images");
+        const sliderImages = document.getElementById("slider-images");
 
-          slider.addEventListener("input", () => {
-              sliderImages.style.transform = `translateX(-${slider.value * 100}%)`;
-          });
+        slider.addEventListener("input", () => {
+            sliderImages.style.transform = `translateX(-${slider.value * 100}%)`;
+        });
 
 
         typeEffect(text, typingText);
-      </script>
+
+        // Custom Cursor
+        document.addEventListener("DOMContentLoaded", function () {
+            const cursor = document.getElementById("custom-cursor");
+            document.addEventListener("mousemove", function (e) {
+                cursor.style.left = e.pageX + "px";
+                cursor.style.top = e.pageY + "px";
+            });
+        });
+    </script>
 </body>
+
 </html>
