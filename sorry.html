@@ -10,170 +10,186 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <div id="custom-cursor"></div>
-    <header>
-        <div class="header-left">
-            <h1>MNGP | SORRY :(</h1>
-        </div>
-        <div class="header-right">
-            <div class="desktop-menu">
-                <a href="progetti.html">PROGETTI</a>
-                <a href="curriculum.html">CURRICULUM</a>
-            </div>
-        </div>
-    </header>
-
-    <div class="image-container">
-        <div class="text-container">WORK IN PROGRESS</div>
-        <img src="patience2.png" alt="Patience" class="blur-image">
-
+    <script src="base.js"></script>
+</body>
+<!-- Header -->
+<div id="custom-cursor"></div>
+<header>
+    <div class="header-left">
+        <h1>MNGP | SORRY :(</h1>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <div>
-            <a class="lingua-button" href="portfolio_eng.html">ENG</a>
-            <!--  <a class="lingua-button">|</a>
-            <a class="lingua-button" href="esp.html">ESP</a>-->
+    <div class="header-right">
+        <div class="desktop-menu">
+            <a href="progetti.html">PROGETTI</a>
+            <a href="curriculum.html">CURRICULUM</a>
         </div>
-    </footer>
+    </div>
+</header>
+
+<div class="image-container">
+    <div class="text-container">WORK IN PROGRESS</div>
+    <img src="patience2.png" alt="Patience" class="blur-image">
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div>
+        <a class="lingua-button" href="portfolio_eng.html">ENG</a>
+        <!--  <a class="lingua-button">|</a>
+            <a class="lingua-button" href="esp.html">ESP</a>-->
+    </div>
+</footer>
 
 
 
 
-    <style>
-        body {
-            font-family: "Satoshi", sans-serif;
-            background-color: #f1f1f1;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            height: 100vh;
-            cursor: none;
-        }
+<style>
+    body {
+        cursor: none;
+    }
 
-        #custom-cursor {
-            width: 13px;
-            height: 13px;
-            background: transparent;
-            border: 2.5px solid black;
-            border-radius: 50%;
-            position: absolute;
-            z-index: 9999;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-        }
+    /* NUCLEAR OPTION: Force cursor none on EVERYTHING */
+    * {
+        cursor: none !important;
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-        }
+    a,
+    button,
+    .lingua-button {
+        cursor: none !important;
+    }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            margin: 20px;
-            background-color: none;
-        }
+    body {
+        font-family: "Satoshi", sans-serif;
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        height: 100vh;
+        cursor: none;
+    }
 
-        .header-left h1 {
-            font-size: 15px;
-            margin: 0;
-        }
+    #custom-cursor {
+        width: 13px;
+        height: 13px;
+        background: transparent;
+        border: 2.5px solid black;
+        border-radius: 50%;
+        position: absolute;
+        z-index: 9999;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: width 0.5s ease, height 0.5s ease, border-radius 0.5s ease, left 0.3s ease, top 0.3s ease;
+    }
 
-        .header-right a {
-            text-decoration: none;
-            color: #000;
-            margin-left: 60px;
-            font-size: 12px;
-            filter: blur(2px);
-            transition: filter 2s;
-        }
+    .cursor-hover {
+        background-color: transparent;
+        border: 2px solid black;
+        /* Opzionale: cambia colore o spessore */
+    }
 
-        .header-right a:hover {
-            filter: blur(0);
-        }
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+    }
 
-        .lingua-button {
-            font-size: 10px;
-            color: #000;
-            text-decoration: none;
-            margin: 0 5px;
-            filter: blur(2px);
-            transition: filter 2s;
-        }
+    footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 20px;
+        background-color: none;
+    }
 
-        .lingua-button:hover {
-            filter: blur(0);
-        }
+    .header-left h1 {
+        font-size: 15px;
+        margin: 0;
+    }
 
-        .buttons {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
+    .header-right a {
+        text-decoration: none;
+        color: #000;
+        margin-left: 60px;
+        font-size: 12px;
+        filter: blur(2px);
+        transition: filter 2s;
+    }
 
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 20px;
-            border: none;
-            background-color: none;
-            color: black;
-            cursor: pointer;
-            transition: filter 2s;
-            filter: blur(2px);
-            transition: filter 2s;
-            font-weight: 700;
-        }
+    .header-right a:hover {
+        filter: blur(0);
+    }
 
-        .buttons button:hover {
-            filter: blur(0);
-        }
+    .lingua-button {
+        font-size: 10px;
+        color: #000;
+        text-decoration: none;
+        margin: 0 5px;
+        filter: blur(2px);
+        transition: filter 2s;
+    }
 
-        .image-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            /* Centra l'immagine e il contenitore */
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            /* Spazio tra immagine e testo */
-        }
+    .lingua-button:hover {
+        filter: blur(0);
+    }
 
-        .blur-image {
-            width: 200px;
-            /* Dimensione fissa per l'immagine */
-            height: auto;
-            object-fit: cover;
-            filter: blur(0px);
-            transition: filter 0.1s ease;
-        }
+    .buttons {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
 
-        .text-container {
-            font-family: "Satoshi", sans-serif;
-            font-size: 10px;
-            /* Dimensione del testo */
-            color: black;
-            text-align: left;
-            white-space: nowrap;
-            /* Evita che il testo vada a capo */
-        }
-    </style>
+    .buttons button {
+        padding: 10px 20px;
+        font-size: 20px;
+        border: none;
+        background-color: none;
+        color: black;
+        cursor: pointer;
+        transition: filter 2s;
+        filter: blur(2px);
+        transition: filter 2s;
+        font-weight: 700;
+    }
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const cursor = document.getElementById("custom-cursor");
-            document.addEventListener("mousemove", function (e) {
-                cursor.style.left = e.pageX + "px";
-                cursor.style.top = e.pageY + "px";
-            });
-        });
-    </script>
+    .buttons button:hover {
+        filter: blur(0);
+    }
+
+    .image-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* Centra l'immagine e il contenitore */
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        /* Spazio tra immagine e testo */
+    }
+
+    .blur-image {
+        width: 200px;
+        /* Dimensione fissa per l'immagine */
+        height: auto;
+        object-fit: cover;
+        filter: blur(0px);
+        transition: filter 0.1s ease;
+    }
+
+    .text-container {
+        font-family: "Satoshi", sans-serif;
+        font-size: 10px;
+        /* Dimensione del testo */
+        color: black;
+        text-align: left;
+        white-space: nowrap;
+        /* Evita che il testo vada a capo */
+    }
+</style>
+
+<script src="base.js"></script>
 </body>
