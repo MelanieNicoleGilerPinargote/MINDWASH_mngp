@@ -22,22 +22,7 @@ window.onclick = function (event) {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const customCursor = document.getElementById("custom-cursor");
 
-    document.addEventListener("mousemove", function (e) {
-        customCursor.style.left = e.pageX + "px";
-        customCursor.style.top = e.pageY + "px";
-    });
-});
-
-
-
-
-
-checkScreenSize(); // Controlla le dimensioni al caricamento
-window.addEventListener("resize", checkScreenSize); // Rileva ridimensionamento finestra
-});
 
 // Funzione per aprire un programma o una cartella
 function openProgram(id) {
@@ -50,26 +35,31 @@ function closeProgram(id) {
 }
 
 // Trascinabilità delle finestre
-document.querySelectorAll('.window').forEach(window => {
-    const header = window.querySelector('.window-header');
-    let isDragging = false, startX, startY;
+// Trascinabilità delle finestre
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.window').forEach(window => {
+        const header = window.querySelector('.window-header');
+        if (!header) return; // Skip if no header
 
-    header.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.clientX - window.offsetLeft;
-        startY = e.clientY - window.offsetTop;
-        window.style.zIndex = 1000; // Porta la finestra in primo piano
-    });
+        let isDragging = false, startX, startY;
 
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            window.style.left = `${e.clientX - startX}px`;
-            window.style.top = `${e.clientY - startY}px`;
-        }
-    });
+        header.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX - window.offsetLeft;
+            startY = e.clientY - window.offsetTop;
+            window.style.zIndex = 1000; // Porta la finestra in primo piano
+        });
 
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                window.style.left = `${e.clientX - startX}px`;
+                window.style.top = `${e.clientY - startY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
     });
 });
 
@@ -127,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function checkScreenSize() {
+        if (!mainError) return; // Exit if mainError element doesn't exist
+
         if (window.innerWidth < 1224) { // Schermo troppo piccolo
             mainError.style.display = "flex";
             generateErrorWindows(100); // Genera 20 finestre
@@ -134,3 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
             mainError.style.display = "none";
         }
     }
+
+    checkScreenSize(); // Checks on load
+    window.addEventListener("resize", checkScreenSize); // Checks on resize
+});
