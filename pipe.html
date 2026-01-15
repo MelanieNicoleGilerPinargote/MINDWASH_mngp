@@ -11,6 +11,21 @@
 </head>
 <style>
     body {
+        cursor: none;
+    }
+
+    /* NUCLEAR OPTION: Force cursor none on EVERYTHING */
+    * {
+        cursor: none !important;
+    }
+
+    a,
+    button,
+    .lingua-button {
+        cursor: none !important;
+    }
+
+    body {
         font-family: "Satoshi", sans-serif;
         background-color: #ffffff;
         margin: 0;
@@ -281,15 +296,10 @@
 
         typeEffect(text, typingText);
 
-        // Custom Cursor
-        document.addEventListener("DOMContentLoaded", function () {
-            const cursor = document.getElementById("custom-cursor");
-            document.addEventListener("mousemove", function (e) {
-                cursor.style.left = e.pageX + "px";
-                cursor.style.top = e.pageY + "px";
-            });
-        });
+
     </script>
+    <div id="custom-cursor"></div>
+    <script src="base.js"></script>
 </body>
 
 </html>
