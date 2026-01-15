@@ -15,6 +15,18 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            cursor: none;
+        }
+
+        /* NUCLEAR OPTION: Force cursor none on EVERYTHING */
+        * {
+            cursor: none !important;
+        }
+
+        a,
+        button,
+        .lingua-button {
+            cursor: none !important;
         }
 
         canvas {
@@ -706,21 +718,8 @@
             });
 
             // Personalizzato per seguire il mouse
-            const cursor = document.getElementById('custom-cursor');
+            // Rimossa logica inline per usare base.js
 
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = `${e.pageX}px`;
-                cursor.style.top = `${e.pageY}px`;
-            });
-
-
-
-
-            document.addEventListener("mousemove", function (e) {
-                const cursor = document.getElementById("custom-cursor");
-                cursor.style.left = e.pageX + "px";
-                cursor.style.top = e.pageY + "px";
-            });
 
             window.addEventListener("scroll", function () {
                 let scrollY = window.scrollY;
@@ -745,6 +744,7 @@
             window.addEventListener('resize', alignCircleWithRectangle);
 
         </script>
+        <script src="base.js"></script>
 
 
 
