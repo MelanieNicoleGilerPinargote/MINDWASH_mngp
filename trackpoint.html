@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MNGP | TRACKPOINT!</title>
     <link rel="stylesheet" href="progetti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: "Futura", sans-serif;
+            font-family: "Satoshi", sans-serif;
             background-color: #f1f1f1;
             margin: 0;
             padding: 0;
-             text-align: center;
+            text-align: center;
         }
-        canvas {
-        position: absolute;
-        left: 0;
-        top: 0;
 
-        z-index: 0; /* Canvas sotto agli altri elementi */
-    }
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            z-index: 0;
+            /* Canvas sotto agli altri elementi */
+        }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -39,7 +44,7 @@
             right: 0;
             margin: 20px;
             padding: 10px;
-              z-index: 10;
+            z-index: 10;
         }
 
         .header-left h1 {
@@ -81,11 +86,13 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-             margin-top: 100vh; /* Sposta tutto più in basso dopo una schermata */
+            margin-top: 100vh;
+            /* Sposta tutto più in basso dopo una schermata */
         }
 
 
-        .text-image, .image-only {
+        .text-image,
+        .image-only {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -93,21 +100,24 @@
         }
 
         .text-image img {
-    width: auto;
-    max-height: 110%; /* 10% più alto del testo */
-    order: -1; /* Sposta immagine a sinistra */
-     margin-right: 20px;
-}
+            width: auto;
+            max-height: 110%;
+            /* 10% più alto del testo */
+            order: -1;
+            /* Sposta immagine a sinistra */
+            margin-right: 20px;
+        }
 
-.image-only img, .three-images img {
-    width: 80%;
-}
+        .image-only img,
+        .three-images img {
+            width: 80%;
+        }
 
-   .image-only img {
-       display: block;
-       margin: 0 auto;
-       width: 80%;
-   }
+        .image-only img {
+            display: block;
+            margin: 0 auto;
+            width: 80%;
+        }
 
         .text {
             max-width: 50%;
@@ -116,23 +126,25 @@
 
 
 
-     .text-masterplan {
-         position: absolute;
-         top: 10px; /* Più in alto */
-         left: 10px; /* Più a sinistra */
-         width: 30%;
-         background: rgba(255, 255, 255, 0.8);
-         padding: 10px;
-         
-     }
+        .text-masterplan {
+            position: absolute;
+            top: 10px;
+            /* Più in alto */
+            left: 10px;
+            /* Più a sinistra */
+            width: 30%;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+
+        }
 
 
 
-   .text p {
-       text-align: justify;
-       width: 70%;
-       margin: 0 auto;
-   }
+        .text p {
+            text-align: justify;
+            width: 70%;
+            margin: 0 auto;
+        }
 
 
         @media (max-width: 1024px) {
@@ -143,9 +155,13 @@
                 height: 100vh;
                 background-color: #fff;
             }
-            .content, header, footer {
+
+            .content,
+            header,
+            footer {
                 display: none;
             }
+
             .error-message {
                 font-size: 24px;
                 color: red;
@@ -156,69 +172,82 @@
 
 
         .track-point {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          text-align: center;
-          z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
         }
 
         #text-container {
-          font-size: 40px;
-          margin-top: 30px;
-          font-weight: bold;
-          color: #000000;
-          overflow: hidden;
-          white-space: nowrap;
-          display: inline-block;
-          width: 0; /* Inizia invisibile */
-          animation: typing 2s steps(12, end) forwards, blink 0.3s step-end infinite;
-          transition: opacity 0.5s ease;
+            font-size: 40px;
+            margin-top: 30px;
+            font-weight: bold;
+            color: #000000;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            width: 0;
+            /* Inizia invisibile */
+            animation: typing 2s steps(12, end) forwards, blink 0.3s step-end infinite;
+            transition: opacity 0.5s ease;
 
         }
 
         @keyframes typing {
-          from { width: 0; }
-          to { width: 17ch; }
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 17ch;
+            }
         }
 
 
         .rectangle {
-          width: 0;
-          height: 40px;
-          background: #000000;
-          margin: 20px auto;
-          margin-top: -50px;
-          transform-origin: center center; /* Set rotation axis to the center */
-          transform: rotate(0deg);
-          animation: fill-rectangle 1s 3.5s forwards, rotate-rectangle 1s 4.5s forwards;
+            width: 0;
+            height: 40px;
+            background: #000000;
+            margin: 20px auto;
+            margin-top: -50px;
+            transform-origin: center center;
+            /* Set rotation axis to the center */
+            transform: rotate(0deg);
+            animation: fill-rectangle 1s 3.5s forwards, rotate-rectangle 1s 4.5s forwards;
         }
 
         @keyframes fill-rectangle {
-          to { width: 300px; }
+            to {
+                width: 300px;
+            }
         }
 
 
         @keyframes rotate-rectangle {
-          to { transform: rotate(90deg); }
+            to {
+                transform: rotate(90deg);
+            }
         }
 
         .point {
-          position: absolute;
-          width: 50px;
-          height: 50px;
-          top: 210px;
-          left: calc(50% - 25px);
-          background: #000000;
-          border-radius: 50%;
-          margin: 20px auto;
-          opacity: 0;
-          animation: show-point 1s 5.5s forwards;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 210px;
+            left: calc(50% - 25px);
+            background: #000000;
+            border-radius: 50%;
+            margin: 20px auto;
+            opacity: 0;
+            animation: show-point 1s 5.5s forwards;
         }
 
         @keyframes show-point {
-          to { opacity: 1; }
+            to {
+                opacity: 1;
+            }
         }
 
         .hide {
@@ -228,15 +257,7 @@
         }
 
 
-        #custom-cursor {
-        width: 8px;
-        height: 8px;
-        background: black;
-        border-radius: 100%;
-        position: absolute;
-        z-index: 9999;
-        pointer-events: none;
-        }
+        /* Cursor style handled in proiecti.css */
 
         #cursor-shadow {
             width: 8px;
@@ -253,55 +274,59 @@
 
 
         .container {
-          position: relative;
-          display: inline-block;
-      }
+            position: relative;
+            display: inline-block;
+        }
 
-      .overlay-text {
-              position: absolute;
-              top: 230px;
-              left: 100px;
-              width: 40%;
-              text-align: justify;
-              color: black;
-              font-size: 15px;
-              line-height: 25px;
-              font-weight: 180;
-          }
+        .overlay-text {
+            position: absolute;
+            top: 230px;
+            left: 100px;
+            width: 40%;
+            text-align: justify;
+            color: black;
+            font-size: 15px;
+            line-height: 25px;
+            font-weight: 180;
+        }
 
 
-      .masterplan {
-          width: 100%;
-          height: auto;
-          display: block;
-      }
+        .masterplan {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-       .justified-text {
-           text-align: justify;
-           width: 70%;
-          margin: 0px auto;
-             font-size: 15px;
-             line-height: 25px;
-             align-content: center;
-             align-items: center;
-             justify-content: center;
-             font-weight: 180;
-                 z-index: 0;
-       }
-       .images {
-           display: flex;
-           justify-content: center;
-           flex-wrap: wrap;
-           gap: 10px;
-       }
-       .images img {
-           max-width: 100%;
-           height: auto;
-       }
+        .justified-text {
+            text-align: justify;
+            width: 70%;
+            margin: 0px auto;
+            font-size: 15px;
+            line-height: 25px;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            font-weight: 180;
+            z-index: 0;
+        }
 
-        .singolarita h2, .singolarita p {
+        .images {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .images img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .singolarita h2,
+        .singolarita p {
             text-align: left;
         }
+
         .final-images {
             display: flex;
             justify-content: center;
@@ -310,83 +335,88 @@
             margin-top: 70px;
             width: 1200px;
         }
+
         .final-images img {
             width: 24%;
             height: auto;
         }
+
         .images img:first-child {
-           width: 100%;
-       }
-       .images img:nth-child(2) {
-           width: 100%;
-       }
+            width: 100%;
+        }
+
+        .images img:nth-child(2) {
+            width: 100%;
+        }
 
 
-       .text-with-image {
-         display: flex;
-gap: 0px;
-width: 80%;
+        .text-with-image {
+            display: flex;
+            gap: 0px;
+            width: 80%;
 
 
-               }
+        }
 
-    .kandi-image {
-    width: 400px;
-    height: auto;
-    top: 10%;
-    left: 100px; /* Sposta più a sinistra */
-    z-index: -1; /* Mette una parte sotto il testo */
-               }
+        .kandi-image {
+            width: 400px;
+            height: auto;
+            top: 10%;
+            left: 100px;
+            /* Sposta più a sinistra */
+            z-index: -1;
+            /* Mette una parte sotto il testo */
+        }
 
-     .button-wrapper {
-    position: relative;
-    margin-top: 20px;
+        .button-wrapper {
+            position: relative;
+            margin-top: 20px;
 
-}
+        }
 
-.visual-button {
-    position: relative;
-    display: inline-block;
-    top: 30px;
+        .visual-button {
+            position: relative;
+            display: inline-block;
+            top: 30px;
 
-    color: black;
-    font-weight: normal;
-    padding: 10px 20px;
-    text-decoration: none;
+            color: black;
+            font-weight: normal;
+            padding: 10px 20px;
+            text-decoration: none;
 
-    cursor: pointer;
-    font-size: 18px;
-    overflow: hidden;
-    z-index: 10;
+            cursor: pointer;
+            font-size: 18px;
+            overflow: hidden;
+            z-index: 10;
 
-}
+        }
 
-.overlay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: black;
-    width: 100%;
-    height: 18%;
-     top: 17px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: lighter;
-    transition: opacity 1.50s ease;
-    opacity: 1;
+        .overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: black;
+            width: 100%;
+            height: 18%;
+            top: 17px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: lighter;
+            transition: opacity 1.50s ease;
+            opacity: 1;
 
-}
+        }
 
-.visual-button:hover .overlay {
-    opacity: 0;
-}
-
+        .visual-button:hover .overlay {
+            opacity: 0;
+        }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -400,312 +430,324 @@ width: 80%;
             </div>
         </div>
     </header>
+    <div id="custom-cursor"></div>
     <canvas></canvas>
-  <!-- Animazione TRACK POINT -->
+    <!-- Animazione TRACK POINT -->
     <div class="track-point">
         <div id="text-container">TRACK POINT</div> <!-- Contenitore per il testo animato -->
         <div class="rectangle"></div>
         <div class="point"></div>
     </div>
     <div class="content">
-      <div class="text-with-image">
-   <img src="Trackpoint/kandi.png" class="kandi-image" alt="Kandi">
-     <div class="section justified-text">
-         <h2>Quale città ti immagini?</h2>
+        <div class="text-with-image">
+            <img src="Trackpoint/kandi.png" class="kandi-image" alt="Kandi">
+            <div class="section justified-text">
+                <h2>Quale città ti immagini?</h2>
                 <p>
-              Immagina una città omogenea, concepita come un organismo unico e vibrante.               <br>   </br>
-              Il progetto Track Point associa la metodologia di progettazione parametrica al contesto urbano di Torino, specificamente nell'area di Scalo Vanchiglia, caratterizzata da una ricca varietà e complessità urbana.
-              Track Point, come suggerisce il nome, nasce da due elementi geometrici basilari, la <b> linea</b>  e il <b> punto</b> , che generano una griglia rigida deformata e distrutta dalle <b> singolarità</b> , creando una nuova concezione di spazio urbano.
-              Il processo si basa sulla morfogenesi di una porzione di città attraverso la variazione e deformazione dei tipi urbani tramite metodi e strumenti di disegno avanzati, come la programmazione visuale (VPL) e il Building Information Modeling (BIM). Il risultato non è una verità assoluta, ma un modello formato da regole e linee guida derivanti dall’analisi del contesto.</p>
+                    Immagina una città omogenea, concepita come un organismo unico e vibrante. <br> </br>
+                    Il progetto Track Point associa la metodologia di progettazione parametrica al contesto urbano di
+                    Torino, specificamente nell'area di Scalo Vanchiglia, caratterizzata da una ricca varietà e
+                    complessità urbana.
+                    Track Point, come suggerisce il nome, nasce da due elementi geometrici basilari, la <b> linea</b> e
+                    il <b> punto</b> , che generano una griglia rigida deformata e distrutta dalle <b> singolarità</b> ,
+                    creando una nuova concezione di spazio urbano.
+                    Il processo si basa sulla morfogenesi di una porzione di città attraverso la variazione e
+                    deformazione dei tipi urbani tramite metodi e strumenti di disegno avanzati, come la programmazione
+                    visuale (VPL) e il Building Information Modeling (BIM). Il risultato non è una verità assoluta, ma
+                    un modello formato da regole e linee guida derivanti dall’analisi del contesto.</p>
             </div>
 
         </div>
-    <br>   </br>
-        <br>   </br>
-       <div class="section images">
-            <img src="Trackpoint/diagramma.png" style="width: 1200px; height: auto";>
+        <br> </br>
+        <br> </br>
+        <div class="section images">
+            <img src="Trackpoint/diagramma.png" style="width: 1200px; height: auto" ;>
         </div>
 
         <div class="container">
-       <div class="overlay-text">
-           <h2>Singolarità</h2>
-                <p> Con il termine "singolarità" ci si riferisce a un'architettura distintiva all'interno dello spazio urbano, che funge da landmark e "incubatore sociale". Questi elementi generano una rottura a livello urbano, deformando la griglia e caratterizzando i lotti all'interno dell'area. Le singolarità spaziali variano per forma, posizione e ruolo urbano, influenzate dal contesto e dalle condizioni esterne.</p>
+            <div class="overlay-text">
+                <h2>Singolarità</h2>
+                <p> Con il termine "singolarità" ci si riferisce a un'architettura distintiva all'interno dello spazio
+                    urbano, che funge da landmark e "incubatore sociale". Questi elementi generano una rottura a livello
+                    urbano, deformando la griglia e caratterizzando i lotti all'interno dell'area. Le singolarità
+                    spaziali variano per forma, posizione e ruolo urbano, influenzate dal contesto e dalle condizioni
+                    esterne.</p>
             </div>
-             <div class="section images">
-            <img src="Trackpoint/masterplan1.png" class="masterplan" style="width: 1200px; height: auto";>
+            <div class="section images">
+                <img src="Trackpoint/masterplan1.png" class="masterplan" style="width: 1200px; height: auto" ;>
+            </div>
+
+            <div class="section images">
+                <img src="Trackpoint/vista1.png" style="width: 1200px; height: auto" ;>
+            </div>
+
+            <div class="section final-images">
+                <img src="Trackpoint/1.jpg" alt="Immagine 5">
+                <img src="Trackpoint/2.jpg" alt="Immagine 6">
+                <img src="Trackpoint/3.jpg" alt="Immagine 7">
+                <img src="Trackpoint/5.jpg" alt="Immagine 7">
+            </div>
+            <div class="button-wrapper">
+                <a href="https://heyzine.com/flip-book/f8513b168b.html" class="visual-button">
+                    <div class="overlay"></div>
+                    Visual essay
+                </a>
+            </div>
+            <br> </br>
+            <br> </br>
+
         </div>
 
-        <div class="section images">
-            <img src="Trackpoint/vista1.png" style="width: 1200px; height: auto";>
-        </div>
-
-       <div class="section final-images" >
-            <img src="Trackpoint/1.jpg" alt="Immagine 5">
-            <img src="Trackpoint/2.jpg" alt="Immagine 6">
-            <img src="Trackpoint/3.jpg" alt="Immagine 7">
-                        <img src="Trackpoint/5.jpg" alt="Immagine 7">
-        </div>
-        <div class="button-wrapper">
-          <a href="https://heyzine.com/flip-book/f8513b168b.html" class="visual-button">
-              <div class="overlay"></div>
-              Visual essay
-          </a>
-      </div>
-        <br>   </br>
-          <br>   </br>
-
-    </div>
 
 
+        <footer>
+            <div>
+                <a class="lingua-button" href="eng.html">ENG</a>
+                <a class="lingua-button">|</a>
+                <a class="lingua-button" href="esp.html">ESP</a>
+            </div>
+        </footer>
 
-    <footer>
-        <div>
-            <a class="lingua-button" href="eng.html">ENG</a>
-            <a class="lingua-button">|</a>
-            <a class="lingua-button" href="esp.html">ESP</a>
-        </div>
-    </footer>
+        <script>
 
-    <script>
+            // Cursore personalizzato
+            document.addEventListener("DOMContentLoaded", function () {
+                const customCursor = document.getElementById("custom-cursor");
 
-    // Cursore personalizzato
-    document.addEventListener("DOMContentLoaded", function () {
-        const customCursor = document.getElementById("custom-cursor");
-
-        document.addEventListener("mousemove", function (e) {
-            customCursor.style.left = e.pageX + "px";
-            customCursor.style.top = e.pageY + "px";
-        });
-    });
+                document.addEventListener("mousemove", function (e) {
+                    customCursor.style.left = e.pageX + "px";
+                    customCursor.style.top = e.pageY + "px";
+                });
+            });
 
 
-      var c = document.createElement('canvas');
-      var ctx = c.getContext("2d");
-      document.body.appendChild(c);
-      window.onresize = resize;
+            var c = document.createElement('canvas');
+            var ctx = c.getContext("2d");
+            document.body.appendChild(c);
+            window.onresize = resize;
 
-      /*-canvas setup*/
+            /*-canvas setup*/
 
-      var dots = [];
-      var colW = 70;
-      var lineH = 54;
-      var nbCols;
-      var nbLines;
-      var nbDots;
-      var t = 0;
-      var mouse = { x: window.innerWidth * 0.5, y: window.innerHeight * 0.5 };
-      var action = { x: window.innerWidth * 0.5, y: window.innerHeight * 0.5 };
-      var zoneRadius;
-      var zoneStep = 100;
-      var isMouseActive = false; // Flag per il controllo del mouse
+            var dots = [];
+            var colW = 70;
+            var lineH = 54;
+            var nbCols;
+            var nbLines;
+            var nbDots;
+            var t = 0;
+            var mouse = { x: window.innerWidth * 0.5, y: window.innerHeight * 0.5 };
+            var action = { x: window.innerWidth * 0.5, y: window.innerHeight * 0.5 };
+            var zoneRadius;
+            var zoneStep = 100;
+            var isMouseActive = false; // Flag per il controllo del mouse
 
-      function start() {
-          draw();
-      }
+            function start() {
+                draw();
+            }
 
-      var Dot = function (x, y) {
-          this.x = x;
-          this.y = y;
-          this.ax = x;
-          this.ay = y;
-      };
+            var Dot = function (x, y) {
+                this.x = x;
+                this.y = y;
+                this.ax = x;
+                this.ay = y;
+            };
 
-      function createDots() {
-          var w = c.width;
-          var h = c.height;
-          nbCols = ~~(w / colW) + 2;
-          nbLines = ~~(h / lineH) + 2;
-          nbDots = nbCols * nbLines;
-          var decalX = -17;
-          var decalY = -10;
-          dots = [];
+            function createDots() {
+                var w = c.width;
+                var h = c.height;
+                nbCols = ~~(w / colW) + 2;
+                nbLines = ~~(h / lineH) + 2;
+                nbDots = nbCols * nbLines;
+                var decalX = -17;
+                var decalY = -10;
+                dots = [];
 
-          for (var i = 0; i < nbLines; i++) {
-              for (var j = 0; j < nbCols; j++) {
-                  dots.push(new Dot(decalX + j * colW, decalY + i * lineH));
-              }
-          }
-      }
+                for (var i = 0; i < nbLines; i++) {
+                    for (var j = 0; j < nbCols; j++) {
+                        dots.push(new Dot(decalX + j * colW, decalY + i * lineH));
+                    }
+                }
+            }
 
-      function drawDots(anchors, color, radius) {
-          var dot;
-          for (var i = 0; i < nbDots; i++) {
-              dot = dots[i];
-              dist = getDistance(dot, action);
-              ctx.globalAlpha = Math.max(1 - (dist / (zoneRadius * 1.2)), 0);;
-              ctx.beginPath();
-              if (anchors) {
-                  ctx.moveTo(dot.ax, dot.ay);
-                  ctx.arc(dot.ax, dot.ay, radius, 0, Math.PI * 2, true);
-              }
-              else {
-                  ctx.moveTo(dot.x, dot.y);
-                  ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2, true);
-              }
-              ctx.closePath();
-              ctx.fillStyle = color;
-              ctx.fill();
-          }
-      }
+            function drawDots(anchors, color, radius) {
+                var dot;
+                for (var i = 0; i < nbDots; i++) {
+                    dot = dots[i];
+                    dist = getDistance(dot, action);
+                    ctx.globalAlpha = Math.max(1 - (dist / (zoneRadius * 1.2)), 0);;
+                    ctx.beginPath();
+                    if (anchors) {
+                        ctx.moveTo(dot.ax, dot.ay);
+                        ctx.arc(dot.ax, dot.ay, radius, 0, Math.PI * 2, true);
+                    }
+                    else {
+                        ctx.moveTo(dot.x, dot.y);
+                        ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2, true);
+                    }
+                    ctx.closePath();
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                }
+            }
 
-      function drawLines(color) {
-          var dot, nextDot, col, lin, dist;
-          for (var i = 0; i < nbDots; i++) {
-              line = ~~(i / nbCols);
-              col = i % nbCols;
+            function drawLines(color) {
+                var dot, nextDot, col, lin, dist;
+                for (var i = 0; i < nbDots; i++) {
+                    line = ~~(i / nbCols);
+                    col = i % nbCols;
 
-              dot = dots[i];
-              dist = getDistance(dot, action);
-              ctx.globalAlpha = Math.max(1 - (dist / (zoneRadius * 1.2)), 0.05);
-              ctx.beginPath();
-              if (line < (nbLines - 1)) {
-                  nextDot = dots[i + nbCols];
-                  ctx.moveTo(dot.x, dot.y);
-                  ctx.lineTo(nextDot.x, nextDot.y);
-              }
-              if (col < (nbCols - 1)) {
-                  nextDot = dots[i + 1];
-                  ctx.moveTo(dot.x, dot.y);
-                  ctx.lineTo(nextDot.x, nextDot.y);
-              }
-              ctx.closePath();
-              ctx.strokeStyle = color;
-              ctx.stroke();
-          }
-      }
+                    dot = dots[i];
+                    dist = getDistance(dot, action);
+                    ctx.globalAlpha = Math.max(1 - (dist / (zoneRadius * 1.2)), 0.05);
+                    ctx.beginPath();
+                    if (line < (nbLines - 1)) {
+                        nextDot = dots[i + nbCols];
+                        ctx.moveTo(dot.x, dot.y);
+                        ctx.lineTo(nextDot.x, nextDot.y);
+                    }
+                    if (col < (nbCols - 1)) {
+                        nextDot = dots[i + 1];
+                        ctx.moveTo(dot.x, dot.y);
+                        ctx.lineTo(nextDot.x, nextDot.y);
+                    }
+                    ctx.closePath();
+                    ctx.strokeStyle = color;
+                    ctx.stroke();
+                }
+            }
 
-      function drawJoints(color) {
-          var dot, nextDot, col, lin, dist;
-          for (var i = 0; i < nbDots; i++) {
-              dot = dots[i];
-              dist = getDistance(dot, action);
-              ctx.globalAlpha = Math.max(1 - (dist / (zoneRadius * 1.2)), 0.05);
-              ctx.beginPath();
+            function drawJoints(color) {
+                var dot, nextDot, col, lin, dist;
+                for (var i = 0; i < nbDots; i++) {
+                    dot = dots[i];
+                    dist = getDistance(dot, action);
+                    ctx.globalAlpha = Math.max(1 - (dist / (zoneRadius * 1.2)), 0.05);
+                    ctx.beginPath();
 
-              ctx.moveTo(dot.x, dot.y);
-              ctx.lineTo(dot.ax, dot.ay);
+                    ctx.moveTo(dot.x, dot.y);
+                    ctx.lineTo(dot.ax, dot.ay);
 
-              ctx.closePath();
-              ctx.strokeStyle = color;
-              ctx.stroke();
-          }
-      }
+                    ctx.closePath();
+                    ctx.strokeStyle = color;
+                    ctx.stroke();
+                }
+            }
 
-      function getDistance(dot1, dot2) {
-          return Math.sqrt((dot2.x - dot1.x) * (dot2.x - dot1.x) + (dot2.y - dot1.y) * (dot2.y - dot1.y));
-      }
+            function getDistance(dot1, dot2) {
+                return Math.sqrt((dot2.x - dot1.x) * (dot2.x - dot1.x) + (dot2.y - dot1.y) * (dot2.y - dot1.y));
+            }
 
-      function moveDots() {
-          var dot, dist, angle;
-          for (var i = 0; i < nbDots; i++) {
-              dot = dots[i];
-              angle = -Math.atan2(action.x - dot.ax, action.y - dot.ay) - (Math.PI * 0.5);
-              dist = getDistance(dot, action);
+            function moveDots() {
+                var dot, dist, angle;
+                for (var i = 0; i < nbDots; i++) {
+                    dot = dots[i];
+                    angle = -Math.atan2(action.x - dot.ax, action.y - dot.ay) - (Math.PI * 0.5);
+                    dist = getDistance(dot, action);
 
-              if (dist <= zoneRadius) {
-                  dot.x = dot.ax + zoneStep * (1 - (dist / zoneRadius)) * Math.cos(angle);
-                  dot.y = dot.ay + zoneStep * (1 - (dist / zoneRadius)) * Math.sin(angle);
-              }
-              else {
-                  dot.x = dot.ax;
-                  dot.y = dot.ay;
-              }
-          }
-      }
+                    if (dist <= zoneRadius) {
+                        dot.x = dot.ax + zoneStep * (1 - (dist / zoneRadius)) * Math.cos(angle);
+                        dot.y = dot.ay + zoneStep * (1 - (dist / zoneRadius)) * Math.sin(angle);
+                    }
+                    else {
+                        dot.x = dot.ax;
+                        dot.y = dot.ay;
+                    }
+                }
+            }
 
-      function resize() {
-          var box = c.getBoundingClientRect();
-          var w = box.width;
-          var h = box.height;
-          c.width = w;
-          c.height = h;
-          zoneRadius = Math.min(c.width * 0.2, 250);
-          createDots();
-      }
+            function resize() {
+                var box = c.getBoundingClientRect();
+                var w = box.width;
+                var h = box.height;
+                c.width = w;
+                c.height = h;
+                zoneRadius = Math.min(c.width * 0.2, 250);
+                createDots();
+            }
 
-      function draw() {
-          if (isMouseActive) {
-              requestAnimationFrame(draw);
-              render();
-          }
-      }
+            function draw() {
+                if (isMouseActive) {
+                    requestAnimationFrame(draw);
+                    render();
+                }
+            }
 
-      function render() {
-          t += 0.02;
+            function render() {
+                t += 0.02;
 
-          ctx.clearRect(0, 0, c.width, c.height);
-          action.x += (mouse.x - action.x) * 0.07;
-          action.y += (mouse.y - action.y) * 0.07;
-          moveDots();
-          drawLines("#D76C46");
-          drawJoints("#D3D3D3");
-          drawDots(true, "#58A6D8", 2);
-      }
+                ctx.clearRect(0, 0, c.width, c.height);
+                action.x += (mouse.x - action.x) * 0.07;
+                action.y += (mouse.y - action.y) * 0.07;
+                moveDots();
+                drawLines("#D76C46");
+                drawJoints("#D3D3D3");
+                drawDots(true, "#58A6D8", 2);
+            }
 
-      // Eventi del mouse
-      c.addEventListener('mousemove', (e) => {
-          mouse.x = e.pageX;
-          mouse.y = e.pageY;
-          if (!isMouseActive) {
-              isMouseActive = true;
-              draw(); // Avvia animazione
-          }
-      });
+            // Eventi del mouse
+            c.addEventListener('mousemove', (e) => {
+                mouse.x = e.pageX;
+                mouse.y = e.pageY;
+                if (!isMouseActive) {
+                    isMouseActive = true;
+                    draw(); // Avvia animazione
+                }
+            });
 
-      c.addEventListener('mouseleave', () => {
-          isMouseActive = false; // Ferma l'animazione
-      });
+            c.addEventListener('mouseleave', () => {
+                isMouseActive = false; // Ferma l'animazione
+            });
 
-      resize();
+            resize();
 
-      // Aggiungere un evento di fine animazione al rettangolo
-      document.querySelector('.rectangle').addEventListener('animationend', function() {
-          document.getElementById('text-container').classList.add('hide'); // Nascondi il testo
-      });
+            // Aggiungere un evento di fine animazione al rettangolo
+            document.querySelector('.rectangle').addEventListener('animationend', function () {
+                document.getElementById('text-container').classList.add('hide'); // Nascondi il testo
+            });
 
-      // Personalizzato per seguire il mouse
-      const cursor = document.getElementById('custom-cursor');
+            // Personalizzato per seguire il mouse
+            const cursor = document.getElementById('custom-cursor');
 
-      document.addEventListener('mousemove', (e) => {
-          cursor.style.left = `${e.pageX}px`;
-          cursor.style.top = `${e.pageY}px`;
-      });
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = `${e.pageX}px`;
+                cursor.style.top = `${e.pageY}px`;
+            });
 
 
 
 
-      document.addEventListener("mousemove", function (e) {
-           const cursor = document.getElementById("custom-cursor");
-           cursor.style.left = e.pageX + "px";
-           cursor.style.top = e.pageY + "px";
-         });
+            document.addEventListener("mousemove", function (e) {
+                const cursor = document.getElementById("custom-cursor");
+                cursor.style.left = e.pageX + "px";
+                cursor.style.top = e.pageY + "px";
+            });
 
-         window.addEventListener("scroll", function () {
-           let scrollY = window.scrollY;
-           let imageContainer = document.getElementById("image-container");
-           imageContainer.style.opacity = Math.min(scrollY / 600, 1);
-         });
+            window.addEventListener("scroll", function () {
+                let scrollY = window.scrollY;
+                let imageContainer = document.getElementById("image-container");
+                imageContainer.style.opacity = Math.min(scrollY / 600, 1);
+            });
 
-      function resizeCanvas() {
-      c.width = document.body.scrollWidth; // Usa scrollWidth per supportare lo scroll orizzontale
-      c.height = document.body.scrollHeight;
-      zoneRadius = Math.min(c.width * 0.2, 250);
-      createDots();
-  }
+            function resizeCanvas() {
+                c.width = document.body.scrollWidth; // Usa scrollWidth per supportare lo scroll orizzontale
+                c.height = document.body.scrollHeight;
+                zoneRadius = Math.min(c.width * 0.2, 250);
+                createDots();
+            }
 
-  window.addEventListener("resize", resizeCanvas);
-  resizeCanvas(); // Richiama una volta per inizializzare
+            window.addEventListener("resize", resizeCanvas);
+            resizeCanvas(); // Richiama una volta per inizializzare
 
-    
 
-// Richiama la funzione al caricamento della pagina e al ridimensionamento della finestra
-window.addEventListener('load', alignCircleWithRectangle);
-window.addEventListener('resize', alignCircleWithRectangle);
 
-    </script>
+            // Richiama la funzione al caricamento della pagina e al ridimensionamento della finestra
+            window.addEventListener('load', alignCircleWithRectangle);
+            window.addEventListener('resize', alignCircleWithRectangle);
+
+        </script>
 
 
 
 </body>
-</html>
 
+</html>
