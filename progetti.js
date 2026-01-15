@@ -7,7 +7,7 @@ function toggleDropdown() {
 }
 
 // Chiudi la tendina se l'utente clicca fuori da essa
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (!event.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    checkScreenSize(); // Controlla le dimensioni al caricamento
-    window.addEventListener("resize", checkScreenSize); // Rileva ridimensionamento finestra
+checkScreenSize(); // Controlla le dimensioni al caricamento
+window.addEventListener("resize", checkScreenSize); // Rileva ridimensionamento finestra
 });
 
 // Funzione per aprire un programma o una cartella
