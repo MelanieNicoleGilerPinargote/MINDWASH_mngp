@@ -6,6 +6,18 @@ body {
     cursor: none;
 }
 
+#custom-cursor {
+    width: 13px;
+    height: 13px;
+    background: transparent;
+    border: 2.5px solid black;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
 header {
     background-color: transparent;
     display: flex;
@@ -18,17 +30,15 @@ header {
 footer {
     position: fixed;
     display: flex;
-    justify-content: flex-start;
-    /* Aligned left */
+    justify-content: flex-end;
     align-items: center;
     bottom: 0;
-    left: 0;
-    /* Changed from right:0 to left:0 for left alignment */
+    right: 0;
     margin: 20px;
-    padding-left: 50px;
-    /* Aligned with header/quadrants */
+    padding: 10px;
     background-color: transparent;
     color: #000000;
+    z-index: 999;
 }
 
 
@@ -553,30 +563,4 @@ img {
     color: #666;
     font-size: calc(0.8rem + 0.2vw);
     margin: 0;
-}
-
-
-
-
-
-#custom-cursor {
-    width: 8px;
-    height: 8px;
-    background: black;
-    border-radius: 100%;
-    position: absolute;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-#cursor-shadow {
-    width: 8px;
-    height: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 100%;
-    position: absolute;
-    z-index: 9998;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    display: none;
 }
