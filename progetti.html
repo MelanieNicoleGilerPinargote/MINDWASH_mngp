@@ -18,6 +18,17 @@
         cursor: none;
     }
 
+    /* NUCLEAR OPTION: Force cursor none on EVERYTHING */
+    * {
+        cursor: none !important;
+    }
+
+    a,
+    button,
+    .lingua-button {
+        cursor: none !important;
+    }
+
     header {
         background-color: none;
         display: flex;
@@ -96,6 +107,13 @@
         z-index: 9999;
         pointer-events: none;
         transform: translate(-50%, -50%);
+        transition: width 0.5s ease, height 0.5s ease, border-radius 0.5s ease, left 0.3s ease, top 0.3s ease;
+    }
+
+    .cursor-hover {
+        background-color: transparent;
+        border: 2px solid black;
+        /* Opzionale: cambia colore o spessore */
     }
 
     #cursor-shadow {
@@ -197,8 +215,7 @@
         margin-right: 100px;
     }
 
-    .list-left:hover,
-    .list-right:hover {}
+
 
     .list li a {
         text-decoration: none;
@@ -405,15 +422,9 @@
 
 
 
-            // Custom Cursor
-            document.addEventListener("DOMContentLoaded", function () {
-                const cursor = document.getElementById("custom-cursor");
-                document.addEventListener("mousemove", function (e) {
-                    cursor.style.left = e.pageX + "px";
-                    cursor.style.top = e.pageY + "px";
-                });
-            });
         </script>
+        <script src="base.js"></script>
+        <script src="progetti.js"></script>
 </body>
 
 </html>
