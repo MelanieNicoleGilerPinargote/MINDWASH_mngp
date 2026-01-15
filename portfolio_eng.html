@@ -119,15 +119,8 @@
             handleGesture();
         });
 
-        // Custom Cursor
-        document.addEventListener("DOMContentLoaded", function () {
-            const cursor = document.getElementById("custom-cursor");
-            document.addEventListener("mousemove", function (e) {
-                cursor.style.left = e.pageX + "px";
-                cursor.style.top = e.pageY + "px";
-            });
-        });
     </script>
+    <script src="base.js"></script>
 
     <style>
         body {
@@ -140,6 +133,17 @@
             cursor: none;
         }
 
+        /* NUCLEAR OPTION: Force cursor none on EVERYTHING */
+        * {
+            cursor: none !important;
+        }
+
+        a,
+        button,
+        .lingua-button {
+            cursor: none !important;
+        }
+
         #custom-cursor {
             width: 13px;
             height: 13px;
@@ -150,6 +154,13 @@
             z-index: 9999;
             pointer-events: none;
             transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease, border-radius 0.5s ease, left 0.3s ease, top 0.3s ease;
+        }
+
+        .cursor-hover {
+            background-color: transparent;
+            border: 2px solid black;
+            /* Opzionale: cambia colore o spessore */
         }
 
         header {
@@ -248,7 +259,7 @@
             border: none;
             background-color: none;
             color: black;
-            cursor: pointer;
+            cursor: none;
             transition: filter 2s;
             filter: blur(2px);
             transition: filter 2s;
@@ -266,7 +277,7 @@
             padding: 10px 20px;
             text-decoration: none;
             background-color: none;
-            cursor: pointer;
+            cursor: none;
             transition: filter 2s;
             filter: blur(2px);
             font-weight: 700;
