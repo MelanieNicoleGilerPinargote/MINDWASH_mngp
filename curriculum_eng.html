@@ -1,223 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MNGP | CURRICULUM</title>
-    <!-- Import Satoshi font -->
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="curriculum.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Import FontAwesome for menu icon -->
-</head>
+document.addEventListener("DOMContentLoaded", function () {
+    const mainError = document.getElementById("main-error");
+    const errorWindowsContainer = document.getElementById("error-windows-container");
 
-<body>
-    <footer>
-        <div>
-            <a class="lingua-button" href="curriculum.html">ITA</a>
-            <a class="lingua-button">| </a>
-            <a class="lingua-button" href="curriculum_esp.html">ESP</a>
-        </div>
-    </footer>
+    function generateErrorWindows(count) {
+        // Rimuove eventuali finestre precedenti
+        errorWindowsContainer.innerHTML = "";
 
-    <header>
-        <div class="header-left">
-            <h1>MELANIE NICOLE GILER PINARGOTE</h1>
-        </div>
-        <div class="header-right">
+        for (let i = 0; i < count; i++) {
+            const errorWindow = document.createElement("div");
+            errorWindow.classList.add("error-window");
 
-            <div class="desktop-menu">
+            // Dimensioni casuali
+            const width = Math.floor(Math.random() * 125) + 150; // Larghezza tra 150px e 350px
+            const height = Math.floor(Math.random() * 75) + 100; // Altezza tra 100px e 250px
 
-                <a href="projects.html">PROJECTS</a>
-                <!--   <a href="software.html">SOFTWARE</a>  -->
-                <a href="portfolio_eng.html">PORTFOLIO|PDF</a>
-            </div>
-        </div>
+            // Posizione casuale
+            const x = Math.floor(Math.random() * (window.innerWidth - width));
+            const y = Math.floor(Math.random() * (window.innerHeight - height));
 
-    </header>
-    <div class="container">
-        <div class="left">
-            <img src="Curriculum/f3.png" alt="Image">
-        </div>
-        <div class="right">
+            errorWindow.style.width = `${width}px`;
+            errorWindow.style.height = `${height}px`;
+            errorWindow.style.top = `${y}px`;
+            errorWindow.style.left = `${x}px`;
 
-            <div class="dove"><br><br><br><br><br><br>{TURIN <br>| ITALY}<br>
-                [17 | 07| <br>1998}</div>
-
-
-            <div class="descrizione">
-                I obtained my <b>Master's degree in Architecture Construction City</b> at <b>Politecnico di Torino</b>,
-                with a thesis on <b>parametric processes applied to urban design</b>, mentioned as a <b>Meritorious
-                    Thesis
-                    and awarded within the TeleArchitettura Awards</b>. The research involved the development of an
-                <b>evolutionary algorithm for the generation of meta-design scenarios</b>, applied to the case study of
-                the former Thyssen area
-                in Turin.<br> </br>
-
-                During my academic and post-graduate path, I gained advanced skills in <b>BIM and computational
-                    design</b>,
-                combining <b>research activity</b> with <b>tutoring experiences in parametric design studios</b>
-                at Politecnico di Torino, supporting students in the development of generative workflows, parametric
-                models, and
-                advanced project representation.<br> </br>
-
-                In the professional field, I participated in <b>public and private projects</b> and collaborated with
-                the
-                Research and Development department of an engineering company, dealing with the <b>optimization of
-                    design processes</b> and
-                the development of <b>computational tools for hospital design and simulation</b>, also in support
-                of public tenders.<br> </br>
-
-                Curious and innovation-oriented, I integrate design and programming as an integral part of the design
-                process,
-                an approach I also applied in developing my personal website as a dynamic platform for the presentation
-                of my portfolio and curriculum. <b>My goal is to combine architecture and technology to address the
-                    complexity of contemporary design</b> through adaptive, sustainable processes oriented towards
-                possible future scenarios.
-
-
-            </div>
-            <div class="contatti">{ &nbsp;&nbsp;&nbsp;&nbsp;CONTACTS
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-            </div>
-            <div class="contatti2"> cell. &nbsp;&nbsp;&nbsp;&nbsp; +39 3405308026 <br> e.mail &nbsp;&nbsp;&nbsp;&nbsp;
-                nicole.giler@outlook.com </div>
-        </div>
-        <div class="decorative-elements">
-            <span class="brace-open">{</span>
-            <span class="bg-text-su" style="font-size: 100px; left: 100px;">ABOUT</span>
-            <span class="bg-text-me">ME</span>
-            <span class="brace-close">}</span>
-        </div>
-    </div>
-    <div class="break"></div> <!-- Page break -->
-    <br><br>
-    <div class="container">
-        <div class="column">
-            <div class="column-title"><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDUCATION</span><span>}</span></div>
-            <br> </br>
-            <div class="sub-columns">
-                <div class="sub-column-left">
-                    <div>12 | 17</div>
-                    <div>18 | 22</div>
-                    <div>22 | 25</div>
-                </div>
-                <div class="sub-column-right">
-                    <div>IISS BOSELLI ALBERTI | SURVEYOR</div>
-                    <div>POLITECNICO DI TORINO | ARCHITECTURE </div>
-                    <div>POLITECNICO DI TORINO | ARCHITECTURE <br> CONSTRUCTION CITY</div>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="column-title"><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORK</span><span>}</span></div>
-            <br> </br>
-            <div class="sub-columns">
-                <div class="sub-column-left">
-                    <div>15</div>
-                    <div>16 | 21</div>
-                    <div>22</div>
-                    <div>22 | 23</div>
-                    <div>25</div>
-                    <div>25</div>
-                </div>
-                <div class="sub-column-right">
-                    <div>MUNICIPALITY OF CELLE LIGURE</div>
-                    <div>ENG. STEFANO PERATA</div>
-                    <div>ARCH. PAOLO CASTELNOVI</div>
-                    <div>GIUBERGIA-GRIGLIO ARCHITETTI</div>
-                    <div>TECNICAER</div>
-                    <div>POLITECNICO DI TORINO</div>
-                </div>
-            </div>
-        </div>
-        <div class="column column-software">
-            <div class="column-title">
-                <span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOFTWARE</span><span>}</span>
-            </div>
-            <br> </br>
-            <div class="sub-columns-software">
-                <div class="sub-column-quarter">
-                    <div>.PS .AI .IND</div>
-                    <div>.DWG</div>
-                    <div>.RVT .GR</div>
-                    <div>.HTML .CSS</div>
-                    <div>.SKP</div>
-                </div>
-                <div class="sub-column-quarter">
-                    <div><b>+ + + +</b> <a class="half-gray">+</a></div>
-                    <div><b>+ + + + +</b></div>
-                    <div><b>+ + +</b> <a class="half-gray">+ +</a></div>
-                    <div><b>+</b> <a class="half-gray">+ + + +</a></div>
-                    <div><b>+ + + +</b> <a class="half-gray">+</a></div>
-                </div>
-                <div class="sub-column-quarter">
-                    <div>.VRAY</div>
-                    <div>.LUMION</div>
-                    <div>.QGIS</div>
-                    <div>.AN .AE</div>
-                </div>
-                <div class="sub-column-quarter">
-                    <div><b>+ + +</b> <a class="half-gray">+ +</a></div>
-                    <div><b>+ +</b> <a class="half-gray">+ + +</a></div>
-                    <div><b>+ +</b> <a class="half-gray">+ + +</a></div>
-                    <div><b>+ +</b> <a class="half-gray">+ + +</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="column column-premi">
-            <div class="column-title"><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AWARDS AND PUBLICATIONS</span><span>}</span>
-            </div>
-            <br> </br>
-            <div class="premi-content">
-                <div><b>Publication:</b> <span class="premi-title">Beyond Drawing Algorithms: Scenarios and the
-                        Ekphrasis of the Future City</span>, Conference: 46° Convegno Internazionale dei Docenti delle
-                    Discipline della Rappresentazione. Recognition: best paper.</div>
-                <div><b>Award:</b> <span class="premi-title">TeleArchitettura Awards</span> – Thesis Category,
-                    Politecnico di Torino.</div>
-                <div><b>Article:</b> <span class="premi-title">Architecture for Change: Parametric Urban Design,
-                        Vernacular Heritage Conservation and Resilient Housing Solutions</span>, ArchDaily.</div>
-            </div>
-        </div>
-        <div class="column column-lingue">
-            <div class="column-title"><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LANGUAGES</span><span>}</span>
-            </div>
-            <br> </br>
-            <div class="sub-columns">
-                <div class="sub-column-left">
-                    <div>ITA.</div>
-                    <div>ENG.*</div>
-                    <div>ESP.</div>
-                    <div class="text-below">
-                        <p>*IELTS Certification level 5.5 | 2023</p>
+            // Struttura della finestra
+            errorWindow.innerHTML = `
+                <div class="header">
+                    <span>Errore</span>
+                    <div class="controls">
+                        <button class="close"></button>
+                        <button class="minimize"></button>
+                        <button class="resize"></button>
                     </div>
                 </div>
-                <div class="sub-column-right">
-                    <div><b>+ + + + +</b><a class="half-gray"></a></div>
-                    <div><b>+ + </b><a class="half-gray">+ + +</a></div>
-                    <div><b>+ + + + </b><a class="half-gray">+</a></div>
+                <div class="content">
+                    <h1>!ERROR!</h1>
+                    <p>Schermo troppo piccolo :( </p>
                 </div>
-            </div>
-        </div>
-    </div>
+            `;
 
-    </div>
+            // Aggiunge la finestra al contenitore
+            errorWindowsContainer.appendChild(errorWindow);
+        }
+    }
 
+    function checkScreenSize() {
+        if (window.innerWidth < 1224) { // Schermo troppo piccolo
+            mainError.style.display = "flex";
+            generateErrorWindows(100); // Genera 20 finestre
+        } else { // Schermo grande
+            mainError.style.display = "none";
+        }
+    }
 
-
-
-    <div id="main-error">
-        <div id="error-windows-container"></div>
-    </div>
-
-
-
-
-    <script src="base.js"></script>
-    <script src="curriculum.js"></script>
-    <div id="custom-cursor"></div>
-
-</body>
-
-</html>
+    checkScreenSize(); // Controlla le dimensioni al caricamento
+    window.addEventListener("resize", checkScreenSize); // Rileva ridimensionamento finestra
+});
