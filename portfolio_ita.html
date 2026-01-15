@@ -1,4 +1,16 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNGP | PORTFOLIO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+</head>
+
 <body>
+    <div id="custom-cursor"></div>
     <!-- Header -->
     <header>
         <div class="header-left">
@@ -13,13 +25,15 @@
     </header>
 
     <!-- Flipbook -->
-   
+
     <div class="flipbook-wrapper">
         <div class="book" id="book"></div>
         <div class="buttons">
-            <button id="prev"> < </button>
-            <a href="portfolio/GILER PINARGOTE_Portfolio_Curriculum_ita.pdf" download="document.pdf" class="download-button">DOWNLOAD</a>
-            <button id="next"> > </button>
+            <button id="prev">
+                < </button>
+                    <a href="portfolio/GILER PINARGOTE_Portfolio_Curriculum_ita.pdf" download="document.pdf"
+                        class="download-button">DOWNLOAD</a>
+                    <button id="next"> > </button>
         </div>
     </div>
 
@@ -28,7 +42,7 @@
     <footer>
         <div>
             <a class="lingua-button" href="portfolio_eng.html">ENG</a>
-             <!--  <a class="lingua-button">|</a>
+            <!--  <a class="lingua-button">|</a>
             <a class="lingua-button" href="esp.html">ESP</a>-->
         </div>
     </footer>
@@ -37,7 +51,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 
     <script>
-    const book = document.getElementById('book');
+        const book = document.getElementById('book');
         let pages = [];
         let currentPage = 0;
         const totalPages = 28;
@@ -104,16 +118,38 @@
             touchEndX = event.changedTouches[0].screenX;
             handleGesture();
         });
+
+        // Custom Cursor
+        document.addEventListener("DOMContentLoaded", function () {
+            const cursor = document.getElementById("custom-cursor");
+            document.addEventListener("mousemove", function (e) {
+                cursor.style.left = e.pageX + "px";
+                cursor.style.top = e.pageY + "px";
+            });
+        });
     </script>
 
     <style>
         body {
-            font-family: "Futura", sans-serif;
+            font-family: "Satoshi", sans-serif;
             background-color: #f1f1f1;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             height: 100vh;
+            cursor: none;
+        }
+
+        #custom-cursor {
+            width: 13px;
+            height: 13px;
+            background: transparent;
+            border: 2.5px solid black;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 9999;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
         }
 
         header {
@@ -224,7 +260,7 @@
         }
 
         .download-button {
-            font-family: "Futura", sans-serif;
+            font-family: "Satoshi", sans-serif;
             font-size: 10px;
             color: #000;
             padding: 10px 20px;
@@ -237,7 +273,7 @@
         }
 
         .download-button:hover {
-           
+
             filter: blur(0);
         }
 
@@ -248,3 +284,5 @@
         }
     </style>
 </body>
+
+</html>
